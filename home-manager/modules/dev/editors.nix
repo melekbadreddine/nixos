@@ -18,7 +18,7 @@
     source = pkgs.fetchFromGitHub {
       owner = "melekbadreddine";
       repo = "neovim";
-      rev = "main";
+      rev = "master";
       sha256 = "sha256-0000000000000000000000000000000000000000000="; 
     };
     recursive = true;
