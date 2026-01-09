@@ -19,7 +19,7 @@
       owner = "melekbadreddine";
       repo = "neovim";
       rev = "master";
-      sha256 = "sha256-0000000000000000000000000000000000000000000="; 
+      sha256 = "sha256-ddQwdHBPGXLPck9NgqHuOhismGTcFtsU1RzQvymU+s8="; 
     };
     recursive = true;
   };
