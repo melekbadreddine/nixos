@@ -18,6 +18,14 @@
     
     # AI
     gemini-cli
+
+    # Build & Extraction
+    gcc
+    gnumake
+    unzip
+    wget
+    curl
+    tree-sitter
   ];
 
   programs.bash.shellAliases = {

@@ -1,4 +1,4 @@
-{ config, pkgs, fresh, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./modules
