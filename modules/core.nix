@@ -7,8 +7,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    git
-    just
-    alejandra
+    # Basic system-level utilities (empty for now if everything moved to HM)
   ];
 }
