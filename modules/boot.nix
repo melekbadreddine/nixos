@@ -4,5 +4,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  plymouth.enable = true;
+  
+  # Boot Animation / Splash Screen.
+  boot.plymouth.enable = true;
 }
