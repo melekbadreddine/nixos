@@ -11,26 +11,20 @@ lib.mkIf stylixEnable {
   stylix = {
     enable = true;
     image = stylixImage;
-    # base16Scheme = {
-    #   base00 = "282936";
-    #   base01 = "3a3c4e";
-    #   base02 = "4d4f68";
-    #   base03 = "626483";
-    #   base04 = "62d6e8";
-    #   base05 = "e9e9f4";
-    #   base06 = "f1f2f8";
-    #   base07 = "f7f7fb";
-    #   base08 = "ea51b2";
-    #   base09 = "b45bcf";
-    #   base0A = "00f769";
-    #   base0B = "ebff87";
-    #   base0C = "a1efe4";
-    #   base0D = "62d6e8";
-    #   base0E = "b45bcf";
-    #   base0F = "00f769";
-    # };
     polarity = "dark";
     opacity.terminal = 1.0;
+
+    # Fix for 'services.displayManager.generic' error in recent nixpkgs
+    # This usually happens when Stylix tries to style a display manager
+    # that has been refactored in NixOS unstable or is not yet fully 
+    # supported (like cosmic-greeter).
+    targets.console.enable = false;
+    targets.gnome.enable = false;
+    targets.gtk.enable = false;
+    targets.kde.enable = false;
+    targets.lightdm.enable = false;
+    targets.regreet.enable = false;
+
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
