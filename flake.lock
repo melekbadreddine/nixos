@@ -185,11 +185,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1770971638,
-        "narHash": "sha256-kRjzlvVL16vNM47uefmfJkeQIPZU4Fx+lEeiXC64PxE=",
+        "lastModified": 1777154742,
+        "narHash": "sha256-PcZMjRjDdUUR1N13doSFK64w+38/v8763HWY4I50k9k=",
         "owner": "sinelaw",
         "repo": "fresh",
-        "rev": "96ba878e2bf536e206b6de999a7d8a4fdbc5641e",
+        "rev": "6e1927709578e49cb65ff649f2e223579b05d691",
         "type": "github"
       },
       "original": {
