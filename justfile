@@ -2,12 +2,12 @@
 default:
     @just --list
 
-# Rebuild the NixOS system
+# Rebuild the NixOS system (This also rebuilds Home Manager when used as a module)
 switch:
     @echo "Rebuilding NixOS system..."
     sudo nixos-rebuild switch --flake .#Melek
 
-# Rebuild Home Manager configuration
+# Rebuild Home Manager configuration standalone (Only needed if NOT using the NixOS module)
 home-switch:
     @echo "Rebuilding Home Manager..."
     home-manager switch --flake .#melek
@@ -18,8 +18,6 @@ update:
     nix flake update
     @echo "Rebuilding System..."
     sudo nixos-rebuild switch --flake .#Melek
-    @echo "Rebuilding Home Manager..."
-    home-manager switch --flake .#melek
 
 # Garbage collect and remove result symlinks
 clean:

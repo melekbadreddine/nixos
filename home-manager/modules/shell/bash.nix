@@ -10,13 +10,6 @@
       # Show all relevant files with names (excludes .json, .lock, .git, etc)
       showfiles = ''fd --type f --exclude "*.json" --exclude "*.lock" | while read -r file; do echo ""; echo "=== $file ==="; bat --color=always --style=plain "$file"; done'';
       
-      # Nix management
-      nix-rebuild = "sudo nixos-rebuild switch --flake $HOME/.config/nixos#Melek";
-      nix-switch = "home-manager switch --flake $HOME/.config/nixos#melek";
-      nix-update = "nix flake update --flake $HOME/.config/nixos && sudo nixos-rebuild switch --flake $HOME/.config/nixos#Melek && home-manager switch --flake $HOME/.config/nixos#melek";
-      nix-edit = "nvim $HOME/.config/nixos/";
-      nix-gc = "nix-collect-garbage -d";
-      
       # System info
       ports = "ss -tulanp";
       myip = "curl -s ifconfig.me";
