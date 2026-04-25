@@ -27,7 +27,7 @@ in {
       targets.console.enable = false;
       targets.gnome.enable = false;
       targets.gtk.enable = false;
-      targets.kde.enable = false;
+      targets.plasma.enable = false;
       targets.lightdm.enable = false;
       targets.regreet.enable = false;
 
