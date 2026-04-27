@@ -2,7 +2,6 @@
 {
   imports = [
     ./modules
-    ./stylix.nix
   ];
 
   home.username = "melek";
