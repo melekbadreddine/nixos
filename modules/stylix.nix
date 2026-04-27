@@ -44,6 +44,8 @@ lib.mkIf stylixEnable {
     targets = {
       console.enable = true;
       plymouth.enable = true;
+      firefox.profileNames = [ "melek" ];
+      qt.platform = "qtct";
     };
   };
 }

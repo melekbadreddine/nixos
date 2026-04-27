@@ -33,6 +33,5 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-  services.k3s.enable = true;
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "26.05"; # Did you read the comment?
 }

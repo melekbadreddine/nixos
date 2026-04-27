@@ -1,5 +1,5 @@
 { pkgs, helium, ... }: {
   home.packages = [ 
-    helium.packages.${pkgs.system}.default 
+    helium.packages.${pkgs.stdenv.hostPlatform.system}.default 
   ];
 }

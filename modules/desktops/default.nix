@@ -3,7 +3,7 @@
 {
   imports = [
     # ./cosmic.nix
-    ./kde.nix
+    ./plasma.nix
     # ./xfce.nix
   ];
 }

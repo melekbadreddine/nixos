@@ -28,11 +28,11 @@
     };
   in {
     nixosConfigurations.Melek = nixpkgs.lib.nixosSystem {
-      inherit system;
       specialArgs = {
         inherit fresh helium stylix host;
       };
       modules = [
+        { nixpkgs.hostPlatform = system; }
         stylix.nixosModules.stylix
         ./hosts/laptop/default.nix
 
