@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./firefox.nix
-    ./ghostty.nix
     ./helium.nix
+    ./ghostty.nix
   ];
 }

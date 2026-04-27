@@ -2,6 +2,8 @@
 
 {
   imports = [
-    ./cosmic.nix
+    # ./cosmic.nix
+    ./kde.nix
+    # ./xfce.nix
   ];
 }

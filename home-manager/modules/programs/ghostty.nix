@@ -1,10 +1,14 @@
 { pkgs, ... }: {
-  programs.ghostty = {
-    enable = true;
-    enableBashIntegration = true;
-    settings = {
-      theme = "dark"; # Stylix will likely override this, but good as a fallback
-      font-size = 15;
-    };
-  };
+  # If programs.ghostty.enable is not yet in your home-manager version, 
+  # we use home.packages as a fallback.
+  home.packages = [ pkgs.ghostty ];
+  
+  # programs.ghostty = {
+  #   enable = true;
+  #   enableBashIntegration = true;
+  #   settings = {
+  #     theme = "dark";
+  #     font-size = 15;
+  #   };
+  # };
 }

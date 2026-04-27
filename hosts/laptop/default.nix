@@ -14,7 +14,7 @@
       ../../modules/printing.nix
       ../../modules/networking.nix
       ../../modules/core.nix
-      # ../../modules/stylix.nix
+      ../../modules/stylix.nix
     ];
 
   networking.hostName = "Melek"; # Define your hostname.
@@ -34,5 +34,5 @@
   # services.openssh.enable = true;
 
   services.k3s.enable = true;
-  system.stateVersion = "25.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }
