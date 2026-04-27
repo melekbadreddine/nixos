@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   virtualisation.docker.enable = true;
@@ -8,5 +8,5 @@
   };
 
   services.k3s.enable = true;
-  services.k3s.autoStart = false;
+  systemd.services.k3s.wantedBy = lib.mkForce [ ];
 }
