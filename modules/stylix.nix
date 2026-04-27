@@ -23,8 +23,9 @@ in {
       polarity = "dark";
       opacity.terminal = 1.0;
 
-      # Enable console target
+      # Enable boot targets
       targets.console.enable = true;
+      targets.plymouth.enable = true;
       targets.generic.enable = lib.mkForce false;
 
       cursor = {

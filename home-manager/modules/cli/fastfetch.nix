@@ -13,7 +13,7 @@
 
       logo = {
         source = "${../../../assets/fastfetch/makima.png}";
-        type = "auto";
+        type = "kitty";
         height = 10;
         width = 20;
         padding = {
