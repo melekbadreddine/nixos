@@ -14,7 +14,7 @@
       ../../modules/printing.nix
       ../../modules/networking.nix
       ../../modules/core.nix
-      ../../modules/stylix.nix
+      # ../../modules/stylix.nix
     ];
 
   networking.hostName = "Melek"; # Define your hostname.

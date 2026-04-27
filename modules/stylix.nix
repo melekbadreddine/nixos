@@ -23,12 +23,9 @@ in {
       polarity = "dark";
       opacity.terminal = 1.0;
 
-      # Try to disable the most likely culprits
-      targets.console.enable = false;
-      targets.gnome.enable = false;
-      targets.gtk.enable = false;
-      targets.lightdm.enable = false;
-      targets.regreet.enable = false;
+      # Enable console target
+      targets.console.enable = true;
+      targets.generic.enable = lib.mkForce false;
 
       cursor = {
         package = pkgs.bibata-cursors;

@@ -35,7 +35,7 @@
         "$character"
       ];
 
-      palette = "catppuccin_mocha";
+      palette = lib.mkForce "catppuccin_mocha";
 
       palettes.catppuccin_mocha = {
         rosewater = "#f5e0dc";
