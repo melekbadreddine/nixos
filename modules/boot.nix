@@ -6,7 +6,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   
   # Prevent USB hub hang
-  boot.kernelParams [ 
+  boot.kernelParams = [ 
     "usbcore.autosuspend=-1" 
     "iommu=soft" 
   ];

@@ -1,3 +1,6 @@
 { ... }: {
-  imports = [ ./helium.nix ];
+  imports = [
+    ./firefox.nix
+    ./helium.nix
+  ];
 }
