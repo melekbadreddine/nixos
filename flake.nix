@@ -43,14 +43,14 @@
 
           home-manager.users.melek = import ./home-manager/home.nix;
 
-          home-manager.extraSpecialArgs = {inherit fresh helium;};
+          home-manager.extraSpecialArgs = {inherit fresh helium host;};
         }
       ];
     };
 
     homeConfigurations."melek" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = {inherit fresh helium;};
+      extraSpecialArgs = {inherit fresh helium host;};
       modules = [./home-manager/home.nix];
     };
   };

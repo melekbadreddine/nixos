@@ -12,8 +12,8 @@
       };
 
       logo = {
-        source = ../../../assets/fastfetch/makima.png;
-        type = "kitty-direct";
+        source = "${../../../assets/fastfetch/makima.png}";
+        type = "auto";
         height = 10;
         width = 20;
         padding = {
