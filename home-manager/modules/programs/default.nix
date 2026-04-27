@@ -2,7 +2,8 @@
   imports = [
     ./firefox.nix
     ./helium.nix
-    ./ghostty.nix
+    ./kitty.nix
     ./kdeconnect.nix
+    ./waybar.nix
   ];
 }

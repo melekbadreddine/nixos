@@ -1,4 +1,4 @@
 {
   stylixEnable = true;
-  stylixImage = "${../../assets/wallpapers/35.png}";
+  stylixImage = "${../../assets/wallpapers/sword.jpg}";
 }
