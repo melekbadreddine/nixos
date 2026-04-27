@@ -21,6 +21,7 @@
     ...
   }: let
     system = "x86_64-linux";
+    host = "laptop";
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -29,8 +30,7 @@
     nixosConfigurations.Melek = nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {
-        inherit fresh helium stylix;
-        host = "laptop";
+        inherit fresh helium stylix host;
       };
       modules = [
         stylix.nixosModules.stylix
