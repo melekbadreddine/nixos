@@ -6,15 +6,13 @@
 
     # Panels configuration
     panels = [
-      # Top "Island" Panel (Waybar-like)
+      # Top "Island" Panel
       {
         location = "top";
-        height = 30;
+        height = 32;
         floating = true;
         alignment = "center";
-        lengthMode = "custom";
-        minLength = 100;
-        maxLength = 100;
+        lengthMode = "fill"; # Change to fill to ensure it's visible, then refine
         
         widgets = [
           {
@@ -34,7 +32,7 @@
         height = 56;
         floating = true;
         alignment = "center";
-        lengthMode = "fit"; # Shrinks to fit icons like a dock
+        lengthMode = "fit";
         
         widgets = [
           {
@@ -49,35 +47,22 @@
       }
     ];
 
-    # Workspace and Window Manager settings
+    # Window Decorations and Theme
     workspace = {
       clickItemTo = "select";
       lookAndFeel = "org.kde.breeze.desktop";
-      cursor.theme = "Bibata-Modern-Ice";
+      windowDecoration = {
+        library = "org.kde.klassy";
+        theme = "Klassy";
+      };
     };
 
-    # Custom configuration for transparency and rounded corners
-    # Note: Full rounded corners on windows often requires a specific theme or KWin script,
-    # but we can enable transparency effects here.
+    # Simplified config to avoid crashes during initial rice
     configFile = {
       kwinrc = {
-        "Desktops" = {
-          "Number" = 4;
-          "Rows" = 1;
-        };
         "Plugins" = {
-          "translucencyEnabled" = true;
           "blurEnabled" = true;
-        };
-      };
-      # Setting window opacity (Active/Inactive)
-      kwinrulesrc = {
-        "1" = {
-          "Description" = "Global Opacity";
-          "opacityactive" = 95;
-          "opacityinactive" = 85;
-          "wmclass" = ".*";
-          "wmclassmatch" = 3;
+          "translucencyEnabled" = true;
         };
       };
     };
