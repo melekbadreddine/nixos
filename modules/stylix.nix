@@ -44,7 +44,6 @@ lib.mkIf stylixEnable {
     targets = {
       console.enable = true;
       plymouth.enable = true;
-      qt.platform = "qtct";
     };
   };
 }
