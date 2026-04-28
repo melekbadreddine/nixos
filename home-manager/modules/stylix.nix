@@ -1,3 +1,3 @@
 { ... }: {
-  stylix.targets.firefox.profileNames = [ "melek" ];
+  stylix.targets.firefox.enable = false;
 }

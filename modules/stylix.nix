@@ -7,44 +7,25 @@
   inherit (import ../hosts/${host}/variables.nix) stylixImage stylixEnable;
 in
 lib.mkIf stylixEnable {
-  # Styling Options
   stylix = {
     enable = true;
     image = stylixImage;
     polarity = "dark";
-    opacity.terminal = 0.95;
 
-    cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
-      size = 24;
+    # Disable all automatic styling to prevent it from touching Plasma/GTK/etc.
+    autoEnable = false;
+
+    targets = {
+      console.enable = true;
+      plymouth.enable = true;
     };
 
+    # Basic font config for console/plymouth if needed
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font";
       };
-      sansSerif = {
-        package = pkgs.montserrat;
-        name = "Montserrat";
-      };
-      serif = {
-        package = pkgs.montserrat;
-        name = "Montserrat";
-      };
-      sizes = {
-        applications = 12;
-        terminal = 15;
-        desktop = 11;
-        popups = 12;
-      };
-    };
-
-    targets = {
-      console.enable = true;
-      plymouth.enable = true;
-      qt.platform = lib.mkForce "qtct";
     };
   };
 }

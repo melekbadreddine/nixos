@@ -4,6 +4,5 @@
     ./helium.nix
     ./kitty.nix
     ./kdeconnect.nix
-    ./plasma.nix
   ];
 }
