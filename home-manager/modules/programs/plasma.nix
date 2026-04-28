@@ -1,48 +1,47 @@
-{ ... }:
-
+{ host, ... }:
+let
+  inherit (import ../../../hosts/${host}/variables.nix) stylixImage;
+in
 {
   programs.plasma = {
     enable = true;
 
     # Panels configuration
     panels = [
-      # Top "Island" Panel
+      # Top "Island" Panel (Waybar-like)
       {
         location = "top";
         height = 32;
         floating = true;
         alignment = "center";
-        lengthMode = "fill"; # Change to fill to ensure it's visible, then refine
+        lengthMode = "fill";
         
         widgets = [
+          # Left: Menu and Workspaces
           {
             name = "org.kde.plasma.kickoff";
             config.General.icon = "nix-snowflake";
           }
           "org.kde.plasma.pager"
-          "org.kde.plasma.icontasks"
-          "org.kde.plasma.marginsseparator"
-          "org.kde.plasma.systemtray"
+          
+          # Spacer to center modules
+          "org.kde.plasma.panelspacer"
+
+          # Center: System Monitoring (matching Waybar modules-center)
+          "org.kde.plasma.systemmonitor.cpu"
+          "org.kde.plasma.systemmonitor.memory"
+          
+          # Spacer to push modules to the right
+          "org.kde.plasma.panelspacer"
+
+          # Right: Status Icons, Clock, and System Tray (matching Waybar modules-right)
+          "org.kde.plasma.battery"
+          "org.kde.plasma.volume"
+          "org.kde.plasma.keyboardlayout"
+          "org.kde.plasma.networkmanagement"
           "org.kde.plasma.digitalclock"
-        ];
-      }
-      # Bottom Mac-like Dock
-      {
-        location = "bottom";
-        height = 56;
-        floating = true;
-        alignment = "center";
-        lengthMode = "fit";
-        
-        widgets = [
-          {
-            name = "org.kde.plasma.icontasks";
-            config.General.launchers = [
-              "applications:org.kde.dolphin.desktop"
-              "applications:kitty.desktop"
-              "applications:firefox.desktop"
-            ];
-          }
+          "org.kde.plasma.systemtray"
+          "org.kde.plasma.lock_logout"
         ];
       }
     ];
@@ -56,6 +55,9 @@
         theme = "Klassy";
       };
     };
+
+    # Lock screen configuration
+    kscreenlocker.appearance.wallpaper = stylixImage;
 
     # Simplified config to avoid crashes during initial rice
     configFile = {
