@@ -23,7 +23,7 @@ lib.mkIf stylixEnable {
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrains Mono";
+        name = "JetBrainsMono Nerd Font";
       };
       sansSerif = {
         package = pkgs.montserrat;
