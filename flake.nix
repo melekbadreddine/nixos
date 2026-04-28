@@ -50,6 +50,7 @@
           home-manager.users.melek = import ./home-manager/home.nix;
 
           home-manager.extraSpecialArgs = {inherit fresh helium host plasma-manager;};
+          home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
         }
       ];
     };
