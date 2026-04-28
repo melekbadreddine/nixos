@@ -50,7 +50,7 @@ in
     workspace = {
       clickItemTo = "select";
       lookAndFeel = "org.kde.breeze.desktop";
-      windowDecoration = {
+      windowDecorations = {
         library = "org.kde.klassy";
         theme = "Klassy";
       };
