@@ -1,4 +1,4 @@
-{ host, ... }:
+{ host, lib, ... }:
 let
   inherit (import ../../../hosts/${host}/variables.nix) stylixImage;
 in
@@ -6,67 +6,58 @@ in
   programs.plasma = {
     enable = true;
 
+    # Restore lookAndFeel to ensure a working base theme
+    workspace = {
+      clickItemTo = "select";
+      lookAndFeel = "org.kde.breeze.desktop";
+      windowDecoration = {
+        library = "org.kde.klassy";
+        theme = "Klassy";
+      };
+    };
+
+    # Set wallpaper for the desktop as well
+    desktop.wallpaper = stylixImage;
+
     # Panels configuration
     panels = [
-      # Top "Island" Panel (Waybar-like)
+      # Top Panel (Simplified for stability)
       {
         location = "top";
         height = 32;
-        floating = true;
+        floating = false; # Set to false temporarily for stability
         alignment = "center";
         lengthMode = "fill";
         
         widgets = [
-          # Left: Menu and Workspaces
+          # Left
           {
             name = "org.kde.plasma.kickoff";
             config.General.icon = "nix-snowflake";
           }
           "org.kde.plasma.pager"
           
-          # Spacer to center modules
           "org.kde.plasma.panelspacer"
 
-          # Center: System Monitoring (matching Waybar modules-center)
-          "org.kde.plasma.systemmonitor.cpu"
-          "org.kde.plasma.systemmonitor.memory"
+          # Center
+          "org.kde.plasma.icontasks"
           
-          # Spacer to push modules to the right
           "org.kde.plasma.panelspacer"
 
-          # Right: Status Icons, Clock, and System Tray (matching Waybar modules-right)
-          "org.kde.plasma.battery"
-          "org.kde.plasma.volume"
-          "org.kde.plasma.keyboardlayout"
-          "org.kde.plasma.networkmanagement"
-          "org.kde.plasma.digitalclock"
+          # Right
           "org.kde.plasma.systemtray"
-          "org.kde.plasma.lock_logout"
+          "org.kde.plasma.digitalclock"
         ];
       }
     ];
 
-    # Window Decorations and Theme
-    workspace = {
-      clickItemTo = "select";
-      # Removed lookAndFeel to avoid conflict with windowDecoration as per warning
-      windowDecorations = {
-        library = "org.kde.klassy";
-        theme = "Klassy";
-      };
-    };
-
     # Lock screen configuration
     kscreenlocker.appearance.wallpaper = stylixImage;
 
-    # Simplified config to avoid crashes during initial rice
-    configFile = {
-      kwinrc = {
-        "Plugins" = {
-          "blurEnabled" = true;
-          "translucencyEnabled" = true;
-        };
-      };
+    # Ensure basic kwin effects
+    configFile.kwinrc."Plugins" = {
+      "blurEnabled" = true;
+      "translucencyEnabled" = true;
     };
   };
 }
