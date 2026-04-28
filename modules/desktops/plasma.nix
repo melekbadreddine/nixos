@@ -10,7 +10,7 @@
   services.desktopManager.plasma6.enable = true;
 
   environment.systemPackages = with pkgs; [
-    kdePackages.klassy
+    klassy
   ];
 
   # Configure keymap in X11
