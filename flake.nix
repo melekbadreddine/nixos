@@ -46,6 +46,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "backup";
 
           home-manager.users.melek = import ./home-manager/home.nix;
 
