@@ -46,12 +46,12 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
+          home-manager.backupFileExtension = "hm-backup";
 
           home-manager.users.melek = import ./home-manager/home.nix;
 
           home-manager.extraSpecialArgs = {inherit fresh helium host plasma-manager;};
-          home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+          home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
         }
       ];
     };
@@ -61,7 +61,7 @@
       extraSpecialArgs = {inherit fresh helium host plasma-manager;};
       modules = [
         ./home-manager/home.nix
-        plasma-manager.homeManagerModules.plasma-manager
+        plasma-manager.homeModules.plasma-manager
       ];
     };
   };

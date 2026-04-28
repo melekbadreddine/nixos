@@ -49,7 +49,7 @@ in
     # Window Decorations and Theme
     workspace = {
       clickItemTo = "select";
-      lookAndFeel = "org.kde.breeze.desktop";
+      # Removed lookAndFeel to avoid conflict with windowDecoration as per warning
       windowDecorations = {
         library = "org.kde.klassy";
         theme = "Klassy";
