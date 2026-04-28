@@ -9,6 +9,10 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    kdePackages.klassy
+  ];
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "fr";
