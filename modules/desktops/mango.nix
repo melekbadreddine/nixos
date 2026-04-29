@@ -18,7 +18,7 @@
 
   # Add mango to system packages
   environment.systemPackages = [
-    mango.packages.${pkgs.system}.default
+    inputs.mango.packages.${pkgs.system}.default
   ];
 
   # Required system services for Wayland/Mango
