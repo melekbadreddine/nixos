@@ -10,9 +10,10 @@ lib.mkIf stylixEnable {
   stylix = {
     enable = true;
     image = stylixImage;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
     polarity = "dark";
 
-    # Disable all automatic styling to prevent it from touching Plasma/GTK/etc.
+    # Disable all automatic styling to prevent it from touching other components
     autoEnable = false;
 
     targets = {
@@ -20,11 +21,18 @@ lib.mkIf stylixEnable {
       plymouth.enable = true;
     };
 
-    # Basic font config for console/plymouth if needed
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font";
+        package = pkgs.nerd-fonts.departure-mono;
+        name = "DepartureMono Nerd Font Mono";
+      };
+      sansSerif = {
+        package = pkgs.nerd-fonts.departure-mono;
+        name = "DepartureMono Nerd Font";
+      };
+      serif = {
+        package = pkgs.nerd-fonts.departure-mono;
+        name = "DepartureMono Nerd Font";
       };
     };
   };

@@ -1,7 +1,8 @@
-{ config, pkgs, fresh, helium, ... }:
+{ config, pkgs, mango, inputs, ... }:
 {
   imports = [
     ./modules
+    ../modules/desktops/mango.nix
   ];
 
   home.username = "melek";

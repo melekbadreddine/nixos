@@ -2,8 +2,6 @@
 
 {
   imports = [
-    # ./cosmic.nix
-    ./plasma.nix
-    # ./xfce.nix
+    ./mango.nix
   ];
 }
