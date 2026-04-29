@@ -29,16 +29,27 @@
       inherit system;
       config.allowUnfree = true;
     };
-  in {
-    nixosConfigurations.Melek = nixpkgs.lib.nixosSystem {
+
+    # Supported profiles
+    profiles = [
+      "amd"
+      "intel"
+      "nvidia"
+      "intel-nvidia"
+      "amd-nvidia"
+      "vm"
+    ];
+
+    # Function to create a NixOS configuration for a given profile
+    mkNixosConfig = profile: nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit fresh helium stylix host mango;
+        inherit fresh helium stylix host mango profile;
       };
       modules = [
         { nixpkgs.hostPlatform = system; }
         stylix.nixosModules.stylix
-        ./hosts/default/default.nix
-
+        ./profiles/${profile}
+        
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
@@ -47,10 +58,18 @@
 
           home-manager.users.melek = import ./home-manager/home.nix;
 
-          home-manager.extraSpecialArgs = {inherit fresh helium host mango inputs;};
+          home-manager.extraSpecialArgs = {inherit fresh helium host mango inputs profile;};
         }
       ];
     };
+  in {
+    # Create a configuration for each profile
+    nixosConfigurations = builtins.listToAttrs (
+      map (profile: {
+        name = profile;
+        value = mkNixosConfig profile;
+      }) profiles
+    );
 
     homeConfigurations."melek" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
