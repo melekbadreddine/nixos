@@ -4,17 +4,8 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      ../../modules/boot.nix
-      ../../modules/i18n.nix
-      ../../modules/users.nix
-      ../../modules/virtualisation.nix
-      ../../modules/fonts.nix
+      ../../modules/core
       ../../modules/desktops/default.nix
-      ../../modules/sound.nix
-      ../../modules/printing.nix
-      ../../modules/networking.nix
-      ../../modules/core.nix
-      ../../modules/stylix.nix
     ];
 
   networking.hostName = "Melek"; # Define your hostname.
