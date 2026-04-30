@@ -4,7 +4,6 @@ in {
   imports = [
     ../../hosts/${host}
     ../../modules/drivers
-    ../../modules/core
   ];
 
   # Enable AMD+NVIDIA hybrid drivers (Prime offload with AMD as primary)

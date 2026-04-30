@@ -203,6 +203,8 @@ export NIX_CONFIG="experimental-features = nix-command flakes"
 echo -e "${BLUE}Building NixOS system...${NC}"
 if sudo NIX_CONFIG="$NIX_CONFIG" nixos-rebuild boot --flake ".#$profile" 2>&1; then
   rm flake.nix.bak
+  # Write the successful profile to a state file for the justfile to use
+  echo "$profile" > "${LOG_DIR}/.current-profile"
   echo -e "${GREEN}✓ NixOS build successful!${NC}"
   
   print_header "Mangowc Setup Complete"

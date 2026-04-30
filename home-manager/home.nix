@@ -2,7 +2,7 @@
 {
   imports = [
     ./modules
-    ../modules/desktops/mango.nix
+    ./modules/mango-hm.nix
     inputs.mango.hmModules.mango
   ];
 

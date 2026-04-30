@@ -1,23 +1,33 @@
-# Default recipe - list available commands
+# List available commands
 default:
     @just --list
 
-# Rebuild the NixOS system (This also rebuilds Home Manager when used as a module)
-switch:
-    @echo "Rebuilding NixOS system..."
-    sudo nixos-rebuild switch --flake .#Melek
+# Detect the current profile
+profile := `if [ -f .current-profile ]; then cat .current-profile; elif command -v lspci > /dev/null; then \
+    if lspci | grep -qi "nvidia" && lspci | grep -qi "amd"; then echo "amd-nvidia"; \
+    elif lspci | grep -qi "nvidia" && lspci | grep -qi "intel"; then echo "intel-nvidia"; \
+    elif lspci | grep -qi "nvidia"; then echo "nvidia"; \
+    elif lspci | grep -qi "amd"; then echo "amd"; \
+    elif lspci | grep -qi "intel"; then echo "intel"; \
+    else echo "amd"; fi; \
+    else echo "amd"; fi`
 
-# Rebuild Home Manager configuration standalone (Only needed if NOT using the NixOS module)
+# Rebuild the NixOS system
+switch:
+    @echo "Rebuilding NixOS system with profile: {{profile}}..."
+    sudo nixos-rebuild switch --flake .#{{profile}}
+
+# Rebuild Home Manager configuration standalone
 home-switch:
     @echo "Rebuilding Home Manager..."
     home-manager switch --flake .#melek
 
-# Update flake inputs and rebuild both System and Home Manager
+# Update flake inputs and rebuild
 update:
     @echo "Updating flake inputs..."
     nix flake update
-    @echo "Rebuilding System..."
-    sudo nixos-rebuild switch --flake .#Melek
+    @echo "Rebuilding System with profile: {{profile}}..."
+    sudo nixos-rebuild switch --flake .#{{profile}}
 
 # Garbage collect and remove result symlinks
 clean:

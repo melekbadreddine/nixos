@@ -28,11 +28,13 @@ in {
 
     hardware.nvidia = {
       modesetting.enable = true;
-      open = true; # RTX 50xx requires the open kernel module
+      # RTX 50xx and modern architectures benefit from the open-source kernel module.
+      # This enables advanced power management and is the path forward for NVIDIA on Linux.
+      open = true; 
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
 
-      # Helpful on laptops to power down the dGPU when idle
+      # Helpful on laptops to power down the dGPU when idle (requires Turing or newer)
       powerManagement.enable = true;
       powerManagement.finegrained = true;
 
