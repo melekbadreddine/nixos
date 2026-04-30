@@ -3,6 +3,7 @@
   imports = [
     ./modules
     ../modules/desktops/mango.nix
+    inputs.mango.hmModules.mango
   ];
 
   home.username = "melek";
