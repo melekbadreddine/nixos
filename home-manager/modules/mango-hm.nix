@@ -232,8 +232,17 @@
       ];
     };
 
+    # Set required environment variables for Wayland/Mango
+    systemd.variables = [
+      "XCURSOR_THEME=Bibata-Modern-Ice"
+      "XCURSOR_SIZE=24"
+    ];
+
     # Autostart programs
     autostart_sh = ''
+      # Ensure HM binaries are in PATH
+      export PATH=$PATH:${pkgs.wlsunset}/bin:${pkgs.swaybg}/bin:${pkgs.waybar}/bin
+
       ${pkgs.wlsunset}/bin/wlsunset -S 5:00 -s 18:00 -T 6500 -t 2800 &
       ${pkgs.swaybg}/bin/swaybg -i ${../../assets/wallpapers/sword.jpg} &
       ${pkgs.waybar}/bin/waybar &
