@@ -10,14 +10,23 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd mango";
+        # Using bash --login to source /etc/profile and PAM environments
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd 'bash --login -c mango'";
         user = "greeter";
       };
     };
   };
 
+  # XDG Portals for Wayland support
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "*";
+  };
+
   # Enable the Mango compositor at system level to register it properly
-  programs.mango.enable = true;
+  programs.mangowc.enable = true;
 
   # Required system services for Wayland/Mango
   services.libinput.enable = true;

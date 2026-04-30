@@ -46,7 +46,17 @@
         inherit fresh helium stylix host mango profile;
       };
       modules = [
-        { nixpkgs.hostPlatform = system; }
+        { 
+          nixpkgs.hostPlatform = system;
+          nixpkgs.overlays = [
+            (final: prev: {
+              xorg = prev.xorg // {
+                libxcb = prev.libxcb;
+                xcbutilwm = prev.libxcb-wm;
+              };
+            })
+          ];
+        }
         stylix.nixosModules.stylix
         ./profiles/${profile}
         

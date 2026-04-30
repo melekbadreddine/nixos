@@ -232,20 +232,36 @@
       ];
     };
 
-    # Set required environment variables for Wayland/Mango
+    # Set required environment variables for Wayland/Mango/Cursor
     systemd.variables = [
       "XCURSOR_THEME=Bibata-Modern-Ice"
       "XCURSOR_SIZE=24"
+      "WLR_NO_HARDWARE_CURSORS=1"
     ];
 
     # Autostart programs
     autostart_sh = ''
       # Ensure HM binaries are in PATH
       export PATH=$PATH:${pkgs.wlsunset}/bin:${pkgs.swaybg}/bin:${pkgs.waybar}/bin
+      
+      # Essential Wayland/DBus session variables
+      export XDG_SESSION_TYPE=wayland
+      export XDG_CURRENT_DESKTOP=mango
+      export WLR_NO_HARDWARE_CURSORS=1
+      export XCURSOR_THEME=Bibata-Modern-Ice
+      export XCURSOR_SIZE=24
 
       ${pkgs.wlsunset}/bin/wlsunset -S 5:00 -s 18:00 -T 6500 -t 2800 &
       ${pkgs.swaybg}/bin/swaybg -i ${../../assets/wallpapers/sword.jpg} &
       ${pkgs.waybar}/bin/waybar &
     '';
   };
+
+  # Ensure cursor theme and core Wayland tools are in user packages
+  home.packages = with pkgs; [
+    bibata-cursors
+    gnome-themes-extra # for Adwaita fallback
+    xdg-utils
+    dbus
+  ];
 }
