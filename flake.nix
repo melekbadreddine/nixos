@@ -1,5 +1,5 @@
 {
-  description = "My Home Manager Flake";
+  description = "Modular multi-profile NixOS + Home Manager flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -20,8 +20,6 @@
     stylix,
     ...
   } @ inputs: let
-    # Supported system architectures
-    systems = ["x86_64-linux" "aarch64-linux"];
     system = "x86_64-linux"; # Primary system (can be overridden per profile)
     host = "default";
     pkgs = import nixpkgs {
@@ -74,6 +72,7 @@
       inherit pkgs;
       extraSpecialArgs = {inherit fresh helium host inputs;};
       modules = [
+        stylix.homeManagerModules.stylix
         ./home-manager/home.nix
       ];
     };

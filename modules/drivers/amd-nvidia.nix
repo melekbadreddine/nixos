@@ -46,7 +46,7 @@ in {
         };
 
         # Wire from options
-        amdBusId = cfg.amdBusId;
+        amdgpuBusId = cfg.amdBusId;
         nvidiaBusId = cfg.nvidiaBusId;
       };
     };
