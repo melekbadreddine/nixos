@@ -6,8 +6,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Enable Wine support for Windows apps.
-  programs.wine.enable = true;
 
   # Chromium policy bridge for Chromium-based browsers (including Helium).
   programs.chromium = {
@@ -23,6 +21,8 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # Basic system-level utilities (empty for now if everything moved to HM)
+    # Windows compatibility layer
+    wineWowPackages.stable
+    winetricks
   ];
 }
