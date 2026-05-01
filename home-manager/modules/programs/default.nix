@@ -5,6 +5,5 @@
     ./plasma-manager.nix
     ./kitty.nix
     ./kdeconnect.nix
-    ./fdm.nix
   ];
 }
