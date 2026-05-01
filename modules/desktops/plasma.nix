@@ -9,4 +9,12 @@
     enable = true;
     wayland.enable = true;
   };
+
+  # Remove default Plasma apps we do not want.
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    kate
+    konsole
+    khelpcenter
+    plasma-welcome
+  ];
 }
