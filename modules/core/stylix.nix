@@ -13,7 +13,8 @@ lib.mkIf stylixEnable {
     base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
     polarity = "dark";
 
-    # Disable all automatic styling to prevent it from touching other components
+    # Disable automatic styling to prevent conflicts with manually configured apps.
+    # Home Manager modules handle their own theming (e.g., Starship, Firefox disabled).
     autoEnable = false;
 
     targets = {

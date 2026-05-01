@@ -20,7 +20,9 @@
     stylix,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
+    # Supported system architectures
+    systems = ["x86_64-linux" "aarch64-linux"];
+    system = "x86_64-linux"; # Primary system (can be overridden per profile)
     host = "default";
     pkgs = import nixpkgs {
       inherit system;

@@ -10,7 +10,7 @@ in {
   options.drivers.amd-nvidia = {
     enable = mkEnableOption "Enable AMD iGPU + NVIDIA dGPU (Prime offload)";
     # AMD iGPU Bus ID (e.g., PCI:5:0:0). Expose as option for future host wiring.
-    amdgpuBusId = mkOption {
+    amdBusId = mkOption {
       type = types.str;
       default = "PCI:5:0:0";
       description = "PCI Bus ID for AMD iGPU";
@@ -46,7 +46,7 @@ in {
         };
 
         # Wire from options
-        amdgpuBusId = cfg.amdgpuBusId;
+        amdBusId = cfg.amdBusId;
         nvidiaBusId = cfg.nvidiaBusId;
       };
     };

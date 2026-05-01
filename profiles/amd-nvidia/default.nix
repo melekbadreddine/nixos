@@ -9,7 +9,7 @@ in {
   # Enable AMD+NVIDIA hybrid drivers (Prime offload with AMD as primary)
   drivers.amd-nvidia = {
     enable = true;
-    amdgpuBusId = "${amdgpuID}";
+    amdBusId = "${amdgpuID}";
     nvidiaBusId = "${nvidiaID}";
   };
 
