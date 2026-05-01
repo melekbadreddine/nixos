@@ -1,5 +1,7 @@
+{ ... }:
+
 {
   imports = [
-    ./mango.nix
+    ./plasma.nix
   ];
 }

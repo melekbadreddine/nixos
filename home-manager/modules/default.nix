@@ -4,7 +4,6 @@
     ./dev
     ./programs
     ./shell
-    ./gui
     ./stylix.nix
   ];
 }

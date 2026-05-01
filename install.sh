@@ -3,7 +3,7 @@
 ######################################
 # NixOS Installation Script
 # Detects hardware, generates config, builds NixOS
-# Sets up Mangowc window manager
+# Sets up KDE Plasma 6
 ######################################
 
 set -e
@@ -33,11 +33,11 @@ print_header() {
 # Function to print a success banner
 print_success_banner() {
   echo -e "${GREEN}╔═══════════════════════════════════════════════════════════════════════╗${NC}"
-  echo -e "${GREEN}║              NixOS + Mangowc Installation Successful!                ║${NC}"
+  echo -e "${GREEN}║           NixOS Desktop Environment Installation Successful!          ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
   echo -e "${GREEN}║   Please reboot your system for changes to take full effect.          ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
-  echo -e "${GREEN}║   Boot into Mango at login and enjoy your new desktop!               ║${NC}"
+  echo -e "${GREEN}║   Select your preferred session at the login screen and enjoy!        ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
   echo -e "${GREEN}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
 }
@@ -207,11 +207,10 @@ if sudo NIX_CONFIG="$NIX_CONFIG" nixos-rebuild boot --flake ".#$profile" 2>&1; t
   echo "$profile" > "${LOG_DIR}/.current-profile"
   echo -e "${GREEN}✓ NixOS build successful!${NC}"
   
-  print_header "Mangowc Setup Complete"
-  echo -e "${GREEN}✓ Greetd login manager enabled${NC}"
-  echo -e "${GREEN}✓ Mango window manager configured${NC}"
-  echo -e "${GREEN}✓ Tofi launcher ready (SUPER+w)${NC}"
-  echo -e "${GREEN}✓ Waybar statusbar ready${NC}"
+  print_header "Desktop Setup Complete"
+  echo -e "${GREEN}✓ Selected desktop manager enabled${NC}"
+  echo -e "${GREEN}✓ Display manager configured${NC}"
+  echo -e "${GREEN}✓ GPU drivers installed${NC}"
   echo -e "${GREEN}✓ All dependencies installed${NC}"
   
   print_success_banner

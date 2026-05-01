@@ -1,9 +1,7 @@
-{ config, pkgs, mango, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   imports = [
     ./modules
-    ./modules/mango-hm.nix
-    inputs.mango.hmModules.mango
   ];
 
   home.username = "melek";

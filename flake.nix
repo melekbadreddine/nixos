@@ -10,8 +10,6 @@
     fresh.url = "github:sinelaw/fresh";
     helium = {url = "github:schembriaiden/helium-browser-nix-flake"; inputs.nixpkgs.follows = "nixpkgs";};
     stylix.url = "github:danth/stylix";
-    mango.url = "github:mangowm/mango";
-    mango.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -20,7 +18,6 @@
     fresh,
     helium,
     stylix,
-    mango,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -43,20 +40,10 @@
     # Function to create a NixOS configuration for a given profile
     mkNixosConfig = profile: nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit fresh helium stylix host mango profile;
+        inherit fresh helium stylix host profile;
       };
       modules = [
-        { 
-          nixpkgs.hostPlatform = system;
-          nixpkgs.overlays = [
-            (final: prev: {
-              xorg = prev.xorg // {
-                libxcb = prev.libxcb;
-                xcbutilwm = prev.libxcb-wm;
-              };
-            })
-          ];
-        }
+        { nixpkgs.hostPlatform = system; }
         stylix.nixosModules.stylix
         ./profiles/${profile}
         
@@ -68,7 +55,7 @@
 
           home-manager.users.melek = import ./home-manager/home.nix;
 
-          home-manager.extraSpecialArgs = {inherit fresh helium host mango inputs profile;};
+          home-manager.extraSpecialArgs = {inherit fresh helium host inputs profile;};
         }
       ];
     };
@@ -83,7 +70,7 @@
 
     homeConfigurations."melek" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = {inherit fresh helium host mango inputs;};
+      extraSpecialArgs = {inherit fresh helium host inputs;};
       modules = [
         ./home-manager/home.nix
       ];
