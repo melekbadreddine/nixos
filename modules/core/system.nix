@@ -22,7 +22,7 @@
 
   environment.systemPackages = with pkgs; [
     # Windows compatibility layer
-    wineWowPackages.stable
+    wineWow64Packages.stable
     winetricks
   ];
 }

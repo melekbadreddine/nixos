@@ -1,6 +1,6 @@
 { pkgs, plasma-manager, ... }: {
   imports = [
-    plasma-manager.homeManagerModules.plasma-manager
+    plasma-manager.homeModules.plasma-manager
   ];
 
   home.packages = [
