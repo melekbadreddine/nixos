@@ -1,5 +1,12 @@
 { ... }: {
-  stylix.targets.firefox.enable = false;
-  stylix.targets.starship.enable = false;
-  stylix.targets.kitty.enable = false;
+  # Enable automatic styling so Stylix handles the wallpaper and general theme
+  stylix.autoEnable = true;
+
+  stylix.targets = {
+    # Specifically disable these to preserve manual configurations
+    firefox.enable = false;
+    starship.enable = false;
+    kitty.enable = false;
+    fish.enable = false;
+  };
 }
