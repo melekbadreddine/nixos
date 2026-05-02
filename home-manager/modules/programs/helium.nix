@@ -14,7 +14,7 @@ in {
   ];
 
   # Chromium-compatible policy file consumed by Helium.
-  xdg.configFile."helium/policies/managed/extensions.json".text = builtins.toJSON {
+  xdg.configFile."helium/Policies/managed/extensions.json".text = builtins.toJSON {
     ExtensionInstallForcelist = heliumExtensions;
   };
 }

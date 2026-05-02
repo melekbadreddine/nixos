@@ -20,6 +20,18 @@
     ];
   };
 
+  # System-wide Helium policy
+  environment.etc."helium/policies/managed/extensions.json".text = builtins.toJSON {
+    ExtensionInstallForcelist = [
+      "pkehgijcmpdhfbdbbnkijodmdjhbjlgp;https://clients2.google.com/service/update2/crx"
+      "mnjggcdmjocbbbhaepdhchncahnbgone;https://clients2.google.com/service/update2/crx"
+      "cnjifjpddelmedmihgijeibhnjfabmlf;https://clients2.google.com/service/update2/crx"
+      "bpoadfkcbjbfhfodiogcnhhhpibjhbnh;https://clients2.google.com/service/update2/crx"
+      "ahmpjcflkgiildlgicmcieglgoilbfdp;https://clients2.google.com/service/update2/crx"
+      "gojogohjgpelafgaeejgelmplndppifh;https://clients2.google.com/service/update2/crx"
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     # Windows compatibility layer
     wineWow64Packages.stable

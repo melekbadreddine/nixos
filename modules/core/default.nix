@@ -5,6 +5,7 @@
     ./i18n.nix
     ./network.nix
     ./printing.nix
+    ./shell.nix
     ./sound.nix
     ./stylix.nix
     ./system.nix

@@ -6,6 +6,6 @@
     isNormalUser = true;
     description = "Melek";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    shell = pkgs.bashInteractive;
+    shell = pkgs.fish;
   };
 }

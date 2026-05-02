@@ -20,6 +20,8 @@ lib.mkIf stylixEnable {
     targets = {
       console.enable = true;
       plymouth.enable = true;
+      # Enable Plasma target for wallpaper and desktop theming
+      plasma.enable = true;
     };
 
     cursor = {
