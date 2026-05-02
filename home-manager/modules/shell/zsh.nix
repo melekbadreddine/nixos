@@ -38,7 +38,7 @@
       tf = "terraform";
     };
 
-    initExtra = ''
+    initContent = ''
       fastfetch
     '';
   };

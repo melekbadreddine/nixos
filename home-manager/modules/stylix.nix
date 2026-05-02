@@ -1,12 +1,14 @@
 { ... }: {
-  # Enable automatic styling so Stylix handles the wallpaper and general theme
-  stylix.autoEnable = true;
+  # Disable automatic styling in Home Manager to prevent conflicts with Plasma 6.
+  # Manual themes (Starship, Kitty, etc.) are handled in their respective modules.
+  stylix.autoEnable = false;
 
   stylix.targets = {
-    # Specifically disable these to preserve manual configurations
     firefox.enable = false;
     starship.enable = false;
     kitty.enable = false;
     fish.enable = false;
   };
+
+  gtk.gtk4.theme = null;
 }
