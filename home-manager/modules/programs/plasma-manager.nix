@@ -12,9 +12,6 @@ in {
   programs.plasma = {
     enable = true;
     # Configure wallpaper through plasma-manager to avoid Stylix conflicts
-    desktop.wallpaper = {
-      fileName = stylixImage;
-      plugin = "org.kde.image";
-    };
+    workspace.wallpaper = stylixImage;
   };
 }
