@@ -1,0 +1,17 @@
+# NixOS build artifacts
+result
+result-*
+
+# Temporary and editor files
+*~
+*.swp
+*.swo
+
+# Nix build directories
+.direnv/
+
+# Installation state
+.current-profile
+
+# Log files
+*.log

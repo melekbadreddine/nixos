@@ -6,6 +6,7 @@
     ./network.nix
     ./printing.nix
     ./shell.nix
+    ./sops.nix
     ./sound.nix
     ./stylix.nix
     ./system.nix

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, osConfig, ... }: {
   programs.git = {
     enable = true;
     
@@ -9,6 +9,9 @@
       };
       init = {
         defaultBranch = "main";
+      };
+      credential = {
+        helper = "!f() { [ \"$1\" = \"get\" ] && echo \"username=melekbadreddine\" && echo \"password=$(cat ${osConfig.sops.secrets.\"github/token\".path})\"; }; f";
       };
     };
   };

@@ -15,6 +15,10 @@
     fresh.url = "github:sinelaw/fresh";
     helium = {url = "github:schembriaiden/helium-browser-nix-flake"; inputs.nixpkgs.follows = "nixpkgs";};
     stylix.url = "github:danth/stylix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -24,6 +28,7 @@
     fresh,
     helium,
     stylix,
+    sops-nix,
     ...
   } @ inputs: let
     system = "x86_64-linux"; # Primary system (can be overridden per profile)
@@ -46,7 +51,7 @@
     # Function to create a NixOS configuration for a given profile
     mkNixosConfig = profile: nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit fresh helium stylix host profile plasma-manager;
+        inherit inputs fresh helium stylix host profile plasma-manager;
       };
       modules = [
         { nixpkgs.hostPlatform = system; }
@@ -61,7 +66,7 @@
 
           home-manager.users.melek = import ./home-manager/home.nix;
 
-          home-manager.extraSpecialArgs = {inherit fresh helium host inputs profile plasma-manager;};
+          home-manager.extraSpecialArgs = {inherit inputs fresh helium host profile plasma-manager;};
         }
       ];
     };
