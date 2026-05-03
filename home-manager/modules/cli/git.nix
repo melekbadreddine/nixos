@@ -1,7 +1,4 @@
-{
-  osConfig,
-  ...
-}: let
+{osConfig, ...}: let
   # Fallback to the default NixOS SOPS path if osConfig is not available (e.g., in standalone HM build)
   sopsPath =
     if osConfig != null && osConfig ? sops
