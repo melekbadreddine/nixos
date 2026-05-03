@@ -10,8 +10,8 @@ in {
   drivers.nvidia.enable = true;
   drivers.nvidia-prime = {
     enable = true;
-    intelBusID = "${intelID}";
-    nvidiaBusID = "${nvidiaID}";
+    intelBusId = "${intelID}";
+    nvidiaBusId = "${nvidiaID}";
   };
   drivers.intel.enable = false;
   drivers.amd-nvidia.enable = false;
