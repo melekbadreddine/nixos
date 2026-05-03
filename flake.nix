@@ -36,7 +36,6 @@
     fresh,
     helium,
     stylix,
-    sops-nix,
     ...
   } @ inputs: let
     system = "x86_64-linux"; # Primary system (can be overridden per profile)

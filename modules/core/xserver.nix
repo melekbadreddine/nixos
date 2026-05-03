@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{ ... }: {
   # X server keyboard configuration for French layout
   services.xserver = {
     xkb.layout = "fr";

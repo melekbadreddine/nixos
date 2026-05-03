@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{ config, ... }: {
   programs.firefox = {
     enable = true;
     # Adopt the new XDG path to clear the warning
