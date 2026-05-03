@@ -1,7 +1,11 @@
-{ pkgs, osConfig, ... }: {
+{
+  pkgs,
+  osConfig,
+  ...
+}: {
   programs.git = {
     enable = true;
-    
+
     settings = {
       user = {
         name = "melekbadreddine";

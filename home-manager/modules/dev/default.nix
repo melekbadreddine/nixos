@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ./cloud.nix
     ./fresh.nix

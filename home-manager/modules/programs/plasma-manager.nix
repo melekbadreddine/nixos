@@ -1,4 +1,9 @@
-{ pkgs, plasma-manager, host, ... }: let
+{
+  pkgs,
+  plasma-manager,
+  host,
+  ...
+}: let
   inherit (import ../../../hosts/${host}/variables.nix) stylixImage;
 in {
   imports = [

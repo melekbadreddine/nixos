@@ -1,4 +1,8 @@
-{ pkgs, helium, ... }: let
+{
+  pkgs,
+  helium,
+  ...
+}: let
   chromiumUpdateUrl = "https://clients2.google.com/service/update2/crx";
   heliumExtensions = [
     "pkehgijcmpdhfbdbbnkijodmdjhbjlgp;${chromiumUpdateUrl}" # Privacy Badger
@@ -9,8 +13,8 @@
     "gojogohjgpelafgaeejgelmplndppifh;${chromiumUpdateUrl}" # Unlimited Email Tracker by Snov.io
   ];
 in {
-  home.packages = [ 
-    helium.packages.${pkgs.stdenv.hostPlatform.system}.default 
+  home.packages = [
+    helium.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   # Chromium-compatible policy file consumed by Helium.

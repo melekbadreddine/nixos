@@ -1,12 +1,13 @@
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      ../../modules/core
-      ../../modules/desktops/default.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/core
+    ../../modules/desktops/default.nix
+  ];
 
   networking.hostName = "Melek"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ./ai.nix
     ./bat.nix

@@ -30,7 +30,7 @@ in {
       modesetting.enable = true;
       # RTX 50xx and modern architectures benefit from the open-source kernel module.
       # This enables advanced power management and is the path forward for NVIDIA on Linux.
-      open = true; 
+      open = true;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.production;
 

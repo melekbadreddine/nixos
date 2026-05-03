@@ -1,9 +1,9 @@
-{ ... }: {
+{...}: {
   programs.eza = {
     enable = true;
     enableBashIntegration = true;
     icons = "always";
-    extraOptions = [ "--color=always" ];
+    extraOptions = ["--color=always"];
   };
   programs.bash.shellAliases = {
     ls = "eza --icons=always --color=always";

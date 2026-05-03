@@ -14,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     services.qemuGuest.enable = true;
     services.spice-vdagentd.enable = true;
-    
+
     # VirtualBox Guest Additions
     virtualisation.virtualbox.guest.enable = true;
     virtualisation.virtualbox.guest.dragAndDrop = true;

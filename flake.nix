@@ -2,8 +2,8 @@
   description = "Modular multi-profile NixOS + Home Manager flake";
 
   nixConfig = {
-    extra-substituters = [ "https://melek-nixos.cachix.org" ];
-    extra-trusted-public-keys = [ "melek-nixos.cachix.org-1:UdhKZAFc78C4ge9SFfgCtMcyBGVfJemC/dwjBaqonVs=" ];
+    extra-substituters = ["https://melek-nixos.cachix.org"];
+    extra-trusted-public-keys = ["melek-nixos.cachix.org-1:UdhKZAFc78C4ge9SFfgCtMcyBGVfJemC/dwjBaqonVs="];
   };
 
   inputs = {
@@ -18,7 +18,10 @@
       inputs.home-manager.follows = "home-manager";
     };
     fresh.url = "github:sinelaw/fresh";
-    helium = {url = "github:schembriaiden/helium-browser-nix-flake"; inputs.nixpkgs.follows = "nixpkgs";};
+    helium = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix.url = "github:danth/stylix";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -54,34 +57,36 @@
     ];
 
     # Function to create a NixOS configuration for a given profile
-    mkNixosConfig = profile: nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs fresh helium stylix host profile plasma-manager;
+    mkNixosConfig = profile:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs fresh helium stylix host profile plasma-manager;
+        };
+        modules = [
+          {nixpkgs.hostPlatform = system;}
+          stylix.nixosModules.stylix
+          ./profiles/${profile}
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+
+            home-manager.users.melek = import ./home-manager/home.nix;
+
+            home-manager.extraSpecialArgs = {inherit inputs fresh helium host profile plasma-manager;};
+          }
+        ];
       };
-      modules = [
-        { nixpkgs.hostPlatform = system; }
-        stylix.nixosModules.stylix
-        ./profiles/${profile}
-        
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-
-          home-manager.users.melek = import ./home-manager/home.nix;
-
-          home-manager.extraSpecialArgs = {inherit inputs fresh helium host profile plasma-manager;};
-        }
-      ];
-    };
   in {
     # Create a configuration for each profile
     nixosConfigurations = builtins.listToAttrs (
       map (profile: {
         name = profile;
         value = mkNixosConfig profile;
-      }) profiles
+      })
+      profiles
     );
 
     homeConfigurations."melek" = home-manager.lib.homeManagerConfiguration {

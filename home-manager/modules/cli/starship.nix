@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{lib, ...}: {
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
@@ -104,7 +104,7 @@
         style = "fg:mantle bg:peach";
         format = "[ $path ]($style)";
         home_symbol = " ~";
-        
+
         truncation_length = 3;
         truncation_symbol = " …/";
         substitutions = {

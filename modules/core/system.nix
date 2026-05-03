@@ -1,11 +1,12 @@
-{ config, pkgs, ... }:
-
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  config,
+  pkgs,
+  ...
+}: {
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
 
   # Chromium policy bridge for Chromium-based browsers (including Helium).
   programs.chromium = {
