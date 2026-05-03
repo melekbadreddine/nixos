@@ -1,6 +1,11 @@
 {
   description = "Modular multi-profile NixOS + Home Manager flake";
 
+  nixConfig = {
+    extra-substituters = [ "https://melek-nixos.cachix.org" ];
+    extra-trusted-public-keys = [ "melek-nixos.cachix.org-1:UdhKZAFc78C4ge9SFfgCtMcyBGVfJemC/dwjBaqonVs=" ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {

@@ -10,9 +10,19 @@
     # Path to the age key file on the host
     age.keyFile = "/var/lib/sops-nix/key.txt";
 
-    secrets."github/token" = {
-      owner = config.users.users.melek.name;
-      mode = "0400";
+    secrets = {
+      "github/token" = {
+        owner = config.users.users.melek.name;
+        mode = "0400";
+      };
+      "gitlab/token" = {
+        owner = config.users.users.melek.name;
+        mode = "0400";
+      };
+      "docker/token" = {
+        owner = config.users.users.melek.name;
+        mode = "0400";
+      };
     };
   };
 }
