@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}: {
+{lib, ...}: {
   # Docker rootless mode for better security
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {

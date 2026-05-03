@@ -1,7 +1,4 @@
-{
-  osConfig,
-  ...
-}: {
+{osConfig, ...}: {
   programs.git = {
     enable = true;
 
