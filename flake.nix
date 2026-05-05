@@ -22,6 +22,10 @@
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix.url = "github:danth/stylix";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -35,6 +39,7 @@
     plasma-manager,
     fresh,
     helium,
+    zen-browser,
     stylix,
     ...
   } @ inputs: let
@@ -59,7 +64,7 @@
     mkNixosConfig = profile:
       nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs fresh helium stylix host profile plasma-manager;
+          inherit inputs fresh helium zen-browser stylix host profile plasma-manager;
         };
         modules = [
           {nixpkgs.hostPlatform = system;}
@@ -74,7 +79,7 @@
 
             home-manager.users.melek = import ./home-manager/home.nix;
 
-            home-manager.extraSpecialArgs = {inherit inputs fresh helium host profile plasma-manager;};
+            home-manager.extraSpecialArgs = {inherit inputs fresh helium zen-browser host profile plasma-manager;};
           }
         ];
       };
@@ -90,7 +95,7 @@
 
     homeConfigurations."melek" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = {inherit fresh helium host inputs plasma-manager;};
+      extraSpecialArgs = {inherit fresh helium zen-browser host inputs plasma-manager;};
       modules = [
         stylix.homeModules.stylix
         ./home-manager/home.nix

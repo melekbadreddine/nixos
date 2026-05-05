@@ -14,7 +14,7 @@ in
       polarity = "dark";
 
       # Disable automatic styling to prevent conflicts with manually configured apps.
-      # Home Manager modules handle their own theming (e.g., Starship, Firefox disabled).
+      # Home Manager modules handle their own theming (e.g., Starship, Zen disabled).
       autoEnable = false;
 
       targets = {

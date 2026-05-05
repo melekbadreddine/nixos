@@ -4,7 +4,6 @@
   stylix.autoEnable = false;
 
   stylix.targets = {
-    firefox.enable = false;
     starship.enable = false;
     kitty.enable = false;
     fish.enable = false;
