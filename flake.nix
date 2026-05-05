@@ -92,7 +92,7 @@
       inherit pkgs;
       extraSpecialArgs = {inherit fresh helium host inputs plasma-manager;};
       modules = [
-        stylix.homeManagerModules.stylix
+        stylix.homeModules.stylix
         ./home-manager/home.nix
       ];
     };

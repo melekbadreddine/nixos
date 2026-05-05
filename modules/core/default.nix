@@ -4,6 +4,7 @@
     ./fonts.nix
     ./i18n.nix
     ./network.nix
+    ./nix.nix
     ./printing.nix
     ./shell.nix
     ./sops.nix
