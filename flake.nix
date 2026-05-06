@@ -31,6 +31,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sddm-astronaut-theme = {
+      url = "github:Keyitdev/sddm-astronaut-theme";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
