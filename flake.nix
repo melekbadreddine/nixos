@@ -75,11 +75,6 @@
         modules = [
           {nixpkgs.hostPlatform = system;}
           stylix.nixosModules.stylix
-          (
-            if profile == "wsl"
-            then nixos-wsl.nixosModules.wsl
-            else {}
-          )
           ./profiles/${profile}
 
           home-manager.nixosModules.home-manager

@@ -1,6 +1,8 @@
-{host, ...}: {
+{host, inputs, lib, ...}: {
   imports = [
+    inputs.nixos-wsl.nixosModules.default
     ../../hosts/${host}
+    ../../modules/drivers
   ];
 
   wsl = {
@@ -19,7 +21,6 @@
   drivers.intel.enable = false;
   vm.guest-services.enable = false;
 
-  # Plasma 6 works in WSL via WSLg, but you might want to disable 
-  # SDDM as WSL handles the "session" startup differently.
-  services.displayManager.sddm.enable = false;
+  # Disable SDDM as WSL handles the session startup
+  services.displayManager.sddm.enable = lib.mkForce false;
 }
