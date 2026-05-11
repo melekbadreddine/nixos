@@ -31,6 +31,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -41,6 +45,7 @@
     helium,
     zen-browser,
     stylix,
+    nixos-wsl,
     ...
   } @ inputs: let
     system = "x86_64-linux"; # Primary system (can be overridden per profile)
@@ -58,6 +63,7 @@
       "intel-nvidia"
       "amd-nvidia"
       "vm"
+      "wsl"
     ];
 
     # Function to create a NixOS configuration for a given profile
@@ -69,6 +75,11 @@
         modules = [
           {nixpkgs.hostPlatform = system;}
           stylix.nixosModules.stylix
+          (
+            if profile == "wsl"
+            then nixos-wsl.nixosModules.wsl
+            else {}
+          )
           ./profiles/${profile}
 
           home-manager.nixosModules.home-manager

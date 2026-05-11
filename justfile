@@ -3,7 +3,9 @@ default:
     @just --list
 
 # Detect the current profile
-profile := `if [ -f .current-profile ]; then cat .current-profile; elif command -v lspci > /dev/null; then \
+profile := `if [ -f .current-profile ]; then cat .current-profile; \
+    elif [ -e /proc/sys/fs/binfmt_misc/WSLInterop ]; then echo "wsl"; \
+    elif command -v lspci > /dev/null; then \
     if lspci | grep -qi "nvidia" && lspci | grep -qi "amd"; then echo "amd-nvidia"; \
     elif lspci | grep -qi "nvidia" && lspci | grep -qi "intel"; then echo "intel-nvidia"; \
     elif lspci | grep -qi "nvidia"; then echo "nvidia"; \

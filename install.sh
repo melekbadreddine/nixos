@@ -102,6 +102,11 @@ fi
 has_nvidia=false
 has_intel=false
 has_amd=false
+is_wsl=false
+
+if [ -e /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+  is_wsl=true
+fi
 
 if lspci | grep -qi 'vga\|3d\|display'; then
   while read -r line; do
@@ -119,7 +124,9 @@ fi
 
 # Determine profile
 DETECTED_PROFILE=""
-if $has_vm; then
+if $is_wsl; then
+  DETECTED_PROFILE="wsl"
+elif $has_vm; then
   DETECTED_PROFILE="vm"
 elif $has_amd && $has_nvidia; then
   DETECTED_PROFILE="amd-nvidia"
@@ -146,6 +153,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
   echo "  • intel-nvidia - Intel iGPU + NVIDIA dGPU"
   echo "  • amd-nvidia - AMD iGPU + NVIDIA dGPU"
   echo "  • vm - Virtual machine"
+  echo "  • wsl - Windows Subsystem for Linux"
   read -rp "Enter profile: [ $DETECTED_PROFILE ] " profile
   if [ -z "$profile" ]; then
     profile="$DETECTED_PROFILE"

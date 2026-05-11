@@ -13,9 +13,9 @@
 
     # Path to the age key file on the host
     age.keyFile = "/var/lib/sops-nix/key.txt";
+    age.generateKey = true;
 
-    secrets = {
-      "github/token" = {
+    secrets = {      "github/token" = {
         owner = config.users.users.melek.name;
         mode = "0400";
       };
