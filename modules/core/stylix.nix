@@ -20,9 +20,6 @@ in
       targets = {
         console.enable = true;
         plymouth.enable = true;
-        # Disable SDDM and Plasma targets to avoid conflicts with manual themes
-        sddm.enable = false;
-        plasma.enable = false;
       };
 
       cursor = {
