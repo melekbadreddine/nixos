@@ -1,0 +1,25 @@
+{lib, ...}: {
+  imports = [];
+
+  boot.initrd.availableKernelModules = ["ata_piix" "ohci_pci" "ehci_pci" "ahci" "sd_mod" "sr_mod"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = [];
+  boot.extraModulePackages = [];
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/2ffad3e5-399b-4073-9aee-9890903b55c8";
+    fsType = "ext4";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/535A-1A64";
+    fsType = "vfat";
+    options = ["fmask=0077" "dmask=0077"];
+  };
+
+  swapDevices = [
+    {device = "/dev/disk/by-uuid/1f25bf39-84d4-4e29-a939-95b2c811fe85";}
+  ];
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+}

@@ -34,56 +34,66 @@
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
-    outputs = {
-      nixpkgs,
-      home-manager,
-      plasma-manager,
-      fresh,
-      helium,
-      zen-browser,
-      stylix,
-      nixos-wsl,
-      ...
-    } @ inputs: let
-      system = "x86_64-linux"; # Primary system (can be overridden per profile)
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
+    };
+  };
 
-      # Supported profiles
-      profiles = [
-        "amd"
-        "intel"
-        "nvidia"
-        "intel-nvidia"
-        "amd-nvidia"
-        "vm"
-        "wsl"
-      ];
+  outputs = {
+    nixpkgs,
+    home-manager,
+    plasma-manager,
+    fresh,
+    helium,
+    zen-browser,
+    stylix,
+    nixos-wsl,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux"; # Primary system
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
 
-      # Function to create a NixOS configuration for a given profile
-      mkNixosConfig = profile: let
-        host =
-          if profile == "wsl"
-          then "wsl"
-          else "vm";
-      in
-        nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs fresh helium zen-browser stylix host profile plasma-manager;
-          };
-          modules = [
-            {nixpkgs.hostPlatform = system;}
-            stylix.nixosModules.stylix
-            (
-              if profile == "wsl"
-              then nixos-wsl.nixosModules.wsl
-              else {}
-            )
-            ./profiles/${profile}
+    # Supported profiles
+    profiles = [
+      "amd"
+      "intel"
+      "nvidia"
+      "intel-nvidia"
+      "amd-nvidia"
+      "vm"
+      "wsl"
+    ];
 
-            home-manager.nixosModules.home-manager
+    # Function to create a NixOS configuration for a given profile
+    mkNixosConfig = profile: let
+      # Host mapping logic:
+      # wsl -> wsl host
+      # vm -> vm host
+      # others -> default host
+      host =
+        if profile == "wsl"
+        then "wsl"
+        else if profile == "vm"
+        then "vm"
+        else "default";
+    in
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs fresh helium zen-browser stylix host profile plasma-manager;
+        };
+        modules = [
+          {nixpkgs.hostPlatform = system;}
+          stylix.nixosModules.stylix
+          (
+            if profile == "wsl"
+            then nixos-wsl.nixosModules.wsl
+            else {}
+          )
+          ./profiles/${profile}
+
+          home-manager.nixosModules.home-manager
+          {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";

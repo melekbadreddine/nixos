@@ -9,7 +9,7 @@
     enable = true;
     defaultUser = "melek";
     startMenuLaunchers = true;
-    
+
     # Enable integration with Windows
     interop.register = true;
   };
