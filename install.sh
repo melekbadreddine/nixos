@@ -174,24 +174,29 @@ elif [ "$profile" = "vm" ]; then
   HOST_DIR="vm"
 fi
 
-echo -e "${BLUE}Target host directory: hosts/$HOST_DIR${NC}"
-
-# Generate hardware configuration
-sudo nixos-generate-config --show-hardware-config > /tmp/hardware.nix 2>/dev/null || true
-
-# Backup existing hardware-configuration.nix if it exists
-if [ -f "hosts/$HOST_DIR/hardware-configuration.nix" ]; then
-  BACKUP_NAME="hardware-configuration.nix.backup.$(date +%s)"
-  cp "hosts/$HOST_DIR/hardware-configuration.nix" "hosts/$HOST_DIR/$BACKUP_NAME"
-  echo -e "${YELLOW}Backed up old hardware config to: hosts/$HOST_DIR/$BACKUP_NAME${NC}"
-fi
-
-# Replace with new hardware configuration
-if [ -f "/tmp/hardware.nix" ]; then
-  cp /tmp/hardware.nix "hosts/$HOST_DIR/hardware-configuration.nix"
-  echo -e "${GREEN}✓ Hardware configuration generated and saved to hosts/$HOST_DIR.${NC}"
+if [ "$profile" = "wsl" ]; then
+  echo -e "${YELLOW}Skipping hardware configuration generation for WSL profile.${NC}"
+  echo -e "${YELLOW}nixos-wsl handles hardware abstraction automatically.${NC}"
 else
-  echo -e "${YELLOW}⚠ Warning: Could not generate hardware config, using existing.${NC}"
+  echo -e "${BLUE}Target host directory: hosts/$HOST_DIR${NC}"
+
+  # Generate hardware configuration
+  sudo nixos-generate-config --show-hardware-config > /tmp/hardware.nix 2>/dev/null || true
+
+  # Backup existing hardware-configuration.nix if it exists
+  if [ -f "hosts/$HOST_DIR/hardware-configuration.nix" ]; then
+    BACKUP_NAME="hardware-configuration.nix.backup.$(date +%s)"
+    cp "hosts/$HOST_DIR/hardware-configuration.nix" "hosts/$HOST_DIR/$BACKUP_NAME"
+    echo -e "${YELLOW}Backed up old hardware config to: hosts/$HOST_DIR/$BACKUP_NAME${NC}"
+  fi
+
+  # Replace with new hardware configuration
+  if [ -f "/tmp/hardware.nix" ]; then
+    cp /tmp/hardware.nix "hosts/$HOST_DIR/hardware-configuration.nix"
+    echo -e "${GREEN}✓ Hardware configuration generated and saved to hosts/$HOST_DIR.${NC}"
+  else
+    echo -e "${YELLOW}⚠ Warning: Could not generate hardware config, using existing.${NC}"
+  fi
 fi
 
 print_header "Building NixOS"
