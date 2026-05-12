@@ -1,6 +1,6 @@
 {
   stylixEnable = true;
-  stylixImage = "${../../assets/wallpapers/sword.jpg}";
+  stylixImage = ../../assets/wallpapers/sword.jpg;
 
   # GPU Bus IDs (not used in WSL but kept for variable consistency)
   intelID = "PCI:0:2:0";

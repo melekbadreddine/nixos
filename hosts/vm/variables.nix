@@ -1,6 +1,6 @@
 {
   stylixEnable = true;
-  stylixImage = "${../../assets/wallpapers/sword.jpg}";
+  stylixImage = ../../assets/wallpapers/sword.jpg;
 
   # GPU Bus IDs (for hybrid GPU configurations)
   # These will be auto-detected during installation and can be overridden
