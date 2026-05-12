@@ -49,7 +49,6 @@
     ...
   } @ inputs: let
     system = "x86_64-linux"; # Primary system
-    host = "default"; # Default host for standalone Home Manager or fallback
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -105,15 +104,6 @@
           }
         ];
       };
-    # Function to create a Home Manager configuration for standalone usage
-    mkHomeConfig = host: home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = { inherit fresh helium zen-browser host inputs plasma-manager; };
-      modules = [
-        stylix.homeModules.stylix
-        ./home-manager/home.nix
-      ];
-    };
   in {
     # Create a configuration for each profile
     nixosConfigurations = builtins.listToAttrs (
@@ -124,11 +114,13 @@
       profiles
     );
 
-    # Standalone Home Manager configurations for different environments
-    homeConfigurations = {
-      "melek-default" = mkHomeConfig "default";
-      "melek-wsl" = mkHomeConfig "wsl";
-      "melek-vm" = mkHomeConfig "vm";
+    homeConfigurations."melek" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      extraSpecialArgs = {inherit fresh helium zen-browser host inputs plasma-manager;};
+      modules = [
+        stylix.homeModules.stylix
+        ./home-manager/home.nix
+      ];
     };
   };
 }

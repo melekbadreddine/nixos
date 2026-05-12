@@ -164,40 +164,24 @@ fi
 
 echo -e "${GREEN}✓ Using profile: $profile${NC}"
 
-# Determine target host path based on profile
-HOST_NAME="default"
-if [ "$profile" == "wsl" ]; then
-  HOST_NAME="wsl"
-elif [ "$profile" == "vm" ]; then
-  HOST_NAME="vm"
-fi
-HOST_PATH="hosts/$HOST_NAME"
-
-echo -e "${GREEN}✓ Targeted host: $HOST_NAME${NC}"
-
 print_header "Generating Hardware Configuration"
 
 # Generate hardware configuration
-# Note: For WSL, we skip this as NixOS-WSL handles its own hardware logic
-if [ "$profile" != "wsl" ]; then
-  sudo nixos-generate-config --show-hardware-config > /tmp/hardware.nix 2>/dev/null || true
+sudo nixos-generate-config --show-hardware-config > /tmp/hardware.nix 2>/dev/null || true
 
-  # Backup existing hardware-configuration.nix if it exists
-  if [ -f "$HOST_PATH/hardware-configuration.nix" ]; then
-    BACKUP_NAME="hardware-configuration.nix.backup.$(date +%s)"
-    cp "$HOST_PATH/hardware-configuration.nix" "$HOST_PATH/$BACKUP_NAME"
-    echo -e "${YELLOW}Backed up old hardware config to: $HOST_PATH/$BACKUP_NAME${NC}"
-  fi
+# Backup existing hardware-configuration.nix if it exists
+if [ -f "hosts/default/hardware-configuration.nix" ]; then
+  BACKUP_NAME="hardware-configuration.nix.backup.$(date +%s)"
+  cp hosts/default/hardware-configuration.nix "hosts/default/$BACKUP_NAME"
+  echo -e "${YELLOW}Backed up old hardware config to: $BACKUP_NAME${NC}"
+fi
 
-  # Replace with new hardware configuration
-  if [ -f "/tmp/hardware.nix" ]; then
-    cp /tmp/hardware.nix "$HOST_PATH/hardware-configuration.nix"
-    echo -e "${GREEN}✓ Hardware configuration generated and saved to $HOST_PATH.${NC}"
-  else
-    echo -e "${YELLOW}⚠ Warning: Could not generate hardware config, using existing.${NC}"
-  fi
+# Replace with new hardware configuration
+if [ -f "/tmp/hardware.nix" ]; then
+  cp /tmp/hardware.nix hosts/default/hardware-configuration.nix
+  echo -e "${GREEN}✓ Hardware configuration generated and saved.${NC}"
 else
-  echo -e "${BLUE}Skipping hardware generation for WSL (handled by NixOS-WSL).${NC}"
+  echo -e "${YELLOW}⚠ Warning: Could not generate hardware config, using existing.${NC}"
 fi
 
 print_header "Building NixOS"
