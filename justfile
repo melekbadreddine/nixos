@@ -17,19 +17,19 @@ profile := `if [ -f .current-profile ]; then cat .current-profile; \
 # Rebuild the NixOS system
 switch:
     @echo "Rebuilding NixOS system with profile: {{profile}}..."
-    sudo nixos-rebuild switch --flake .#{{profile}}
+    sudo nixos-rebuild switch --flake .#{{profile}} --accept-flake-config
 
 # Rebuild Home Manager configuration standalone
 home-switch:
     @echo "Rebuilding Home Manager..."
-    home-manager switch --flake .#melek
+    home-manager switch --flake .#melek --accept-flake-config
 
 # Update flake inputs and rebuild
 update:
     @echo "Updating flake inputs..."
     nix flake update
     @echo "Rebuilding System with profile: {{profile}}..."
-    sudo nixos-rebuild switch --flake .#{{profile}}
+    sudo nixos-rebuild switch --flake .#{{profile}} --accept-flake-config
 
 # Garbage collect and remove result symlinks
 clean:

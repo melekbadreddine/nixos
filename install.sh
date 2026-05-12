@@ -209,7 +209,7 @@ export NIX_CONFIG="experimental-features = nix-command flakes"
 
 # Build and boot
 echo -e "${BLUE}Building NixOS system...${NC}"
-if sudo NIX_CONFIG="$NIX_CONFIG" nixos-rebuild boot --flake ".#$profile" 2>&1; then
+if sudo NIX_CONFIG="$NIX_CONFIG" nixos-rebuild boot --flake ".#$profile" --accept-flake-config 2>&1; then
   rm flake.nix.bak
   # Write the successful profile to a state file for the justfile to use
   echo "$profile" > "${LOG_DIR}/.current-profile"

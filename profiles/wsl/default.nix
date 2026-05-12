@@ -11,7 +11,7 @@
     startMenuLaunchers = true;
     
     # Enable integration with Windows
-    interop.enable = true;
+    interop.register = true;
   };
 
   # Disable hardware-specific drivers not needed for WSL
