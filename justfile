@@ -21,8 +21,11 @@ switch:
 
 # Rebuild Home Manager configuration standalone
 home-switch:
-    @echo "Rebuilding Home Manager..."
-    home-manager switch --flake .#melek --accept-flake-config
+    @echo "Rebuilding Home Manager for host: {{host_name}}..."
+    home-manager switch --flake .#melek-{{host_name}}
+
+# Internal variable to map profile to host name for HM
+host_name := `if [ "{{profile}}" == "wsl" ]; then echo "wsl"; elif [ "{{profile}}" == "vm" ]; then echo "vm"; else echo "default"; fi` --accept-flake-config
 
 # Update flake inputs and rebuild
 update:
