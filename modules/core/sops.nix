@@ -15,7 +15,8 @@
     age.keyFile = "/var/lib/sops-nix/key.txt";
     age.generateKey = true;
 
-    secrets = {      "github/token" = {
+    secrets = {
+      "github/token" = {
         owner = config.users.users.melek.name;
         mode = "0400";
       };

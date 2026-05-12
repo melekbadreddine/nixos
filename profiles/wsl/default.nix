@@ -1,4 +1,9 @@
-{host, inputs, lib, ...}: {
+{
+  host,
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     inputs.nixos-wsl.nixosModules.default
     ../../hosts/${host}
