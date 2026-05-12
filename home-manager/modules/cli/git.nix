@@ -2,6 +2,7 @@
   sopsPath =
     if osConfig != null && osConfig ? sops
     then osConfig.sops.secrets."github/token".path
+    # Fallback path for NixOS-managed Home Manager where SOPS is guaranteed to provision the secret.
     else "/run/secrets/github/token";
 in {
   programs.git = {

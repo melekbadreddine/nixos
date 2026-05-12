@@ -22,7 +22,8 @@ switch:
 # Rebuild Home Manager configuration standalone
 home-switch:
     @echo "Rebuilding Home Manager..."
-    home-manager switch --flake .#melek --accept-flake-config
+    @HOST_TARGET=$([ "{{profile}}" = "wsl" ] && echo "wsl" || ([ "{{profile}}" = "vm" ] && echo "vm" || echo "default")); \
+    home-manager switch --flake .#melek@$HOST_TARGET --accept-flake-config
 
 # Update flake inputs and rebuild
 update:

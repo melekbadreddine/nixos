@@ -85,11 +85,6 @@
         modules = [
           {nixpkgs.hostPlatform = system;}
           stylix.nixosModules.stylix
-          (
-            if profile == "wsl"
-            then nixos-wsl.nixosModules.wsl
-            else {}
-          )
           ./profiles/${profile}
 
           home-manager.nixosModules.home-manager
@@ -114,13 +109,21 @@
       profiles
     );
 
-    homeConfigurations."melek" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      extraSpecialArgs = {inherit fresh helium zen-browser host inputs plasma-manager;};
-      modules = [
-        stylix.homeModules.stylix
-        ./home-manager/home.nix
-      ];
-    };
+    homeConfigurations = builtins.listToAttrs (
+      map (h: {
+        name = "melek@${h}";
+        value = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit fresh helium zen-browser inputs plasma-manager;
+            host = h;
+          };
+          modules = [
+            stylix.homeModules.stylix
+            ./home-manager/home.nix
+          ];
+        };
+      }) ["default" "vm" "wsl"]
+    );
   };
 }
