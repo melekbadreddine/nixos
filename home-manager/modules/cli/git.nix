@@ -1,4 +1,4 @@
-{osConfig, ...}: let
+{osConfig ? null, ...}: let
   sopsPath =
     if osConfig != null && osConfig ? sops
     then osConfig.sops.secrets."github/token".path

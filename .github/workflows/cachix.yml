@@ -19,4 +19,4 @@ jobs:
     - name: Build NixOS VM Profile
       run: nix build .#nixosConfigurations.vm.config.system.build.toplevel --accept-flake-config --no-update-lock-file
     - name: Build Home Manager
-      run: nix build .#homeConfigurations.melek.activationPackage --accept-flake-config --no-update-lock-file
+      run: nix build .#homeConfigurations."melek@vm".activationPackage --accept-flake-config --no-update-lock-file

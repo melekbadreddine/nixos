@@ -1,6 +1,7 @@
 {...}: {
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.wireless.enable = false; # Ensure wireless is disabled to avoid conflicts with NetworkManager
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

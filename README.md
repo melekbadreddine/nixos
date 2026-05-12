@@ -1,73 +1,57 @@
-# NixOS Configuration with KDE Plasma 6
+# Modular NixOS & Home Manager Configuration
 
-A modular, hardware-aware NixOS configuration with automatic GPU driver detection and KDE Plasma 6.
+A highly modular, hardware-aware NixOS configuration using Flakes, Home Manager, and Stylix. Features automatic GPU detection and KDE Plasma 6.
 
-## Features
+## 🚀 Key Features
 
-- 🎮 **Multi-GPU Support**: Automatic detection and configuration for AMD, Intel, NVIDIA, and hybrid setups
-- 🪟 **Desktop Environment**: KDE Plasma 6 (Wayland by default)
-- 🔧 **Modular Design**: Clean separation of concerns with profiles, drivers, and device-specific modules
-- 🤖 **Automated Installation**: Hardware auto-detection, configuration generation, and one-command build
+- **Multi-GPU Support**: Profiles for AMD, Intel, NVIDIA, and hybrid (Prime) setups.
+- **KDE Plasma 6**: Modern Wayland-native desktop environment.
+- **Home Manager**: Complete user environment management.
+- **Theming**: Integrated theming via **Stylix** (Ayu Dark) with custom Catppuccin Mocha palettes for Starship and Zellij.
+- **Security**: Secret management via **SOPS-nix** (age).
+- **Automation**: `justfile` for quick rebuilds and `install.sh` for hardware auto-detection.
+- **WSL Support**: Native NixOS-WSL profile for Windows integration.
 
-## Quick Start
+## 📂 Structure
 
-### Prerequisites
+- `hosts/`: Host-specific settings (default, vm, wsl).
+- `modules/core/`: Base system services and settings.
+- `modules/drivers/`: Reusable GPU and VM driver options.
+- `modules/desktops/`: Desktop environment configurations.
+- `profiles/`: Entry points mapping profiles to hosts and drivers.
+- `home-manager/`: User-level configuration (CLI, Dev, Programs, Shell).
 
-You need to be running NixOS with internet access.
+## 🛠️ Usage
 
 ### Installation
 
-1. **Enter Nix shell with required tools:**
-   ```bash
-   nix-shell -p git pciutils
-   ```
+1. Boot into a NixOS live environment or existing install.
+2. Clone this repo: `git clone https://github.com/melekbadreddine/nixos.git && cd nixos`
+3. Run the installer: `./install.sh`
+4. Reboot and enjoy!
 
-2. **Clone the repository:**
-   ```bash
-   git clone https://github.com/melekbadreddine/nixos.git
-   cd nixos
-   ```
+### Daily Commands
 
-3. **Run the installation script:**
-   ```bash
-   ./install.sh
-   ```
+We use `just` for automation:
 
-4. **Reboot:**
-   ```bash
-   sudo reboot
-   ```
+- `just switch`: Rebuild and apply system configuration (auto-detects profile).
+- `just home-switch`: Rebuild and apply Home Manager configuration.
+- `just update`: Update all flake inputs and rebuild.
+- `just clean`: Garbage collect and remove old generations.
+- `just check`: Run evaluation and format checks.
 
-## GPU Profiles
+## 🔧 GPU Profiles
 
-The installer automatically detects your hardware and selects the appropriate profile:
+| Profile | Hardware | Description |
+|---------|----------|-------------|
+| `amd` | AMD GPU | Standard AMD discrete graphics. |
+| `intel` | Intel iGPU | Integrated Intel graphics. |
+| `nvidia` | NVIDIA GPU | Discrete NVIDIA graphics (Proprietary). |
+| `intel-nvidia` | Intel + NVIDIA | Laptop hybrid setup (PRIME offload). |
+| `amd-nvidia` | AMD + NVIDIA | Hybrid setup with AMD iGPU + NVIDIA dGPU. |
+| `vm` | Virtual Machine | Optimized for QEMU/VirtualBox. |
+| `wsl` | WSL2 | Windows Subsystem for Linux integration. |
 
-| Profile | Hardware | Use Case |
-|---------|----------|----------|
-| `amd` | AMD GPU | Desktop with AMD discrete GPU |
-| `intel` | Intel iGPU | Integrated graphics only |
-| `nvidia` | NVIDIA GPU | Desktop with NVIDIA discrete GPU |
-| `intel-nvidia` | Intel iGPU + NVIDIA dGPU | Laptop with PRIME offload |
-| `amd-nvidia` | AMD iGPU + NVIDIA dGPU | Hybrid AMD+NVIDIA system |
-| `vm` | Virtual Machine | QEMU, VirtualBox, Hyper-V, etc. |
+## 📜 License
 
-## File Structure
-
-```
-nixos/
-├── README.md (this file)
-├── flake.nix (multi-profile configuration)
-├── install.sh (automated installation)
-├── modules/
-│   ├── drivers/ (GPU driver modules)
-│   ├── desktops/ (KDE Plasma module)
-│   ├── core/ (system core modules)
-│   └── ...
-├── profiles/ (GPU profiles)
-├── hosts/default/ (host-specific configuration)
-└── home-manager/ (user environment)
-```
-
-## License
-
-This configuration is provided as-is for personal use.
+Personal configuration. Use at your own risk.
