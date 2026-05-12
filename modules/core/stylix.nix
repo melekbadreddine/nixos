@@ -10,7 +10,7 @@ in
     stylix = {
       enable = true;
       image = stylixImage;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
+      base16Scheme = pkgs.base16-schemes + "/share/themes/ayu-dark.yaml";
       polarity = "dark";
 
       # Disable automatic styling to prevent conflicts with manually configured apps.
