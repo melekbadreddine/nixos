@@ -3,7 +3,7 @@
     ./zen.nix
     ./helium.nix
     ./plasma-manager.nix
-    ./kitty.nix
+    ./ghostty.nix
     ./kdeconnect.nix
     ./warp.nix
   ];

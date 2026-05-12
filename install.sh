@@ -166,20 +166,30 @@ echo -e "${GREEN}✓ Using profile: $profile${NC}"
 
 print_header "Generating Hardware Configuration"
 
+# Determine host directory based on profile
+HOST_DIR="default"
+if [ "$profile" = "wsl" ]; then
+  HOST_DIR="wsl"
+elif [ "$profile" = "vm" ]; then
+  HOST_DIR="vm"
+fi
+
+echo -e "${BLUE}Target host directory: hosts/$HOST_DIR${NC}"
+
 # Generate hardware configuration
 sudo nixos-generate-config --show-hardware-config > /tmp/hardware.nix 2>/dev/null || true
 
 # Backup existing hardware-configuration.nix if it exists
-if [ -f "hosts/default/hardware-configuration.nix" ]; then
+if [ -f "hosts/$HOST_DIR/hardware-configuration.nix" ]; then
   BACKUP_NAME="hardware-configuration.nix.backup.$(date +%s)"
-  cp hosts/default/hardware-configuration.nix "hosts/default/$BACKUP_NAME"
-  echo -e "${YELLOW}Backed up old hardware config to: $BACKUP_NAME${NC}"
+  cp "hosts/$HOST_DIR/hardware-configuration.nix" "hosts/$HOST_DIR/$BACKUP_NAME"
+  echo -e "${YELLOW}Backed up old hardware config to: hosts/$HOST_DIR/$BACKUP_NAME${NC}"
 fi
 
 # Replace with new hardware configuration
 if [ -f "/tmp/hardware.nix" ]; then
-  cp /tmp/hardware.nix hosts/default/hardware-configuration.nix
-  echo -e "${GREEN}✓ Hardware configuration generated and saved.${NC}"
+  cp /tmp/hardware.nix "hosts/$HOST_DIR/hardware-configuration.nix"
+  echo -e "${GREEN}✓ Hardware configuration generated and saved to hosts/$HOST_DIR.${NC}"
 else
   echo -e "${YELLOW}⚠ Warning: Could not generate hardware config, using existing.${NC}"
 fi

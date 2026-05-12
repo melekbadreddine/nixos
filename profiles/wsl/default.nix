@@ -23,4 +23,12 @@
 
   # Disable SDDM as WSL handles the session startup
   services.displayManager.sddm.enable = lib.mkForce false;
+
+  # WSL does not use a standard bootloader
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+  boot.plymouth.enable = lib.mkForce false;
+  boot.kernelParams = lib.mkForce [];
+  boot.consoleLogLevel = lib.mkForce 3;
+  boot.initrd.verbose = lib.mkForce true;
 }
