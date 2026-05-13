@@ -3,7 +3,7 @@
 
   nixConfig = {
     extra-substituters = ["https://melek-nixos.cachix.org"];
-    extra-trusted-public-keys = ["melek-nixos-1:UdhKZAFc78C4ge9SFfgCtMcyBGVfJemC/dwjBaqonVs="];
+    extra-trusted-public-keys = ["melek-nixos.cachix.org-1:UdhKZAFc78C4ge9SFfgCtMcyBGVfJemC/dwjBaqonVs="];
   };
 
   inputs = {

@@ -13,7 +13,7 @@
 
     # Path to the age key file on the host
     age.keyFile = "/var/lib/sops-nix/key.txt";
-    age.generateKey = true;
+    age.generateKey = false;
 
     secrets = {
       "github/token" = {
