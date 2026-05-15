@@ -26,14 +26,16 @@
     };
 
     # Kernel modules for better VM performance
-    spiceUSBRedirection.enable = true;
+    # spiceUSBRedirection.enable = true;
   };
 
+  /*
   # Enable OpenGL support
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
+  */
 
   # k3s lightweight Kubernetes
   # Note: Disabled by default at boot. Enable manually if needed for development.

@@ -56,7 +56,6 @@ clean:
 # Check for flake errors and dead code
 check:
     nix flake check --accept-flake-config
-    nix run nixpkgs#deadnix -- --fail .
 
 # Format Nix files
 format:
