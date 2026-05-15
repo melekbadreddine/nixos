@@ -6,7 +6,7 @@
       font-size = 11;
       background-opacity = 0.95;
       scrollback-limit = 10000;
-      bell-feature = false;
+      audible-bell = false;
     };
   };
 }
