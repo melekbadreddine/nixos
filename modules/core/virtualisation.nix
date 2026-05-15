@@ -22,7 +22,6 @@
       qemu = {
         package = pkgs.qemu_kvm;
         swtpm.enable = true; # Required for Windows 11 / Secure Boot VMs
-        ovmf.enable = true; # Enables UEFI firmware for VMs
       };
     };
 
