@@ -3,7 +3,7 @@
   users.users.melek = {
     isNormalUser = true;
     description = "Melek";
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel" "docker" "libvirtd" "kvm"];
     shell = pkgs.fish;
   };
 }

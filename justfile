@@ -25,12 +25,27 @@ home-switch:
     @HOST_TARGET=$([ "{{profile}}" = "wsl" ] && echo "wsl" || ([ "{{profile}}" = "vm" ] && echo "vm" || echo "default")); \
     home-manager switch --flake .#melek@$HOST_TARGET --accept-flake-config
 
-# Update flake inputs and rebuild
+# Update all flake inputs and rebuild system
 update:
     @echo "Updating flake inputs..."
     nix flake update
     @echo "Rebuilding System with profile: {{profile}}..."
     sudo nixos-rebuild switch --flake .#{{profile}} --accept-flake-config
+
+# Update all flake inputs
+update-flake:
+    @echo "Updating flake inputs..."
+    nix flake update
+
+# Update specific flake input
+update-input INPUT:
+    @echo "Updating flake input: {{INPUT}}"
+    nix flake lock --update-input {{INPUT}}
+
+# Show flake inputs status
+show-flake:
+    @echo "Flake inputs:"
+    nix flake metadata
 
 # Garbage collect and remove result symlinks
 clean:
@@ -38,13 +53,22 @@ clean:
     nix-collect-garbage -d
     rm -f result result-*
 
-# Check for flake errors
+# Check for flake errors and dead code
 check:
-    nix flake check
+    nix flake check --accept-flake-config
+    nix run nixpkgs#deadnix -- --fail .
 
 # Format Nix files
 format:
     alejandra .
+
+# Check for unused code
+deadnix:
+    nix run nixpkgs#deadnix -- --fail .
+
+# List NixOS generations
+generations:
+    nixos-rebuild list-generations
 
 # Show git diff
 diff:
