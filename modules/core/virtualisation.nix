@@ -4,16 +4,17 @@
   ...
 }: {
   virtualisation = {
-    # Docker rootless mode for better security
+    # Only enable either docker or podman -- Not both
     docker = {
       enable = true;
+      /*
       rootless = {
         enable = true;
         setSocketVariable = true;
       };
+      */
     };
 
-    # Only enable either docker or podman -- Not both
     podman.enable = false;
 
     libvirtd = {
