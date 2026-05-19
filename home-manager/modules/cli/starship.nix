@@ -26,11 +26,7 @@
         "$haskell"
         "$python"
         "$lua"
-        "[](fg:#212736 bg:#2c3244)"
-        "$docker_context"
-        "$kubernetes"
-        "$terraform"
-        "[](fg:#2c3244 bg:#1d2230)"
+        "[](fg:#212736 bg:#1d2230)"
         "$time"
         "[ ](fg:#1d2230)"
         "$line_break"
@@ -40,28 +36,20 @@
       os = {
         disabled = false;
         style = "bg:#a3aed2 fg:#090c0c";
-        format = "[  $symbol ]($style)";
+        format = "[ $symbol ]($style)";
         symbols = {
           Alpine = "";
           Amazon = "";
           Android = "";
           Arch = "󰣇";
-          Artix = "󰣇";
-          CentOS = "";
           Debian = "󰣚";
           Fedora = "󰣛";
-          Gentoo = "󰣨";
+          FreeBSD = "";
           Linux = "󰌽";
-          Macos = "";
-          Manjaro = "";
-          Mint = "󰣭";
-          NixOS = "󱄅";
+          Macos = "";
+          NixOS = "";
           Pop = " ";
-          Raspbian = "󰐿";
-          RedHatEnterprise = "󱄛";
-          Redhat = "󱄛";
-          SUSE = "";
-          Ubuntu = "󰕈";
+          Ubuntu = "";
           Windows = "󰍲";
         };
       };
@@ -170,24 +158,6 @@
         symbol = "";
         style = "bg:#212736";
         format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
-      };
-
-      docker_context = {
-        symbol = "󰡨";
-        style = "bg:#2c3244";
-        format = "[[ $symbol( $context) ](fg:#769ff0 bg:#2c3244)]($style)";
-      };
-
-      kubernetes = {
-        symbol = "󱃾";
-        style = "bg:#2c3244";
-        format = "[[ $symbol( $context)( \\($namespace\\)) ](fg:#769ff0 bg:#2c3244)]($style)";
-      };
-
-      terraform = {
-        symbol = "󱁢";
-        style = "bg:#2c3244";
-        format = "[[ $symbol( $workspace) ](fg:#769ff0 bg:#2c3244)]($style)";
       };
 
       time = {
