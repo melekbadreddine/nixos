@@ -25,12 +25,12 @@
         "$kotlin"
         "$haskell"
         "$python"
-        "$typescript"
         "$lua"
+        "[](fg:#212736 bg:#2c3244)"
         "$docker_context"
         "$kubernetes"
         "$terraform"
-        "[](fg:#212736 bg:#1d2230)"
+        "[](fg:#2c3244 bg:#1d2230)"
         "$time"
         "[ ](fg:#1d2230)"
         "$line_break"
@@ -40,6 +40,7 @@
       os = {
         disabled = false;
         style = "bg:#a3aed2 fg:#090c0c";
+        format = "[  $symbol ]($style)";
         symbols = {
           Alpine = "";
           Amazon = "";
@@ -117,12 +118,6 @@
         format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
-      docker_context = {
-        symbol = "󰡨";
-        style = "bg:#394260";
-        format = "[[ $symbol( $context) ](fg:#769ff0 bg:#394260)]($style)";
-      };
-
       golang = {
         symbol = "";
         style = "bg:#212736";
@@ -145,12 +140,6 @@
         symbol = "";
         style = "bg:#212736";
         format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
-      };
-      
-      kubernetes = {
-        symbol = "󱃾";
-        style = "bg:#212736";
-        format = "[[ $symbol( $context)( \\($namespace\\)) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
       lua = {
@@ -182,17 +171,23 @@
         style = "bg:#212736";
         format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
-      
-      terraform = {
-        symbol = "󱁢";
-        style = "bg:#212736";
-        format = "[[ $symbol( $workspace) ](fg:#769ff0 bg:#212736)]($style)";
+
+      docker_context = {
+        symbol = "󰡨";
+        style = "bg:#2c3244";
+        format = "[[ $symbol( $context) ](fg:#769ff0 bg:#2c3244)]($style)";
       };
 
-      typescript = {
-        symbol = "󰛦";
-        style = "bg:#212736";
-        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
+      kubernetes = {
+        symbol = "󱃾";
+        style = "bg:#2c3244";
+        format = "[[ $symbol( $context)( \\($namespace\\)) ](fg:#769ff0 bg:#2c3244)]($style)";
+      };
+
+      terraform = {
+        symbol = "󱁢";
+        style = "bg:#2c3244";
+        format = "[[ $symbol( $workspace) ](fg:#769ff0 bg:#2c3244)]($style)";
       };
 
       time = {
