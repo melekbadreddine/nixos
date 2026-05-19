@@ -27,7 +27,7 @@
         "$haskell"
         "$python"
         "$typescript"
-        "$docker_context"
+        "$docker"
         "[](fg:#212736 bg:#1d2230)"
         "$time"
         "[ ](fg:#1d2230)"
@@ -115,7 +115,7 @@
         format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
-      docker_context = {
+      docker = {
         symbol = "󰡨";
         style = "bg:#394260";
         format = "[[ $symbol( $context) ](fg:#769ff0 bg:#394260)]($style)";
