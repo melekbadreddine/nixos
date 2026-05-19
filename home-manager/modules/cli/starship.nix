@@ -7,15 +7,15 @@
       "$schema" = "https://starship.rs/config-schema.json";
 
       format = lib.concatStrings [
-        "[](surface0)"
+        "[░▒▓](#a3aed2)"
         "$os"
-        "$username"
-        "[](bg:peach fg:surface0)"
+        "[](bg:#a3aed2 fg:#090c0c)"
+        "[](bg:#769ff0 fg:#a3aed2)"
         "$directory"
-        "[](fg:peach bg:green)"
+        "[](fg:#769ff0 bg:#394260)"
         "$git_branch"
         "$git_status"
-        "[](fg:green bg:yellow)"
+        "[](fg:#394260 bg:#212736)"
         "$c"
         "$rust"
         "$golang"
@@ -26,61 +26,19 @@
         "$kotlin"
         "$haskell"
         "$python"
-        "[](fg:yellow bg:blue)"
+        "$typescript"
         "$docker_context"
-        "[](fg:blue bg:purple)"
+        "[](fg:#212736 bg:#1d2230)"
         "$time"
-        "[ ](fg:purple)"
+        "[ ](fg:#1d2230)"
         "$line_break"
         "$character"
       ];
 
-      palette = lib.mkForce "catppuccin_mocha";
-
-      palettes.catppuccin_mocha = {
-        rosewater = "#f5e0dc";
-        flamingo = "#f2cdcd";
-        pink = "#f5c2e7";
-        orange = "#cba6f7";
-        red = "#f38ba8";
-        maroon = "#eba0ac";
-        peach = "#fab387";
-        yellow = "#fcf393";
-        green = "#7df9aa";
-        teal = "#94e2d5";
-        sky = "#89dceb";
-        sapphire = "#74c7ec";
-        blue = "#1c3a5e";
-        lavender = "#b4befe";
-        text = "#cdd6f4";
-        subtext1 = "#bac2de";
-        subtext0 = "#a6adc8";
-        overlay2 = "#9399b2";
-        overlay1 = "#7f849c";
-        overlay0 = "#6c7086";
-        surface2 = "#585b70";
-        surface1 = "#45475a";
-        surface0 = "#313244";
-        base = "#1e1e2e";
-        mantle = "#181825";
-        crust = "#11111b";
-      };
-
       os = {
         disabled = false;
-        style = "bg:surface0 fg:text";
+        style = "bg:#a3aed2 fg:#090c0c";
         symbols = {
-          Windows = "󰍲";
-          Ubuntu = "󰕈";
-          SUSE = "";
-          Raspbian = "󰐿";
-          Mint = "󰣭";
-          Pop = " ";
-          Macos = "";
-          Manjaro = "";
-          Linux = "󰌽";
-          Gentoo = "󰣨";
-          Fedora = "󰣛";
           Alpine = "";
           Amazon = "";
           Android = "";
@@ -88,20 +46,27 @@
           Artix = "󰣇";
           CentOS = "";
           Debian = "󰣚";
-          Redhat = "󱄛";
+          Fedora = "󰣛";
+          Gentoo = "󰣨";
+          Linux = "󰌽";
+          Macos = "";
+          Manjaro = "";
+          Mint = "󰣭";
+          NixOS = "󱄅";
+          Pop = " ";
+          Raspbian = "󰐿";
           RedHatEnterprise = "󱄛";
+          Redhat = "󱄛";
+          SUSE = "";
+          Ubuntu = "󰕈";
+          Windows = "󰍲";
         };
       };
 
-      username = {
-        show_always = true;
-        style_user = "bg:surface0 fg:text";
-        style_root = "bg:surface0 fg:text";
-        format = "[ $user ]($style)";
-      };
+      username.disabled = true;
 
       directory = {
-        style = "fg:mantle bg:peach";
+        style = "fg:#e3e5e5 bg:#769ff0";
         format = "[ $path ]($style)";
         home_symbol = " ~";
 
@@ -117,110 +82,116 @@
       };
 
       git_branch = {
-        symbol = "";
-        style = "bg:green fg:base bold";
-        format = "[ $symbol $branch]($style)";
+        symbol = "";
+        style = "bg:#394260";
+        format = "[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)";
       };
 
       git_status = {
-        style = "bg:green fg:base bold";
-        format = "([ $all_status$ahead_behind]($style))";
-        conflicted = "🏳 ";
-        ahead = "🏎💨 ";
-        behind = "😰 ";
-        diverged = "😵 ";
-        untracked = "🤷 ";
-        stashed = "󰏗 ";
-        modified = "📝 ";
-        staged = "[++\($count\)](fg:base bg:green)";
-        deleted = "🗑 ";
+        style = "bg:#394260";
+        format = "[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)";
+        conflicted = "=";
+        ahead = "↑\${count}";
+        behind = "↓\${count}";
+        diverged = "↕";
+        untracked = "?";
+        stashed = "$";
+        modified = "!";
+        staged = "+\${count}";
+        deleted = "✘";
       };
 
       package.symbol = "📦 ";
 
-      nodejs = {
-        symbol = "";
-        style = "bg:teal";
-        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
-      };
-
       bun = {
-        symbol = "󰛦 ";
-        style = "bg:teal";
-        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
+        symbol = "";
+        style = "bg:#212736";
+        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
       c = {
-        symbol = " ";
-        style = "bg:teal";
-        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
+        symbol = "";
+        style = "bg:#212736";
+        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
-      rust = {
-        symbol = "";
-        style = "bg:teal";
-        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
+      docker_context = {
+        symbol = "󰡨";
+        style = "bg:#394260";
+        format = "[[ $symbol( $context) ](fg:#769ff0 bg:#394260)]($style)";
       };
 
       golang = {
         symbol = "";
-        style = "bg:teal";
-        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
+        style = "bg:#212736";
+        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
-      php = {
-        symbol = "";
-        style = "bg:teal";
-        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
+      haskell = {
+        symbol = "";
+        style = "bg:#212736";
+        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
       java = {
-        symbol = " ";
-        style = "bg:teal";
-        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
+        symbol = "";
+        style = "bg:#212736";
+        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
       kotlin = {
         symbol = "";
-        style = "bg:teal";
-        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
+        style = "bg:#212736";
+        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
-      haskell = {
-        symbol = "";
-        style = "bg:teal";
-        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
+      nodejs = {
+        symbol = "";
+        style = "bg:#212736";
+        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
+      };
+
+      php = {
+        symbol = "";
+        style = "bg:#212736";
+        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
       python = {
         symbol = "";
-        style = "bg:teal";
-        format = "[[ $symbol( $version) ](fg:base bg:yellow)]($style)";
+        style = "bg:#212736";
+        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
-      docker_context = {
-        symbol = "";
-        style = "bg:mantle";
-        format = "[[ $symbol( $context) ](fg:#83a598 bg:surface2)]($style)"; # Note: surface2 used as fallback for color_bg3
+      rust = {
+        symbol = "";
+        style = "bg:#212736";
+        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
+      };
+
+      typescript = {
+        symbol = "󰛦";
+        style = "bg:#212736";
+        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
       time = {
         disabled = false;
         time_format = "%R";
-        style = "bg:peach";
-        format = "[[  $time ](fg:mantle bg:purple)]($style)";
+        style = "bg:#1d2230";
+        format = "[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)";
       };
 
       line_break.disabled = false;
 
       character = {
         disabled = false;
-        success_symbol = "[](bold fg:green)";
-        error_symbol = "[](bold fg:red)";
-        vimcmd_symbol = "[](bold fg:green)";
-        vimcmd_replace_one_symbol = "[](bold fg:purple)";
-        vimcmd_replace_symbol = "[](bold fg:purple)";
-        vimcmd_visual_symbol = "[](bold fg:lavender)";
+        success_symbol = "[❯](bold fg:#769ff0)";
+        error_symbol = "[❯](bold fg:#f7768e)";
+        vimcmd_symbol = "[❮](bold fg:#9ece6a)";
+        vimcmd_replace_one_symbol = "[❮](bold fg:#bb9af7)";
+        vimcmd_replace_symbol = "[❮](bold fg:#bb9af7)";
+        vimcmd_visual_symbol = "[❮](bold fg:#e0af68)";
       };
     };
   };
