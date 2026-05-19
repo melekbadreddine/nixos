@@ -9,13 +9,12 @@
       format = lib.concatStrings [
         "[░▒▓](#a3aed2)"
         "$os"
-        "[](bg:#a3aed2 fg:#090c0c)"
-        "[](bg:#769ff0 fg:#a3aed2)"
+        "[](bg:#769ff0 fg:#a3aed2)"
         "$directory"
-        "[](fg:#769ff0 bg:#394260)"
+        "[](fg:#769ff0 bg:#394260)"
         "$git_branch"
         "$git_status"
-        "[](fg:#394260 bg:#212736)"
+        "[](fg:#394260 bg:#212736)"
         "$c"
         "$rust"
         "$golang"
@@ -27,10 +26,13 @@
         "$haskell"
         "$python"
         "$typescript"
-        "$docker"
-        "[](fg:#212736 bg:#1d2230)"
+        "$lua"
+        "$docker_context"
+        "$kubernetes"
+        "$terraform"
+        "[](fg:#212736 bg:#1d2230)"
         "$time"
-        "[ ](fg:#1d2230)"
+        "[ ](fg:#1d2230)"
         "$line_break"
         "$character"
       ];
@@ -82,7 +84,7 @@
       };
 
       git_branch = {
-        symbol = "";
+        symbol = "";
         style = "bg:#394260";
         format = "[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)";
       };
@@ -115,7 +117,7 @@
         format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
-      docker = {
+      docker_context = {
         symbol = "󰡨";
         style = "bg:#394260";
         format = "[[ $symbol( $context) ](fg:#769ff0 bg:#394260)]($style)";
@@ -144,6 +146,18 @@
         style = "bg:#212736";
         format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
       };
+      
+      kubernetes = {
+        symbol = "󱃾";
+        style = "bg:#212736";
+        format = "[[ $symbol( $context)( \\($namespace\\)) ](fg:#769ff0 bg:#212736)]($style)";
+      };
+
+      lua = {
+        symbol = "";
+        style = "bg:#212736";
+        format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
+      };
 
       nodejs = {
         symbol = "";
@@ -167,6 +181,12 @@
         symbol = "";
         style = "bg:#212736";
         format = "[[ $symbol( $version) ](fg:#769ff0 bg:#212736)]($style)";
+      };
+      
+      terraform = {
+        symbol = "󱁢";
+        style = "bg:#212736";
+        format = "[[ $symbol( $workspace) ](fg:#769ff0 bg:#212736)]($style)";
       };
 
       typescript = {
