@@ -10,7 +10,7 @@ in
     stylix = {
       enable = true;
       image = stylixImage;
-      base16Scheme = pkgs.base16-schemes + "/share/themes/ayu-dark.yaml";
+      base16Scheme = pkgs.base16-schemes + "/share/themes/catppuccin-mocha.yaml";
       polarity = "dark";
 
       # Disable automatic styling to prevent conflicts with manually configured apps.
@@ -23,8 +23,8 @@ in
       };
 
       cursor = {
-        package = pkgs.bibata-cursors;
-        name = "Bibata-Modern-Ice";
+        package = pkgs.apple-cursor;
+        name = "Macintosh";
         size = 24;
       };
 

@@ -12,5 +12,6 @@
     ./utils.nix
     ./zellij.nix
     ./zoxide.nix
+    ./yazi.nix
   ];
 }

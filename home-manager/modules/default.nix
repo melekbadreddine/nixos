@@ -5,5 +5,7 @@
     ./programs
     ./shell
     ./stylix.nix
+    ./kdeconnect
+    ./misc
   ];
 }
