@@ -1,6 +1,7 @@
 {...}: {
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
+    auto-optimise-store = true;
     substituters = [
       "https://cache.nixos.org"
       "https://melek-nixos.cachix.org"
@@ -10,5 +11,11 @@
       "melek-nixos.cachix.org-1:UdhKZAFc78C4ge9SFfgCtMcyBGVfJemC/dwjBaqonVs="
     ];
     trusted-users = ["root" "@wheel"];
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
 }
