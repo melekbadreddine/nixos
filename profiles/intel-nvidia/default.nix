@@ -1,8 +1,6 @@
-{host, ...}: let
-  inherit (import ../../hosts/${host}/variables.nix) intelID nvidiaID;
-in {
+{vars, ...}: {
   imports = [
-    ../../hosts/${host}
+    ../../hosts/default
     ../../modules/drivers
   ];
   # Enable GPU Drivers
@@ -10,8 +8,8 @@ in {
   drivers.nvidia.enable = true;
   drivers.nvidia-prime = {
     enable = true;
-    intelBusId = "${intelID}";
-    nvidiaBusId = "${nvidiaID}";
+    intelBusId = vars.intelID;
+    nvidiaBusId = vars.nvidiaID;
   };
   drivers.intel.enable = false;
   drivers.amd-nvidia.enable = false;

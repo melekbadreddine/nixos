@@ -1,16 +1,14 @@
-{host, ...}: let
-  inherit (import ../../hosts/${host}/variables.nix) amdgpuID nvidiaID;
-in {
+{vars, ...}: {
   imports = [
-    ../../hosts/${host}
+    ../../hosts/default
     ../../modules/drivers
   ];
 
   # Enable AMD+NVIDIA hybrid drivers (Prime offload with AMD as primary)
   drivers.amd-nvidia = {
     enable = true;
-    amdBusId = "${amdgpuID}";
-    nvidiaBusId = "${nvidiaID}";
+    amdBusId = vars.amdgpuID;
+    nvidiaBusId = vars.nvidiaID;
   };
 
   # Ensure other driver toggles are off for this profile

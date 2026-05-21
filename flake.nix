@@ -1,5 +1,5 @@
 {
-  description = "Modular multi-profile NixOS + Home Manager flake";
+  description = "A custom, declarative, multi-profile NixOS dotfiles";
 
   nixConfig = {
     extra-substituters = ["https://melek-nixos.cachix.org"];
@@ -11,11 +11,6 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
     fresh.url = "github:sinelaw/fresh";
     helium = {
@@ -40,7 +35,6 @@
   outputs = {
     nixpkgs,
     home-manager,
-    plasma-manager,
     fresh,
     helium,
     zen-browser,
@@ -52,6 +46,9 @@
       inherit system;
       config.allowUnfree = true;
     };
+
+    # Global variables
+    vars = import ./modules/core/variables.nix;
 
     # Supported profiles
     profiles = [
@@ -79,7 +76,7 @@
     in
       nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs fresh helium zen-browser stylix host profile plasma-manager;
+          inherit inputs fresh helium zen-browser stylix host profile vars;
         };
         modules = [
           {nixpkgs.hostPlatform = system;}
@@ -94,7 +91,7 @@
 
             home-manager.users.melek = import ./home-manager/home.nix;
 
-            home-manager.extraSpecialArgs = {inherit inputs fresh helium zen-browser host profile plasma-manager;};
+            home-manager.extraSpecialArgs = {inherit inputs fresh helium zen-browser host profile vars;};
           }
         ];
       };
@@ -114,8 +111,9 @@
         value = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit fresh helium zen-browser inputs plasma-manager;
+            inherit fresh helium zen-browser inputs;
             host = h;
+            vars = vars;
           };
           modules = [
             stylix.homeModules.stylix
