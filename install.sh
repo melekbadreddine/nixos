@@ -3,7 +3,7 @@
 ######################################
 # NixOS Installation Script
 # Detects hardware, generates config, builds NixOS
-# Sets up KDE Plasma 6
+# Sets up COSMIC Desktop
 ######################################
 
 set -e
@@ -37,7 +37,7 @@ print_success_banner() {
   echo -e "${GREEN}║                                                                       ║${NC}"
   echo -e "${GREEN}║   Please reboot your system for changes to take full effect.          ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
-  echo -e "${GREEN}║   Select your preferred session at the login screen and enjoy!        ║${NC}"
+  echo -e "${GREEN}║   Log in with the COSMIC greeter and enjoy your desktop!              ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
   echo -e "${GREEN}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
 }
@@ -229,13 +229,13 @@ if sudo NIX_CONFIG="$NIX_CONFIG" nixos-rebuild boot --flake ".#$profile" --accep
   # Write the successful profile to a state file for the justfile to use
   echo "$profile" > "${LOG_DIR}/.current-profile"
   echo -e "${GREEN}✓ NixOS build successful!${NC}"
-  
+
   print_header "Desktop Setup Complete"
-  echo -e "${GREEN}✓ Selected desktop manager enabled${NC}"
-  echo -e "${GREEN}✓ Display manager configured${NC}"
+  echo "COSMIC desktop enabled"
+  echo "COSMIC greeter configured"
   echo -e "${GREEN}✓ GPU drivers installed${NC}"
   echo -e "${GREEN}✓ All dependencies installed${NC}"
-  
+
   print_success_banner
 else
   mv flake.nix.bak flake.nix

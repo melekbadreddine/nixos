@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./antigravity.nix
     ./zen.nix
     ./helium.nix
     ./ghostty.nix

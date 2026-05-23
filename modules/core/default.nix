@@ -5,8 +5,8 @@
     ./i18n.nix
     ./network.nix
     ./nix.nix
+    ./polkit.nix
     ./printing.nix
-    ./sddm.nix
     ./shell.nix
     ./sops.nix
     ./sound.nix

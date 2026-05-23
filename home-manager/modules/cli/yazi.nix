@@ -4,7 +4,6 @@
     shellWrapperName = "y";
     enableBashIntegration = true;
     enableFishIntegration = true;
-    enableZshIntegration = true;
     settings = {
       manager = {
         show_hidden = true;
