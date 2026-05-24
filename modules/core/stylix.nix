@@ -11,9 +11,9 @@ lib.mkIf vars.stylixEnable {
     base16Scheme = pkgs.base16-schemes + "/share/themes/catppuccin-mocha.yaml";
     polarity = "dark";
 
-    # Disable automatic styling to prevent conflicts with manually configured apps.
-    # Home Manager modules handle their own theming (e.g., Starship, Zen disabled).
-    autoEnable = false;
+    # Enable automatic styling to ensure wallpaper and system-wide themes are applied.
+    # Manual overrides are handled in home-manager/modules/stylix.nix.
+    autoEnable = true;
 
     targets = {
       console.enable = true;

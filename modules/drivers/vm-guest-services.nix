@@ -28,6 +28,13 @@ in {
     # Better VM graphics performance
     services.xserver.videoDrivers = ["virtio" "vmware" "modesetting"];
 
+    environment.variables = {
+      # Help GTK4/Adwaita apps run better in VMs with 3D acceleration
+      GSK_RENDERER = "ngl";
+      # Ghostty and other GPU-accelerated terminals sometimes need a hint
+      WLR_NO_HARDWARE_CURSORS = "1";
+    };
+
     # spice-webdavd is disabled due to build failure with davsfs2 (unsupported neon version)
     # Enable if your system doesn't encounter this issue
     services.spice-webdavd.enable = false;
