@@ -1,4 +1,7 @@
 {pkgs, ...}: {
+  # System settings
+  system.stateVersion = "25.11";
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 

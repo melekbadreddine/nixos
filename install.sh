@@ -201,15 +201,6 @@ fi
 
 print_header "Building NixOS"
 
-# Update flake.nix with selected profile
-echo -e "${BLUE}Updating configuration with profile: $profile${NC}"
-cp flake.nix flake.nix.bak
-
-# Update profile in flake.nix if it exists as a variable
-if grep -q 'profile = ' flake.nix; then
-  sed -i "s|profile = \"[^\"]*\"|profile = \"$profile\"|g" flake.nix
-fi
-
 echo -e "${GREEN}Ready to build NixOS with profile: $profile${NC}"
 read -p "Continue with NixOS rebuild? (Y/N): " -n 1 -r
 echo

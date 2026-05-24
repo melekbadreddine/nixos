@@ -113,6 +113,12 @@
           extraSpecialArgs = {
             inherit fresh helium zen-browser inputs;
             host = h;
+            profile =
+              if h == "wsl"
+              then "wsl"
+              else if h == "vm"
+              then "vm"
+              else "amd"; # Provide a default profile for standalone
             vars = vars;
           };
           modules = [

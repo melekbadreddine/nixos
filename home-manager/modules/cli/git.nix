@@ -1,8 +1,12 @@
-{osConfig ? null, ...}: let
+{
+  osConfig ? null,
+  lib,
+  ...
+}: let
+  # Use osConfig if available (NixOS managed), otherwise check for the path, or use a dummy for evaluation safety
   sopsPath =
     if osConfig != null && osConfig ? sops
     then osConfig.sops.secrets."github/token".path
-    # Fallback path for NixOS-managed Home Manager where SOPS is guaranteed to provision the secret.
     else "/run/secrets/github/token";
 in {
   programs.git = {
@@ -13,7 +17,7 @@ in {
         email = "mbadreddine5@gmail.com";
       };
       init.defaultBranch = "main";
-      credential.helper = ''!f() { [ "$1" = "get" ] && printf "username=melekbadreddine\npassword=$(cat ${sopsPath})\n"; }; f "$@"'';
+      credential.helper = lib.mkIf (builtins.pathExists sopsPath) ''!f() { [ "$1" = "get" ] && printf "username=melekbadreddine\npassword=$(cat ${sopsPath})\n"; }; f "$@"'';
     };
   };
 

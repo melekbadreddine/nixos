@@ -6,6 +6,4 @@
   ];
 
   networking.hostName = "Melek";
-
-  system.stateVersion = "25.11";
 }

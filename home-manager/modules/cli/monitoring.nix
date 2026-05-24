@@ -3,6 +3,5 @@
     btop
     dua
     duf
-    k9s
   ];
 }

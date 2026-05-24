@@ -6,14 +6,12 @@
     ./network.nix
     ./nix.nix
     ./polkit.nix
-    ./printing.nix
+    ./services.nix
     ./shell.nix
     ./sops.nix
-    ./sound.nix
     ./stylix.nix
     ./system.nix
     ./user.nix
-    ./xserver.nix
     ./virtualisation.nix
   ];
 }

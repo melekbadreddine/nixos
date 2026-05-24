@@ -5,6 +5,5 @@
     terraform
     terraform-ls
     tflint
-    kubernetes-helm
   ];
 }

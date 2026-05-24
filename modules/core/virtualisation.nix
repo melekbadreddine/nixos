@@ -51,5 +51,7 @@
     lazydocker
     virt-viewer # Better performance than the built-in virt-manager viewer
     spice-gtk # Needed for clipboard sharing between host and VM
+    kubernetes-helm
+    k9s
   ];
 }
