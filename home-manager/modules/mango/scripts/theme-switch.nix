@@ -200,11 +200,14 @@ in {
         import gi
         import os
         import subprocess
+        import sys
 
         gi.require_version("Gtk", "3.0")
         gi.require_version("Gdk", "3.0")
         gi.require_version("GdkPixbuf", "2.0")
-        from gi.repository import Gdk, GdkPixbuf, Gtk, Pango
+
+        # Noqa for E402
+        from gi.repository import Gdk, GdkPixbuf, Gtk, Pango  # noqa: E402
 
         WALL_DIR = os.path.expanduser("~/nixos/assets/wallpapers")
         DISPLAY_SIZE, SPACING, BORDER_WIDTH = 350, 16, 4
@@ -301,7 +304,10 @@ in {
                 if not os.path.exists(WALL_DIR):
                     return
                 exts = (".jpg", ".jpeg", ".png", ".webp")
-                walls = sorted([f for f in os.listdir(WALL_DIR) if f.lower().endswith(exts)])
+                walls = sorted([
+                    f for f in os.listdir(WALL_DIR)
+                    if f.lower().endswith(exts)
+                ])
                 for idx, f in enumerate(walls):
                     thumb = WallpaperThumb(os.path.join(WALL_DIR, f), f, self)
                     thumb.idx = idx
@@ -353,7 +359,8 @@ in {
 
         gi.require_version("Gtk", "3.0")
         gi.require_version("Gdk", "3.0")
-        from gi.repository import Gdk, Gtk, Pango
+        # Noqa for E402
+        from gi.repository import Gdk, Gtk, Pango  # noqa: E402
 
         BG_COLOR = "#1d2021"
         ACCENT_COLOR = "#b8bb26"
@@ -371,15 +378,20 @@ in {
 
         def get_current_layout():
             try:
-                res = subprocess.run(["mmsg", "-g"], capture_output=True, text=True, timeout=2)
+                res = subprocess.run(
+                    ["mmsg", "-g"], capture_output=True, text=True, timeout=2
+                )
                 out = res.stdout.strip()
                 if not out:
                     return ""
-                focused_mon = next((l.split()[0] for l in out.splitlines() if "selmon 1" in l), "")
+                focused_mon = next(
+                    (l.split()[0] for l in out.splitlines() if "selmon 1" in l), ""
+                )
                 if not focused_mon:
                     return ""
                 return next(
-                    (l.split()[-1] for l in out.splitlines() if l.startswith(f"{focused_mon} layout ")),
+                    (l.split()[-1] for l in out.splitlines()
+                     if l.startswith(f"{focused_mon} layout ")),
                     ""
                 )
             except Exception:
