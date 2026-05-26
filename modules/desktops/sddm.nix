@@ -62,10 +62,14 @@
 in {
   services.displayManager.sddm = {
     package = pkgs.kdePackages.sddm;
-    extraPackages = [sddm-astronaut];
+    extraPackages = [
+      sddm-astronaut
+      pkgs.mangowc
+    ];
     enable = true;
     wayland.enable = true;
     theme = "sddm-astronaut-theme";
   };
+  services.displayManager.sessionPackages = [pkgs.mangowc];
   environment.systemPackages = [sddm-astronaut];
 }
