@@ -1,0 +1,299 @@
+/* ─── Noctalia-inspired Waybar stylesheet ─── */
+/* GruvboxAlt dark colors, floating bar with 12px radius */
+
+* {
+    all: initial;
+    font-family:
+        "JetBrainsMono Nerd Font", "JetBrains Mono", "Font Awesome 6 Free",
+        monospace;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* ─── Main Bar ─── */
+#waybar {
+    background-color: rgba(29, 32, 33, 0.85);
+    color: #ebdbb2;
+    border-radius: 8px;
+    padding: 4px 8px;
+}
+
+/* ─── Module Sections ─── */
+.modules-left,
+.modules-center,
+.modules-right {
+    padding: 0 4px;
+}
+
+/* ─── Individual Modules ─── */
+#image,
+#tags,
+#window,
+#cpu,
+#temperature,
+#memory,
+#disk,
+#network,
+#tray,
+#custom-notifications,
+#battery,
+#pulseaudio,
+#clock,
+#custom-layout,
+#custom-power,
+#custom-power#vertical {
+    padding: 4px 10px;
+    margin: 2px 3px;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+/* ─── Fedora Logo (Image) ─── */
+#image,
+#image#fedora {
+    padding: 4px 8px;
+    margin: 2px 3px;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+/* ─── Workspaces (dwl/tags) ─── */
+#tags,
+#tags#vertical {
+    background-color: transparent;
+    padding: 2px 6px;
+}
+
+#tags button,
+#tags#vertical button {
+    padding: 2px 7px;
+    margin: 0 2px;
+    color: #665c54;
+    background-color: transparent;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+/* Occupied workspace */
+#tags button.occupied,
+#tags#vertical button.occupied {
+    color: #d79921;
+}
+
+/* Empty workspace */
+#tags button.empty,
+#tags#vertical button.empty {
+    color: #665c54;
+}
+
+/* Focused workspace */
+#tags button.focused,
+#tags button.active,
+#tags#vertical button.focused,
+#tags#vertical button.active {
+    color: #282828;
+    background-color: #b8bb26;
+    font-weight: bold;
+}
+
+/* Urgent workspace */
+#tags button.urgent,
+#tags#vertical button.urgent {
+    color: #cc241d;
+    background-color: rgba(204, 36, 29, 0.2);
+}
+
+/* Hover effect */
+#tags button:hover,
+#tags#vertical button:hover {
+    background-color: rgba(184, 187, 38, 0.3);
+    color: #ebdbb2;
+}
+
+#tags button.focused:hover,
+#tags button.active:hover,
+#tags#vertical button.focused:hover,
+#tags#vertical button.active:hover {
+    background-color: #b8bb26;
+    color: #282828;
+}
+
+#tags button {
+    padding: 2px 5px;
+    margin: 0 2px;
+    color: #665c54;
+    background-color: transparent;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+/* Occupied workspace */
+#tags button.occupied {
+    color: #d79921;
+}
+
+/* Empty workspace */
+#tags button.empty {
+    color: #665c54;
+}
+
+/* Focused workspace */
+#tags button.focused,
+#tags button.active {
+    color: #282828;
+    background-color: #b8bb26;
+    font-weight: bold;
+}
+
+/* Urgent workspace */
+#tags button.urgent {
+    color: #cc241d;
+    background-color: rgba(204, 36, 29, 0.2);
+}
+
+/* Hover effect */
+#tags button:hover {
+    background-color: rgba(184, 187, 38, 0.3);
+    color: #ebdbb2;
+}
+
+#tags button.focused:hover,
+#tags button.active:hover {
+    background-color: #b8bb26;
+    color: #282828;
+}
+
+/* ─── Active Window (dwl/window) ─── */
+#window {
+    color: #ebdbb2;
+    background-color: transparent;
+}
+
+/* ─── Center System Stats ─── */
+#cpu {
+    color: #fb4934;
+}
+
+#temperature {
+    color: #fe8019;
+}
+
+#temperature.critical {
+    color: #cc241d;
+    background-color: rgba(204, 36, 29, 0.2);
+}
+
+#memory {
+    color: #d79921;
+}
+
+#disk {
+    color: #b8bb26;
+}
+
+#network {
+    color: #8ec07c;
+}
+
+#network.disconnected {
+    color: #928374;
+}
+
+/* ─── System Tray ─── */
+#tray {
+    background-color: transparent;
+    padding: 4px 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: rgba(214, 93, 14, 0.3);
+}
+
+/* ─── Notifications ─── */
+#custom-notifications {
+    color: #689d6a;
+}
+
+#custom-notifications.has-notifications {
+    color: #fb4934;
+}
+
+/* ─── Battery ─── */
+#battery {
+    color: #689d6a;
+}
+
+#battery.warning {
+    color: #d79921;
+}
+
+#battery.critical {
+    color: #cc241d;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #b8bb26;
+}
+
+/* ─── Pulseaudio ─── */
+#pulseaudio {
+    color: #83a598;
+}
+
+#pulseaudio.muted {
+    color: #928374;
+}
+
+/* ─── Clock ─── */
+#clock,
+#clock#vertical {
+    color: #ebdbb2;
+    background-color: transparent;
+    font-weight: 600;
+}
+
+/* ─── Layout Switcher ─── */
+#custom-layout {
+    color: #8ec07c;
+    padding: 4px 10px;
+    margin: 2px 3px;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+#custom-layout:hover {
+    background-color: rgba(142, 192, 124, 0.15);
+}
+
+/* ─── Power Button ─── */
+#custom-power,
+#custom-power#vertical {
+    color: #fb4934;
+    background-color: transparent;
+    font-size: 14px;
+    padding: 2px 12px;
+}
+
+#custom-power:hover,
+#custom-power#vertical:hover {
+    background-color: rgba(251, 73, 52, 0.15);
+}
+
+/* ─── Tooltip ─── */
+tooltip {
+    background-color: rgba(29, 32, 33, 0.95);
+    border: 1px solid rgba(80, 73, 69, 0.8);
+    border-radius: 8px;
+    padding: 8px;
+}
+
+tooltip label {
+    color: #ebdbb2;
+    padding: 4px;
+}

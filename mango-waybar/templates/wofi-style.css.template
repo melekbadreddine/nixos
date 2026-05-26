@@ -1,0 +1,75 @@
+/* ─── Wofi GruvboxAlt dark theme ─── */
+/* Generated from theme.conf via switch-theme.sh */
+
+window {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    background-color: transparent;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 14px;
+}
+
+#outer-box {
+    margin: 0px;
+    padding: 6px;
+    border: 2px solid __OUTLINE__;
+    border-radius: 8px;
+    background-color: rgba(__BG_RGB__, 0.95);
+}
+
+#scroll {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    background-color: transparent;
+}
+
+#input {
+    margin: 0px 0px 8px 0px;
+    padding: 10px 16px;
+    border: 2px solid rgba(__OUTLINE_RGB__, 0.8);
+    border-radius: 6px;
+    color: __FG__;
+    background-color: rgba(__SURFACE_RGB__, 0.6);
+    font-size: 14px;
+}
+
+#input:focus {
+    background-color: rgba(__OUTLINE_RGB__, 0.8);
+    border-color: __ACCENT__;
+}
+
+#inner-box {
+    margin: 0px;
+    padding: 0px 0px 4px 0px;
+    border: none;
+    background-color: transparent;
+}
+
+#text {
+    margin: 0px;
+    border: none;
+    color: __FG__;
+    padding: 6px 12px;
+}
+
+#entry {
+    border-radius: 6px;
+    padding: 2px;
+    background-color: transparent;
+}
+
+#entry:selected {
+    background-color: rgba(__ACCENT_RGB__, 0.3);
+    border-radius: 6px;
+}
+
+#entry:selected #text {
+    color: __ACCENT__;
+    font-weight: bold;
+}
+
+#entry:hover {
+    background-color: rgba(__OUTLINE_RGB__, 0.4);
+}

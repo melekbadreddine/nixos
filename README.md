@@ -17,7 +17,12 @@ A highly modular, hardware-aware NixOS configuration using Flakes, Home Manager,
 - `hosts/`: Host-specific settings (default, vm, wsl).
 - `modules/core/`: Base system services and settings.
 - `modules/drivers/`: Reusable GPU and VM driver options.
-- `modules/desktops/`: Desktop environment configurations.
+- `modules/desktops/mango.nix`: Mango WM system configuration.
+- `modules/desktops/sddm.nix`: SDDM display manager configuration.
+- `home-manager/modules/mango/`: Mango WM user configuration.
+- `home-manager/modules/waybar/`: Waybar configuration.
+- `home-manager/modules/wofi/`: Wofi configuration.
+- `home-manager/modules/misc/`: GTK, Qt, and dconf settings.
 - `profiles/`: Entry points mapping profiles to hosts and drivers.
 - `home-manager/`: User-level configuration (CLI, Dev, Programs, Shell).
 

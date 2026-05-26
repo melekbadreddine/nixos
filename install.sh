@@ -222,8 +222,10 @@ if sudo NIX_CONFIG="$NIX_CONFIG" nixos-rebuild boot --flake ".#$profile" --accep
   echo -e "${GREEN}✓ NixOS build successful!${NC}"
 
   print_header "Desktop Setup Complete"
-  echo "COSMIC desktop enabled"
-  echo "COSMIC greeter configured"
+  echo "SDDM display manager enabled"
+  echo "COSMIC desktop available"
+  echo "Mango WM available"
+  echo "Select your session at login"
   echo -e "${GREEN}✓ GPU drivers installed${NC}"
   echo -e "${GREEN}✓ All dependencies installed${NC}"
 

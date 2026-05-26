@@ -1,0 +1,61 @@
+# Kitty theme
+# Generated from theme.conf via switch-theme.sh
+
+# The basic colors
+foreground              __FG__
+background              __BG__
+selection_foreground    __BG__
+selection_background    __SECONDARY__
+
+# Cursor colors
+cursor                  __SECONDARY__
+cursor_text_color       __BG__
+
+# URL underline color when hovering with mouse
+url_color               __TERTIARY__
+
+# Kitty window border colors
+active_border_color     __SECONDARY__
+inactive_border_color   __BLACKB__
+bell_border_color       __YELLOWB__
+
+# Tab bar colors
+active_tab_foreground   __BG__
+active_tab_background   __SECONDARY__
+inactive_tab_foreground __FG__
+inactive_tab_background __BLACK__
+tab_bar_background      __BG__
+
+# The 16 terminal colors
+
+# black
+color0 __BLACK__
+color8 __BLACKB__
+
+# red
+color1 __RED__
+color9 __REDB__
+
+# green
+color2 __GREEN__
+color10 __GREENB__
+
+# yellow
+color3 __YELLOW__
+color11 __YELLOWB__
+
+# blue
+color4 __BLUE__
+color12 __BLUEB__
+
+# magenta
+color5 __MAGENTA__
+color13 __MAGENTAB__
+
+# cyan
+color6 __CYAN__
+color14 __CYANB__
+
+# white
+color7 __WHITE__
+color15 __WHITEB__

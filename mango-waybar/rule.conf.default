@@ -1,0 +1,31 @@
+# Window Rules for Mango
+# Format: windowrule=<property>:<value>,<match_criteria>
+#
+# Common properties:
+#   isfloating:1          - Force floating
+#   width:<px>,height:<px> - Fixed size
+#   monitor:<name>        - Place on specific monitor
+#   scroller_proportion:<n> - Set scroller layout proportion
+#   indleinhibit_when_focus:1 - Prevent screen lock when focused
+#
+# Match criteria:
+#   appid:<app_id>        - Match by application ID
+#   title:<title>         - Match by window title
+#
+# Tip: Run `wayland-info` or check your WM logs to find appid values.
+
+# ─── Floating window with custom size ───
+# windowrule=isfloating:1,width:900,height:600,title:floating-kitty
+
+# ─── Steam: idle inhibit + full scroller proportion ───
+# windowrule=indleinhibit_when_focus:1,appid:steam
+# windowrule=scroller_proportion:1.0,appid:steam
+
+# ─── Discord: always floating ───
+# windowrule=isfloating:1,appid:discord
+
+# ─── OBS: place on specific monitor ───
+# windowrule=monitor:DP-2,appid:com.obsproject.Studio
+
+# ─── Wallpaper picker: always floating ───
+# windowrule=isfloating:1,title:Wallpaper Picker

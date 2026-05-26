@@ -1,0 +1,917 @@
+# : Manager [[[
+
+[mgr]
+cwd = { fg = "__FG__" }
+
+# Find
+find_keyword = { fg = "__ERROR__", bold = true, italic = true, underline = true }
+find_position = { fg = "__ERROR__", bold = true, italic = true }
+
+# Marker
+marker_copied = { fg = "__SUCCESS__", bg = "__SUCCESS__" }
+marker_cut = { fg = "__SUCCESS__", bg = "__SUCCESS__" }
+marker_marked = { fg = "__ERROR__", bg = "__ERROR__" }
+marker_selected = { fg = "__TERTIARY__", bg = "__TERTIARY__" }
+
+# Count
+count_copied = { fg = "__FG__", bg = "__SUCCESS__" }
+count_cut = { fg = "__FG__", bg = "__SUCCESS__" }
+count_selected = { fg = "__BG__", bg = "__TERTIARY__" }
+
+# Border
+border_style  = { fg = "__ACCENT__" }
+
+# : ]]]
+
+
+# : Status [[[
+
+[status]
+overall = { fg = "__ACCENT__" }
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+# Progress
+progress_label = { bold = true }
+progress_normal = { fg = "__ACCENT__", bg = "__BG__" }
+progress_error = { fg = "__ERROR__", bg = "__BG__" }
+
+# Permissions
+perm_type = { fg = "__SECONDARY__" }
+perm_write = { fg = "__TERTIARY__" }
+perm_exec = { fg = "__ERROR__" }
+perm_read = { fg = "__SUCCESS__" }
+perm_sep = { fg = "__OUTLINE__" }
+
+# : ]]]
+
+
+# : Mode [[[
+
+[mode]
+
+normal_main = { bg = "__ACCENT__", fg = "__BG__", bold = true }
+normal_alt  = { bg = "__SURFACE__", fg = "__FG__" }
+
+select_main = { bg = "__SECONDARY__", fg = "__BG__", bold = true }
+select_alt  = { bg = "__SURFACE__", fg = "__FG__" }
+
+unset_main = { bg = "__TERTIARY__", fg = "__BG__", bold = true }
+unset_alt  = { bg = "__SURFACE__", fg = "__FG__" }
+
+# : ]]]
+
+
+# : Input [[[
+
+[input]
+border = { fg = "__ACCENT__" }
+title = {}
+value = { fg = "__FG__" }
+selected = { reversed = true }
+
+# : ]]]
+
+
+# : Tabs [[[
+
+[tabs]
+active = { fg = "__BG__", bold = true, bg = "__ACCENT__" }
+inactive = { fg = "__SECONDARY__", bg = "__BG__" }
+sep_inner = { open = "", close = "" }
+
+# : ]]]
+
+
+# : Completion [[[
+
+[cmp]
+border = { fg = "__ACCENT__", bg = "__BG__" }
+
+# : ]]]
+
+
+# : Tasks [[[
+
+[tasks]
+border = { fg = "__ACCENT__" }
+title = {}
+hovered = { fg = "__SUCCESS__", underline = true }
+
+# : ]]]
+
+
+# : Which [[[
+
+[which]
+cols = 3
+mask = { bg = "__BG__" }
+cand = { fg = "__ACCENT__" }
+rest = { fg = "__BG__" }
+desc = { fg = "__FG__" }
+separator = " ▶ "
+separator_style = { fg = "__FG__" }
+
+# : ]]]
+
+# : Spotter [[[
+
+[spot]
+border   = { fg = "__ACCENT__" }
+title    = { fg = "__ACCENT__" }
+tbl_col  = { fg = "__FG__" }
+tbl_cell = { fg = "__FG__", bg = "__BG__" }
+
+# : ]]]
+
+
+# : Help [[[
+
+[help]
+on = { fg = "__FG__" }
+run = { fg = "__FG__" }
+hovered = { reversed = true, bold = true }
+footer = { fg = "__BG__", bg = "__SECONDARY__" }
+
+# : ]]]
+
+
+# : Notify [[[
+
+[notify]
+title_info = { fg = "__TERTIARY__" }
+title_warn = { fg = "__ACCENT__" }
+title_error = { fg = "__ERROR__" }
+
+# : ]]]
+
+
+# : File-specific styles [[[
+
+[filetype]
+
+rules = [
+    # Images
+    { mime = "image/*", fg = "__CYAN__" },
+
+    # Media
+    { mime = "{audio,video}/*", fg = "__YELLOW__" },
+
+    # Archives
+    { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "__MAGENTA__" },
+
+    # Documents
+    { mime = "application/{pdf,doc,rtf}", fg = "__GREEN__" },
+
+    # Special files
+    { mime = "*", is = "orphan", fg = "__ERROR__", bg = "__BG_ALT__" },
+    { mime = "application/*exec*", fg = "__ERROR__" },
+
+    # Fallback
+    { url = "*", fg = "__FG__" },
+    { url = "*/", fg = "__ACCENT__" },
+]
+
+# : ]]]
+
+# : Icons {{{
+
+[icon]
+globs = []
+dirs  = [
+	{ name = ".config", text = "", fg = "__ACCENT__" },
+	{ name = ".git", text = "", fg = "__ACCENT__" },
+	{ name = ".github", text = "", fg = "__ACCENT__" },
+	{ name = ".npm", text = "", fg = "__ACCENT__" },
+	{ name = "Desktop", text = "", fg = "__ACCENT__" },
+	{ name = "Development", text = "", fg = "__ACCENT__" },
+	{ name = "Documents", text = "", fg = "__ACCENT__" },
+	{ name = "Downloads", text = "", fg = "__ACCENT__" },
+	{ name = "Library", text = "", fg = "__ACCENT__" },
+	{ name = "Movies", text = "", fg = "__ACCENT__" },
+	{ name = "Music", text = "", fg = "__ACCENT__" },
+	{ name = "Pictures", text = "", fg = "__ACCENT__" },
+	{ name = "Public", text = "", fg = "__ACCENT__" },
+	{ name = "Videos", text = "", fg = "__ACCENT__" },
+]
+files = [
+	{ name = ".babelrc", text = "", fg = "__ACCENT__" },
+	{ name = ".bash_profile", text = "", fg = "__ACCENT__" },
+	{ name = ".bashrc", text = "", fg = "__ACCENT__" },
+	{ name = ".clang-format", text = "", fg = "__ACCENT__" },
+	{ name = ".clang-tidy", text = "", fg = "__ACCENT__" },
+	{ name = ".codespellrc", text = "󰓆", fg = "__ACCENT__" },
+	{ name = ".condarc", text = "", fg = "__ACCENT__" },
+	{ name = ".dockerignore", text = "󰡨", fg = "__ACCENT__" },
+	{ name = ".ds_store", text = "", fg = "__ACCENT__" },
+	{ name = ".editorconfig", text = "", fg = "__ACCENT__" },
+	{ name = ".env", text = "", fg = "__ACCENT__" },
+	{ name = ".eslintignore", text = "", fg = "__ACCENT__" },
+	{ name = ".eslintrc", text = "", fg = "__ACCENT__" },
+	{ name = ".git-blame-ignore-revs", text = "", fg = "__ACCENT__" },
+	{ name = ".gitattributes", text = "", fg = "__ACCENT__" },
+	{ name = ".gitconfig", text = "", fg = "__ACCENT__" },
+	{ name = ".gitignore", text = "", fg = "__ACCENT__" },
+	{ name = ".gitlab-ci.yml", text = "", fg = "__ACCENT__" },
+	{ name = ".gitmodules", text = "", fg = "__ACCENT__" },
+	{ name = ".gtkrc-2.0", text = "", fg = "__ACCENT__" },
+	{ name = ".gvimrc", text = "", fg = "__ACCENT__" },
+	{ name = ".justfile", text = "", fg = "__ACCENT__" },
+	{ name = ".luacheckrc", text = "", fg = "__ACCENT__" },
+	{ name = ".luaurc", text = "", fg = "__ACCENT__" },
+	{ name = ".mailmap", text = "󰊢", fg = "__ACCENT__" },
+	{ name = ".nanorc", text = "", fg = "__ACCENT__" },
+	{ name = ".npmignore", text = "", fg = "__ACCENT__" },
+	{ name = ".npmrc", text = "", fg = "__ACCENT__" },
+	{ name = ".nuxtrc", text = "󱄆", fg = "__ACCENT__" },
+	{ name = ".nvmrc", text = "", fg = "__ACCENT__" },
+	{ name = ".pnpmfile.cjs", text = "", fg = "__ACCENT__" },
+	{ name = ".pre-commit-config.yaml", text = "󰛢", fg = "__ACCENT__" },
+	{ name = ".prettierignore", text = "", fg = "__ACCENT__" },
+	{ name = ".prettierrc", text = "", fg = "__ACCENT__" },
+	{ name = ".prettierrc.cjs", text = "", fg = "__ACCENT__" },
+	{ name = ".prettierrc.js", text = "", fg = "__ACCENT__" },
+	{ name = ".prettierrc.json", text = "", fg = "__ACCENT__" },
+	{ name = ".prettierrc.json5", text = "", fg = "__ACCENT__" },
+	{ name = ".prettierrc.mjs", text = "", fg = "__ACCENT__" },
+	{ name = ".prettierrc.toml", text = "", fg = "__ACCENT__" },
+	{ name = ".prettierrc.yaml", text = "", fg = "__ACCENT__" },
+	{ name = ".prettierrc.yml", text = "", fg = "__ACCENT__" },
+	{ name = ".pylintrc", text = "", fg = "__ACCENT__" },
+	{ name = ".settings.json", text = "", fg = "__ACCENT__" },
+	{ name = ".SRCINFO", text = "󰣇", fg = "__ACCENT__" },
+	{ name = ".vimrc", text = "", fg = "__ACCENT__" },
+	{ name = ".Xauthority", text = "", fg = "__ACCENT__" },
+	{ name = ".xinitrc", text = "", fg = "__ACCENT__" },
+	{ name = ".Xresources", text = "", fg = "__ACCENT__" },
+	{ name = ".xsession", text = "", fg = "__ACCENT__" },
+	{ name = ".zprofile", text = "", fg = "__ACCENT__" },
+	{ name = ".zshenv", text = "", fg = "__ACCENT__" },
+	{ name = ".zshrc", text = "", fg = "__ACCENT__" },
+	{ name = "_gvimrc", text = "", fg = "__ACCENT__" },
+	{ name = "_vimrc", text = "", fg = "__ACCENT__" },
+	{ name = "AUTHORS", text = "", fg = "__ACCENT__" },
+	{ name = "AUTHORS.txt", text = "", fg = "__ACCENT__" },
+	{ name = "brewfile", text = "", fg = "__ACCENT__" },
+	{ name = "bspwmrc", text = "", fg = "__ACCENT__" },
+	{ name = "build", text = "", fg = "__ACCENT__" },
+	{ name = "build.gradle", text = "", fg = "__ACCENT__" },
+	{ name = "build.zig.zon", text = "", fg = "__ACCENT__" },
+	{ name = "bun.lock", text = "", fg = "__ACCENT__" },
+	{ name = "bun.lockb", text = "", fg = "__ACCENT__" },
+	{ name = "cantorrc", text = "", fg = "__ACCENT__" },
+	{ name = "checkhealth", text = "󰓙", fg = "__ACCENT__" },
+	{ name = "cmakelists.txt", text = "", fg = "__ACCENT__" },
+	{ name = "code_of_conduct", text = "", fg = "__ACCENT__" },
+	{ name = "code_of_conduct.md", text = "", fg = "__ACCENT__" },
+	{ name = "commit_editmsg", text = "", fg = "__ACCENT__" },
+	{ name = "commitlint.config.js", text = "󰜘", fg = "__ACCENT__" },
+	{ name = "commitlint.config.ts", text = "󰜘", fg = "__ACCENT__" },
+	{ name = "compose.yaml", text = "󰡨", fg = "__ACCENT__" },
+	{ name = "compose.yml", text = "󰡨", fg = "__ACCENT__" },
+	{ name = "config", text = "", fg = "__ACCENT__" },
+	{ name = "containerfile", text = "󰡨", fg = "__ACCENT__" },
+	{ name = "copying", text = "", fg = "__ACCENT__" },
+	{ name = "copying.lesser", text = "", fg = "__ACCENT__" },
+	{ name = "Directory.Build.props", text = "", fg = "__ACCENT__" },
+	{ name = "Directory.Build.targets", text = "", fg = "__ACCENT__" },
+	{ name = "Directory.Packages.props", text = "", fg = "__ACCENT__" },
+	{ name = "docker-compose.yaml", text = "󰡨", fg = "__ACCENT__" },
+	{ name = "docker-compose.yml", text = "󰡨", fg = "__ACCENT__" },
+	{ name = "dockerfile", text = "󰡨", fg = "__ACCENT__" },
+	{ name = "eslint.config.cjs", text = "", fg = "__ACCENT__" },
+	{ name = "eslint.config.js", text = "", fg = "__ACCENT__" },
+	{ name = "eslint.config.mjs", text = "", fg = "__ACCENT__" },
+	{ name = "eslint.config.ts", text = "", fg = "__ACCENT__" },
+	{ name = "ext_typoscript_setup.txt", text = "", fg = "__ACCENT__" },
+	{ name = "favicon.ico", text = "", fg = "__ACCENT__" },
+	{ name = "fp-info-cache", text = "", fg = "__ACCENT__" },
+	{ name = "fp-lib-table", text = "", fg = "__ACCENT__" },
+	{ name = "FreeCAD.conf", text = "", fg = "__ACCENT__" },
+	{ name = "Gemfile", text = "", fg = "__ACCENT__" },
+	{ name = "gnumakefile", text = "", fg = "__ACCENT__" },
+	{ name = "go.mod", text = "", fg = "__ACCENT__" },
+	{ name = "go.sum", text = "", fg = "__ACCENT__" },
+	{ name = "go.work", text = "", fg = "__ACCENT__" },
+	{ name = "gradle-wrapper.properties", text = "", fg = "__ACCENT__" },
+	{ name = "gradle.properties", text = "", fg = "__ACCENT__" },
+	{ name = "gradlew", text = "", fg = "__ACCENT__" },
+	{ name = "groovy", text = "", fg = "__ACCENT__" },
+	{ name = "gruntfile.babel.js", text = "", fg = "__ACCENT__" },
+	{ name = "gruntfile.coffee", text = "", fg = "__ACCENT__" },
+	{ name = "gruntfile.js", text = "", fg = "__ACCENT__" },
+	{ name = "gruntfile.ts", text = "", fg = "__ACCENT__" },
+	{ name = "gtkrc", text = "", fg = "__ACCENT__" },
+	{ name = "gulpfile.babel.js", text = "", fg = "__ACCENT__" },
+	{ name = "gulpfile.coffee", text = "", fg = "__ACCENT__" },
+	{ name = "gulpfile.js", text = "", fg = "__ACCENT__" },
+	{ name = "gulpfile.ts", text = "", fg = "__ACCENT__" },
+	{ name = "hypridle.conf", text = "", fg = "__ACCENT__" },
+	{ name = "hyprland.conf", text = "", fg = "__ACCENT__" },
+	{ name = "hyprlandd.conf", text = "", fg = "__ACCENT__" },
+	{ name = "hyprlock.conf", text = "", fg = "__ACCENT__" },
+	{ name = "hyprpaper.conf", text = "", fg = "__ACCENT__" },
+	{ name = "hyprsunset.conf", text = "", fg = "__ACCENT__" },
+	{ name = "i18n.config.js", text = "󰗊", fg = "__ACCENT__" },
+	{ name = "i18n.config.ts", text = "󰗊", fg = "__ACCENT__" },
+	{ name = "i3blocks.conf", text = "", fg = "__ACCENT__" },
+	{ name = "i3status.conf", text = "", fg = "__ACCENT__" },
+	{ name = "index.theme", text = "", fg = "__ACCENT__" },
+	{ name = "ionic.config.json", text = "", fg = "__ACCENT__" },
+	{ name = "Jenkinsfile", text = "", fg = "__ACCENT__" },
+	{ name = "justfile", text = "", fg = "__ACCENT__" },
+	{ name = "kalgebrarc", text = "", fg = "__ACCENT__" },
+	{ name = "kdeglobals", text = "", fg = "__ACCENT__" },
+	{ name = "kdenlive-layoutsrc", text = "", fg = "__ACCENT__" },
+	{ name = "kdenliverc", text = "", fg = "__ACCENT__" },
+	{ name = "kritadisplayrc", text = "", fg = "__ACCENT__" },
+	{ name = "kritarc", text = "", fg = "__ACCENT__" },
+	{ name = "license", text = "", fg = "__ACCENT__" },
+	{ name = "license.md", text = "", fg = "__ACCENT__" },
+	{ name = "lxde-rc.xml", text = "", fg = "__ACCENT__" },
+	{ name = "lxqt.conf", text = "", fg = "__ACCENT__" },
+	{ name = "makefile", text = "", fg = "__ACCENT__" },
+	{ name = "mix.lock", text = "", fg = "__ACCENT__" },
+	{ name = "mpv.conf", text = "", fg = "__ACCENT__" },
+	{ name = "next.config.cjs", text = "", fg = "__ACCENT__" },
+	{ name = "next.config.js", text = "", fg = "__ACCENT__" },
+	{ name = "next.config.ts", text = "", fg = "__ACCENT__" },
+	{ name = "node_modules", text = "", fg = "__ACCENT__" },
+	{ name = "nuxt.config.cjs", text = "󱄆", fg = "__ACCENT__" },
+	{ name = "nuxt.config.js", text = "󱄆", fg = "__ACCENT__" },
+	{ name = "nuxt.config.mjs", text = "󱄆", fg = "__ACCENT__" },
+	{ name = "nuxt.config.ts", text = "󱄆", fg = "__ACCENT__" },
+	{ name = "package-lock.json", text = "", fg = "__ACCENT__" },
+	{ name = "package.json", text = "", fg = "__ACCENT__" },
+	{ name = "PKGBUILD", text = "", fg = "__ACCENT__" },
+	{ name = "platformio.ini", text = "", fg = "__ACCENT__" },
+	{ name = "playwright.config.cjs", text = "", fg = "__ACCENT__" },
+	{ name = "playwright.config.cts", text = "", fg = "__ACCENT__" },
+	{ name = "playwright.config.js", text = "", fg = "__ACCENT__" },
+	{ name = "playwright.config.mjs", text = "", fg = "__ACCENT__" },
+	{ name = "playwright.config.mts", text = "", fg = "__ACCENT__" },
+	{ name = "playwright.config.ts", text = "", fg = "__ACCENT__" },
+	{ name = "pnpm-lock.yaml", text = "", fg = "__ACCENT__" },
+	{ name = "pnpm-workspace.yaml", text = "", fg = "__ACCENT__" },
+	{ name = "pom.xml", text = "", fg = "__ACCENT__" },
+	{ name = "prettier.config.cjs", text = "", fg = "__ACCENT__" },
+	{ name = "prettier.config.js", text = "", fg = "__ACCENT__" },
+	{ name = "prettier.config.mjs", text = "", fg = "__ACCENT__" },
+	{ name = "prettier.config.ts", text = "", fg = "__ACCENT__" },
+	{ name = "prisma.config.mts", text = "", fg = "__ACCENT__" },
+	{ name = "prisma.config.ts", text = "", fg = "__ACCENT__" },
+	{ name = "procfile", text = "", fg = "__ACCENT__" },
+	{ name = "PrusaSlicer.ini", text = "", fg = "__ACCENT__" },
+	{ name = "PrusaSlicerGcodeViewer.ini", text = "", fg = "__ACCENT__" },
+	{ name = "py.typed", text = "", fg = "__ACCENT__" },
+	{ name = "QtProject.conf", text = "", fg = "__ACCENT__" },
+	{ name = "rakefile", text = "", fg = "__ACCENT__" },
+	{ name = "readme", text = "󰂺", fg = "__ACCENT__" },
+	{ name = "readme.md", text = "󰂺", fg = "__ACCENT__" },
+	{ name = "rmd", text = "", fg = "__ACCENT__" },
+	{ name = "robots.txt", text = "󰚩", fg = "__ACCENT__" },
+	{ name = "security", text = "󰒃", fg = "__ACCENT__" },
+	{ name = "security.md", text = "󰒃", fg = "__ACCENT__" },
+	{ name = "settings.gradle", text = "", fg = "__ACCENT__" },
+	{ name = "svelte.config.js", text = "", fg = "__ACCENT__" },
+	{ name = "sxhkdrc", text = "", fg = "__ACCENT__" },
+	{ name = "sym-lib-table", text = "", fg = "__ACCENT__" },
+	{ name = "tailwind.config.js", text = "󱏿", fg = "__ACCENT__" },
+	{ name = "tailwind.config.mjs", text = "󱏿", fg = "__ACCENT__" },
+	{ name = "tailwind.config.ts", text = "󱏿", fg = "__ACCENT__" },
+	{ name = "tmux.conf", text = "", fg = "__ACCENT__" },
+	{ name = "tmux.conf.local", text = "", fg = "__ACCENT__" },
+	{ name = "tsconfig.json", text = "", fg = "__ACCENT__" },
+	{ name = "unlicense", text = "", fg = "__ACCENT__" },
+	{ name = "vagrantfile", text = "", fg = "__ACCENT__" },
+	{ name = "vercel.json", text = "", fg = "__ACCENT__" },
+	{ name = "vite.config.cjs", text = "", fg = "__ACCENT__" },
+	{ name = "vite.config.cts", text = "", fg = "__ACCENT__" },
+	{ name = "vite.config.js", text = "", fg = "__ACCENT__" },
+	{ name = "vite.config.mjs", text = "", fg = "__ACCENT__" },
+	{ name = "vite.config.mts", text = "", fg = "__ACCENT__" },
+	{ name = "vite.config.ts", text = "", fg = "__ACCENT__" },
+	{ name = "vitest.config.cjs", text = "", fg = "__ACCENT__" },
+	{ name = "vitest.config.cts", text = "", fg = "__ACCENT__" },
+	{ name = "vitest.config.js", text = "", fg = "__ACCENT__" },
+	{ name = "vitest.config.mjs", text = "", fg = "__ACCENT__" },
+	{ name = "vitest.config.mts", text = "", fg = "__ACCENT__" },
+	{ name = "vitest.config.ts", text = "", fg = "__ACCENT__" },
+	{ name = "vlcrc", text = "󰕼", fg = "__ACCENT__" },
+	{ name = "webpack", text = "󰜫", fg = "__ACCENT__" },
+	{ name = "weston.ini", text = "", fg = "__ACCENT__" },
+	{ name = "workspace", text = "", fg = "__ACCENT__" },
+	{ name = "wrangler.jsonc", text = "", fg = "__ACCENT__" },
+	{ name = "wrangler.toml", text = "", fg = "__ACCENT__" },
+	{ name = "xdph.conf", text = "", fg = "__ACCENT__" },
+	{ name = "xmobarrc", text = "", fg = "__ACCENT__" },
+	{ name = "xmobarrc.hs", text = "", fg = "__ACCENT__" },
+	{ name = "xmonad.hs", text = "", fg = "__ACCENT__" },
+	{ name = "xorg.conf", text = "", fg = "__ACCENT__" },
+	{ name = "xsettingsd.conf", text = "", fg = "__ACCENT__" },
+]
+exts = [
+	{ name = "3gp", text = "", fg = "__ACCENT__" },
+	{ name = "3mf", text = "󰆧", fg = "__ACCENT__" },
+	{ name = "7z", text = "", fg = "__ACCENT__" },
+	{ name = "a", text = "", fg = "__ACCENT__" },
+	{ name = "aac", text = "", fg = "__ACCENT__" },
+	{ name = "ada", text = "", fg = "__ACCENT__" },
+	{ name = "adb", text = "", fg = "__ACCENT__" },
+	{ name = "ads", text = "", fg = "__ACCENT__" },
+	{ name = "ai", text = "", fg = "__ACCENT__" },
+	{ name = "aif", text = "", fg = "__ACCENT__" },
+	{ name = "aiff", text = "", fg = "__ACCENT__" },
+	{ name = "android", text = "", fg = "__ACCENT__" },
+	{ name = "ape", text = "", fg = "__ACCENT__" },
+	{ name = "apk", text = "", fg = "__ACCENT__" },
+	{ name = "apl", text = "", fg = "__ACCENT__" },
+	{ name = "app", text = "", fg = "__ACCENT__" },
+	{ name = "applescript", text = "", fg = "__ACCENT__" },
+	{ name = "asc", text = "󰦝", fg = "__ACCENT__" },
+	{ name = "asm", text = "", fg = "__ACCENT__" },
+	{ name = "ass", text = "󰨖", fg = "__ACCENT__" },
+	{ name = "astro", text = "", fg = "__ACCENT__" },
+	{ name = "avif", text = "", fg = "__ACCENT__" },
+	{ name = "awk", text = "", fg = "__ACCENT__" },
+	{ name = "azcli", text = "", fg = "__ACCENT__" },
+	{ name = "bak", text = "󰁯", fg = "__ACCENT__" },
+	{ name = "bash", text = "", fg = "__ACCENT__" },
+	{ name = "bat", text = "", fg = "__ACCENT__" },
+	{ name = "bazel", text = "", fg = "__ACCENT__" },
+	{ name = "bib", text = "󱉟", fg = "__ACCENT__" },
+	{ name = "bicep", text = "", fg = "__ACCENT__" },
+	{ name = "bicepparam", text = "", fg = "__ACCENT__" },
+	{ name = "bin", text = "", fg = "__ACCENT__" },
+	{ name = "blade.php", text = "", fg = "__ACCENT__" },
+	{ name = "blend", text = "󰂫", fg = "__ACCENT__" },
+	{ name = "blp", text = "󰺾", fg = "__ACCENT__" },
+	{ name = "bmp", text = "", fg = "__ACCENT__" },
+	{ name = "bqn", text = "", fg = "__ACCENT__" },
+	{ name = "brep", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "bz", text = "", fg = "__ACCENT__" },
+	{ name = "bz2", text = "", fg = "__ACCENT__" },
+	{ name = "bz3", text = "", fg = "__ACCENT__" },
+	{ name = "bzl", text = "", fg = "__ACCENT__" },
+	{ name = "c", text = "", fg = "__ACCENT__" },
+	{ name = "c++", text = "", fg = "__ACCENT__" },
+	{ name = "cache", text = "", fg = "__ACCENT__" },
+	{ name = "cast", text = "", fg = "__ACCENT__" },
+	{ name = "cbl", text = "", fg = "__ACCENT__" },
+	{ name = "cc", text = "", fg = "__ACCENT__" },
+	{ name = "ccm", text = "", fg = "__ACCENT__" },
+	{ name = "cfc", text = "", fg = "__ACCENT__" },
+	{ name = "cfg", text = "", fg = "__ACCENT__" },
+	{ name = "cfm", text = "", fg = "__ACCENT__" },
+	{ name = "cjs", text = "", fg = "__ACCENT__" },
+	{ name = "clj", text = "", fg = "__ACCENT__" },
+	{ name = "cljc", text = "", fg = "__ACCENT__" },
+	{ name = "cljd", text = "", fg = "__ACCENT__" },
+	{ name = "cljs", text = "", fg = "__ACCENT__" },
+	{ name = "cmake", text = "", fg = "__ACCENT__" },
+	{ name = "cob", text = "", fg = "__ACCENT__" },
+	{ name = "cobol", text = "", fg = "__ACCENT__" },
+	{ name = "coffee", text = "", fg = "__ACCENT__" },
+	{ name = "conda", text = "", fg = "__ACCENT__" },
+	{ name = "conf", text = "", fg = "__ACCENT__" },
+	{ name = "config.ru", text = "", fg = "__ACCENT__" },
+	{ name = "cow", text = "󰆚", fg = "__ACCENT__" },
+	{ name = "cp", text = "", fg = "__ACCENT__" },
+	{ name = "cpp", text = "", fg = "__ACCENT__" },
+	{ name = "cppm", text = "", fg = "__ACCENT__" },
+	{ name = "cpy", text = "", fg = "__ACCENT__" },
+	{ name = "cr", text = "", fg = "__ACCENT__" },
+	{ name = "crdownload", text = "", fg = "__ACCENT__" },
+	{ name = "cs", text = "󰌛", fg = "__ACCENT__" },
+	{ name = "csh", text = "", fg = "__ACCENT__" },
+	{ name = "cshtml", text = "󱦗", fg = "__ACCENT__" },
+	{ name = "cson", text = "", fg = "__ACCENT__" },
+	{ name = "csproj", text = "󰪮", fg = "__ACCENT__" },
+	{ name = "css", text = "", fg = "__ACCENT__" },
+	{ name = "csv", text = "", fg = "__ACCENT__" },
+	{ name = "cts", text = "", fg = "__ACCENT__" },
+	{ name = "cu", text = "", fg = "__ACCENT__" },
+	{ name = "cue", text = "󰲹", fg = "__ACCENT__" },
+	{ name = "cuh", text = "", fg = "__ACCENT__" },
+	{ name = "cxx", text = "", fg = "__ACCENT__" },
+	{ name = "cxxm", text = "", fg = "__ACCENT__" },
+	{ name = "d", text = "", fg = "__ACCENT__" },
+	{ name = "d.ts", text = "", fg = "__ACCENT__" },
+	{ name = "dart", text = "", fg = "__ACCENT__" },
+	{ name = "db", text = "", fg = "__ACCENT__" },
+	{ name = "dconf", text = "", fg = "__ACCENT__" },
+	{ name = "desktop", text = "", fg = "__ACCENT__" },
+	{ name = "diff", text = "", fg = "__ACCENT__" },
+	{ name = "dll", text = "", fg = "__ACCENT__" },
+	{ name = "doc", text = "󰈬", fg = "__ACCENT__" },
+	{ name = "Dockerfile", text = "󰡨", fg = "__ACCENT__" },
+	{ name = "dockerignore", text = "󰡨", fg = "__ACCENT__" },
+	{ name = "docx", text = "󰈬", fg = "__ACCENT__" },
+	{ name = "dot", text = "󱁉", fg = "__ACCENT__" },
+	{ name = "download", text = "", fg = "__ACCENT__" },
+	{ name = "drl", text = "", fg = "__ACCENT__" },
+	{ name = "dropbox", text = "", fg = "__ACCENT__" },
+	{ name = "dump", text = "", fg = "__ACCENT__" },
+	{ name = "dwg", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "dxf", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "ebook", text = "", fg = "__ACCENT__" },
+	{ name = "ebuild", text = "", fg = "__ACCENT__" },
+	{ name = "edn", text = "", fg = "__ACCENT__" },
+	{ name = "eex", text = "", fg = "__ACCENT__" },
+	{ name = "ejs", text = "", fg = "__ACCENT__" },
+	{ name = "el", text = "", fg = "__ACCENT__" },
+	{ name = "elc", text = "", fg = "__ACCENT__" },
+	{ name = "elf", text = "", fg = "__ACCENT__" },
+	{ name = "elm", text = "", fg = "__ACCENT__" },
+	{ name = "eln", text = "", fg = "__ACCENT__" },
+	{ name = "env", text = "", fg = "__ACCENT__" },
+	{ name = "eot", text = "", fg = "__ACCENT__" },
+	{ name = "epp", text = "", fg = "__ACCENT__" },
+	{ name = "epub", text = "", fg = "__ACCENT__" },
+	{ name = "erb", text = "", fg = "__ACCENT__" },
+	{ name = "erl", text = "", fg = "__ACCENT__" },
+	{ name = "ex", text = "", fg = "__ACCENT__" },
+	{ name = "exe", text = "", fg = "__ACCENT__" },
+	{ name = "exs", text = "", fg = "__ACCENT__" },
+	{ name = "f#", text = "", fg = "__ACCENT__" },
+	{ name = "f3d", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "f90", text = "󱈚", fg = "__ACCENT__" },
+	{ name = "fbx", text = "󰆧", fg = "__ACCENT__" },
+	{ name = "fcbak", text = "", fg = "__ACCENT__" },
+	{ name = "fcmacro", text = "", fg = "__ACCENT__" },
+	{ name = "fcmat", text = "", fg = "__ACCENT__" },
+	{ name = "fcparam", text = "", fg = "__ACCENT__" },
+	{ name = "fcscript", text = "", fg = "__ACCENT__" },
+	{ name = "fcstd", text = "", fg = "__ACCENT__" },
+	{ name = "fcstd1", text = "", fg = "__ACCENT__" },
+	{ name = "fctb", text = "", fg = "__ACCENT__" },
+	{ name = "fctl", text = "", fg = "__ACCENT__" },
+	{ name = "fdmdownload", text = "", fg = "__ACCENT__" },
+	{ name = "feature", text = "", fg = "__ACCENT__" },
+	{ name = "fish", text = "", fg = "__ACCENT__" },
+	{ name = "flac", text = "", fg = "__ACCENT__" },
+	{ name = "flc", text = "", fg = "__ACCENT__" },
+	{ name = "flf", text = "", fg = "__ACCENT__" },
+	{ name = "fnl", text = "", fg = "__ACCENT__" },
+	{ name = "fodg", text = "", fg = "__ACCENT__" },
+	{ name = "fodp", text = "", fg = "__ACCENT__" },
+	{ name = "fods", text = "", fg = "__ACCENT__" },
+	{ name = "fodt", text = "", fg = "__ACCENT__" },
+	{ name = "frag", text = "", fg = "__ACCENT__" },
+	{ name = "fs", text = "", fg = "__ACCENT__" },
+	{ name = "fsi", text = "", fg = "__ACCENT__" },
+	{ name = "fsscript", text = "", fg = "__ACCENT__" },
+	{ name = "fsx", text = "", fg = "__ACCENT__" },
+	{ name = "gcode", text = "󰐫", fg = "__ACCENT__" },
+	{ name = "gd", text = "", fg = "__ACCENT__" },
+	{ name = "gemspec", text = "", fg = "__ACCENT__" },
+	{ name = "geom", text = "", fg = "__ACCENT__" },
+	{ name = "gif", text = "", fg = "__ACCENT__" },
+	{ name = "git", text = "", fg = "__ACCENT__" },
+	{ name = "glb", text = "", fg = "__ACCENT__" },
+	{ name = "gleam", text = "", fg = "__ACCENT__" },
+	{ name = "glsl", text = "", fg = "__ACCENT__" },
+	{ name = "gnumakefile", text = "", fg = "__ACCENT__" },
+	{ name = "go", text = "", fg = "__ACCENT__" },
+	{ name = "godot", text = "", fg = "__ACCENT__" },
+	{ name = "gpr", text = "", fg = "__ACCENT__" },
+	{ name = "gql", text = "", fg = "__ACCENT__" },
+	{ name = "gradle", text = "", fg = "__ACCENT__" },
+	{ name = "graphql", text = "", fg = "__ACCENT__" },
+	{ name = "gresource", text = "", fg = "__ACCENT__" },
+	{ name = "gv", text = "󱁉", fg = "__ACCENT__" },
+	{ name = "gz", text = "", fg = "__ACCENT__" },
+	{ name = "h", text = "", fg = "__ACCENT__" },
+	{ name = "haml", text = "", fg = "__ACCENT__" },
+	{ name = "hbs", text = "", fg = "__ACCENT__" },
+	{ name = "heex", text = "", fg = "__ACCENT__" },
+	{ name = "hex", text = "", fg = "__ACCENT__" },
+	{ name = "hh", text = "", fg = "__ACCENT__" },
+	{ name = "hpp", text = "", fg = "__ACCENT__" },
+	{ name = "hrl", text = "", fg = "__ACCENT__" },
+	{ name = "hs", text = "", fg = "__ACCENT__" },
+	{ name = "htm", text = "", fg = "__ACCENT__" },
+	{ name = "html", text = "", fg = "__ACCENT__" },
+	{ name = "http", text = "", fg = "__ACCENT__" },
+	{ name = "huff", text = "󰡘", fg = "__ACCENT__" },
+	{ name = "hurl", text = "", fg = "__ACCENT__" },
+	{ name = "hx", text = "", fg = "__ACCENT__" },
+	{ name = "hxx", text = "", fg = "__ACCENT__" },
+	{ name = "ical", text = "", fg = "__ACCENT__" },
+	{ name = "icalendar", text = "", fg = "__ACCENT__" },
+	{ name = "ico", text = "", fg = "__ACCENT__" },
+	{ name = "ics", text = "", fg = "__ACCENT__" },
+	{ name = "ifb", text = "", fg = "__ACCENT__" },
+	{ name = "ifc", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "ige", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "iges", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "igs", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "image", text = "", fg = "__ACCENT__" },
+	{ name = "img", text = "", fg = "__ACCENT__" },
+	{ name = "import", text = "", fg = "__ACCENT__" },
+	{ name = "info", text = "", fg = "__ACCENT__" },
+	{ name = "ini", text = "", fg = "__ACCENT__" },
+	{ name = "ino", text = "", fg = "__ACCENT__" },
+	{ name = "ipynb", text = "", fg = "__ACCENT__" },
+	{ name = "iso", text = "", fg = "__ACCENT__" },
+	{ name = "ixx", text = "", fg = "__ACCENT__" },
+	{ name = "jar", text = "", fg = "__ACCENT__" },
+	{ name = "java", text = "", fg = "__ACCENT__" },
+	{ name = "jl", text = "", fg = "__ACCENT__" },
+	{ name = "jpeg", text = "", fg = "__ACCENT__" },
+	{ name = "jpg", text = "", fg = "__ACCENT__" },
+	{ name = "js", text = "", fg = "__ACCENT__" },
+	{ name = "json", text = "", fg = "__ACCENT__" },
+	{ name = "json5", text = "", fg = "__ACCENT__" },
+	{ name = "jsonc", text = "", fg = "__ACCENT__" },
+	{ name = "jsx", text = "", fg = "__ACCENT__" },
+	{ name = "jwmrc", text = "", fg = "__ACCENT__" },
+	{ name = "jxl", text = "", fg = "__ACCENT__" },
+	{ name = "kbx", text = "󰯄", fg = "__ACCENT__" },
+	{ name = "kdb", text = "", fg = "__ACCENT__" },
+	{ name = "kdbx", text = "", fg = "__ACCENT__" },
+	{ name = "kdenlive", text = "", fg = "__ACCENT__" },
+	{ name = "kdenlivetitle", text = "", fg = "__ACCENT__" },
+	{ name = "kicad_dru", text = "", fg = "__ACCENT__" },
+	{ name = "kicad_mod", text = "", fg = "__ACCENT__" },
+	{ name = "kicad_pcb", text = "", fg = "__ACCENT__" },
+	{ name = "kicad_prl", text = "", fg = "__ACCENT__" },
+	{ name = "kicad_pro", text = "", fg = "__ACCENT__" },
+	{ name = "kicad_sch", text = "", fg = "__ACCENT__" },
+	{ name = "kicad_sym", text = "", fg = "__ACCENT__" },
+	{ name = "kicad_wks", text = "", fg = "__ACCENT__" },
+	{ name = "ko", text = "", fg = "__ACCENT__" },
+	{ name = "kpp", text = "", fg = "__ACCENT__" },
+	{ name = "kra", text = "", fg = "__ACCENT__" },
+	{ name = "krz", text = "", fg = "__ACCENT__" },
+	{ name = "ksh", text = "", fg = "__ACCENT__" },
+	{ name = "kt", text = "", fg = "__ACCENT__" },
+	{ name = "kts", text = "", fg = "__ACCENT__" },
+	{ name = "lck", text = "", fg = "__ACCENT__" },
+	{ name = "leex", text = "", fg = "__ACCENT__" },
+	{ name = "less", text = "", fg = "__ACCENT__" },
+	{ name = "lff", text = "", fg = "__ACCENT__" },
+	{ name = "lhs", text = "", fg = "__ACCENT__" },
+	{ name = "lib", text = "", fg = "__ACCENT__" },
+	{ name = "license", text = "", fg = "__ACCENT__" },
+	{ name = "liquid", text = "", fg = "__ACCENT__" },
+	{ name = "lock", text = "", fg = "__ACCENT__" },
+	{ name = "log", text = "󰌱", fg = "__ACCENT__" },
+	{ name = "lrc", text = "󰨖", fg = "__ACCENT__" },
+	{ name = "lua", text = "", fg = "__ACCENT__" },
+	{ name = "luac", text = "", fg = "__ACCENT__" },
+	{ name = "luau", text = "", fg = "__ACCENT__" },
+	{ name = "m", text = "", fg = "__ACCENT__" },
+	{ name = "m3u", text = "󰲹", fg = "__ACCENT__" },
+	{ name = "m3u8", text = "󰲹", fg = "__ACCENT__" },
+	{ name = "m4a", text = "", fg = "__ACCENT__" },
+	{ name = "m4v", text = "", fg = "__ACCENT__" },
+	{ name = "magnet", text = "", fg = "__ACCENT__" },
+	{ name = "makefile", text = "", fg = "__ACCENT__" },
+	{ name = "markdown", text = "", fg = "__ACCENT__" },
+	{ name = "material", text = "", fg = "__ACCENT__" },
+	{ name = "md", text = "", fg = "__ACCENT__" },
+	{ name = "md5", text = "󰕥", fg = "__ACCENT__" },
+	{ name = "mdx", text = "", fg = "__ACCENT__" },
+	{ name = "mint", text = "󰌪", fg = "__ACCENT__" },
+	{ name = "mjs", text = "", fg = "__ACCENT__" },
+	{ name = "mk", text = "", fg = "__ACCENT__" },
+	{ name = "mkv", text = "", fg = "__ACCENT__" },
+	{ name = "ml", text = "", fg = "__ACCENT__" },
+	{ name = "mli", text = "", fg = "__ACCENT__" },
+	{ name = "mm", text = "", fg = "__ACCENT__" },
+	{ name = "mo", text = "", fg = "__ACCENT__" },
+	{ name = "mobi", text = "", fg = "__ACCENT__" },
+	{ name = "mojo", text = "", fg = "__ACCENT__" },
+	{ name = "mov", text = "", fg = "__ACCENT__" },
+	{ name = "mp3", text = "", fg = "__ACCENT__" },
+	{ name = "mp4", text = "", fg = "__ACCENT__" },
+	{ name = "mpp", text = "", fg = "__ACCENT__" },
+	{ name = "msf", text = "", fg = "__ACCENT__" },
+	{ name = "mts", text = "", fg = "__ACCENT__" },
+	{ name = "mustache", text = "", fg = "__ACCENT__" },
+	{ name = "nfo", text = "", fg = "__ACCENT__" },
+	{ name = "nim", text = "", fg = "__ACCENT__" },
+	{ name = "nix", text = "", fg = "__ACCENT__" },
+	{ name = "norg", text = "", fg = "__ACCENT__" },
+	{ name = "nswag", text = "", fg = "__ACCENT__" },
+	{ name = "nu", text = "", fg = "__ACCENT__" },
+	{ name = "o", text = "", fg = "__ACCENT__" },
+	{ name = "obj", text = "󰆧", fg = "__ACCENT__" },
+	{ name = "odf", text = "", fg = "__ACCENT__" },
+	{ name = "odg", text = "", fg = "__ACCENT__" },
+	{ name = "odin", text = "󰟢", fg = "__ACCENT__" },
+	{ name = "odp", text = "", fg = "__ACCENT__" },
+	{ name = "ods", text = "", fg = "__ACCENT__" },
+	{ name = "odt", text = "", fg = "__ACCENT__" },
+	{ name = "oga", text = "", fg = "__ACCENT__" },
+	{ name = "ogg", text = "", fg = "__ACCENT__" },
+	{ name = "ogv", text = "", fg = "__ACCENT__" },
+	{ name = "ogx", text = "", fg = "__ACCENT__" },
+	{ name = "opus", text = "", fg = "__ACCENT__" },
+	{ name = "org", text = "", fg = "__ACCENT__" },
+	{ name = "otf", text = "", fg = "__ACCENT__" },
+	{ name = "out", text = "", fg = "__ACCENT__" },
+	{ name = "part", text = "", fg = "__ACCENT__" },
+	{ name = "patch", text = "", fg = "__ACCENT__" },
+	{ name = "pck", text = "", fg = "__ACCENT__" },
+	{ name = "pcm", text = "", fg = "__ACCENT__" },
+	{ name = "pdf", text = "", fg = "__ACCENT__" },
+	{ name = "php", text = "", fg = "__ACCENT__" },
+	{ name = "pl", text = "", fg = "__ACCENT__" },
+	{ name = "pls", text = "󰲹", fg = "__ACCENT__" },
+	{ name = "ply", text = "󰆧", fg = "__ACCENT__" },
+	{ name = "pm", text = "", fg = "__ACCENT__" },
+	{ name = "png", text = "", fg = "__ACCENT__" },
+	{ name = "po", text = "", fg = "__ACCENT__" },
+	{ name = "pot", text = "", fg = "__ACCENT__" },
+	{ name = "pp", text = "", fg = "__ACCENT__" },
+	{ name = "ppt", text = "󰈧", fg = "__ACCENT__" },
+	{ name = "pptx", text = "󰈧", fg = "__ACCENT__" },
+	{ name = "prisma", text = "", fg = "__ACCENT__" },
+	{ name = "pro", text = "", fg = "__ACCENT__" },
+	{ name = "ps1", text = "󰨊", fg = "__ACCENT__" },
+	{ name = "psb", text = "", fg = "__ACCENT__" },
+	{ name = "psd", text = "", fg = "__ACCENT__" },
+	{ name = "psd1", text = "󰨊", fg = "__ACCENT__" },
+	{ name = "psm1", text = "󰨊", fg = "__ACCENT__" },
+	{ name = "pub", text = "󰷖", fg = "__ACCENT__" },
+	{ name = "pxd", text = "", fg = "__ACCENT__" },
+	{ name = "pxi", text = "", fg = "__ACCENT__" },
+	{ name = "py", text = "", fg = "__ACCENT__" },
+	{ name = "pyc", text = "", fg = "__ACCENT__" },
+	{ name = "pyd", text = "", fg = "__ACCENT__" },
+	{ name = "pyi", text = "", fg = "__ACCENT__" },
+	{ name = "pyo", text = "", fg = "__ACCENT__" },
+	{ name = "pyw", text = "", fg = "__ACCENT__" },
+	{ name = "pyx", text = "", fg = "__ACCENT__" },
+	{ name = "qm", text = "", fg = "__ACCENT__" },
+	{ name = "qml", text = "", fg = "__ACCENT__" },
+	{ name = "qrc", text = "", fg = "__ACCENT__" },
+	{ name = "qss", text = "", fg = "__ACCENT__" },
+	{ name = "query", text = "", fg = "__ACCENT__" },
+	{ name = "R", text = "󰟔", fg = "__ACCENT__" },
+	{ name = "r", text = "󰟔", fg = "__ACCENT__" },
+	{ name = "rake", text = "", fg = "__ACCENT__" },
+	{ name = "rar", text = "", fg = "__ACCENT__" },
+	{ name = "rasi", text = "", fg = "__ACCENT__" },
+	{ name = "razor", text = "󱦘", fg = "__ACCENT__" },
+	{ name = "rb", text = "", fg = "__ACCENT__" },
+	{ name = "res", text = "", fg = "__ACCENT__" },
+	{ name = "resi", text = "", fg = "__ACCENT__" },
+	{ name = "rlib", text = "", fg = "__ACCENT__" },
+	{ name = "rmd", text = "", fg = "__ACCENT__" },
+	{ name = "rproj", text = "󰗆", fg = "__ACCENT__" },
+	{ name = "rs", text = "", fg = "__ACCENT__" },
+	{ name = "rss", text = "", fg = "__ACCENT__" },
+	{ name = "s", text = "", fg = "__ACCENT__" },
+	{ name = "sass", text = "", fg = "__ACCENT__" },
+	{ name = "sbt", text = "", fg = "__ACCENT__" },
+	{ name = "sc", text = "", fg = "__ACCENT__" },
+	{ name = "scad", text = "", fg = "__ACCENT__" },
+	{ name = "scala", text = "", fg = "__ACCENT__" },
+	{ name = "scm", text = "󰘧", fg = "__ACCENT__" },
+	{ name = "scss", text = "", fg = "__ACCENT__" },
+	{ name = "sh", text = "", fg = "__ACCENT__" },
+	{ name = "sha1", text = "󰕥", fg = "__ACCENT__" },
+	{ name = "sha224", text = "󰕥", fg = "__ACCENT__" },
+	{ name = "sha256", text = "󰕥", fg = "__ACCENT__" },
+	{ name = "sha384", text = "󰕥", fg = "__ACCENT__" },
+	{ name = "sha512", text = "󰕥", fg = "__ACCENT__" },
+	{ name = "sig", text = "󰘧", fg = "__ACCENT__" },
+	{ name = "signature", text = "󰘧", fg = "__ACCENT__" },
+	{ name = "skp", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "sldasm", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "sldprt", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "slim", text = "", fg = "__ACCENT__" },
+	{ name = "sln", text = "", fg = "__ACCENT__" },
+	{ name = "slnx", text = "", fg = "__ACCENT__" },
+	{ name = "slvs", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "sml", text = "󰘧", fg = "__ACCENT__" },
+	{ name = "so", text = "", fg = "__ACCENT__" },
+	{ name = "sol", text = "", fg = "__ACCENT__" },
+	{ name = "spec.js", text = "", fg = "__ACCENT__" },
+	{ name = "spec.jsx", text = "", fg = "__ACCENT__" },
+	{ name = "spec.ts", text = "", fg = "__ACCENT__" },
+	{ name = "spec.tsx", text = "", fg = "__ACCENT__" },
+	{ name = "spx", text = "", fg = "__ACCENT__" },
+	{ name = "sql", text = "", fg = "__ACCENT__" },
+	{ name = "sqlite", text = "", fg = "__ACCENT__" },
+	{ name = "sqlite3", text = "", fg = "__ACCENT__" },
+	{ name = "srt", text = "󰨖", fg = "__ACCENT__" },
+	{ name = "ssa", text = "󰨖", fg = "__ACCENT__" },
+	{ name = "ste", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "step", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "stl", text = "󰆧", fg = "__ACCENT__" },
+	{ name = "stories.js", text = "", fg = "__ACCENT__" },
+	{ name = "stories.jsx", text = "", fg = "__ACCENT__" },
+	{ name = "stories.mjs", text = "", fg = "__ACCENT__" },
+	{ name = "stories.svelte", text = "", fg = "__ACCENT__" },
+	{ name = "stories.ts", text = "", fg = "__ACCENT__" },
+	{ name = "stories.tsx", text = "", fg = "__ACCENT__" },
+	{ name = "stories.vue", text = "", fg = "__ACCENT__" },
+	{ name = "stp", text = "󰻫", fg = "__ACCENT__" },
+	{ name = "strings", text = "", fg = "__ACCENT__" },
+	{ name = "styl", text = "", fg = "__ACCENT__" },
+	{ name = "sub", text = "󰨖", fg = "__ACCENT__" },
+	{ name = "sublime", text = "", fg = "__ACCENT__" },
+	{ name = "suo", text = "", fg = "__ACCENT__" },
+	{ name = "sv", text = "󰍛", fg = "__ACCENT__" },
+	{ name = "svelte", text = "", fg = "__ACCENT__" },
+	{ name = "svg", text = "󰜡", fg = "__ACCENT__" },
+	{ name = "svgz", text = "󰜡", fg = "__ACCENT__" },
+	{ name = "svh", text = "󰍛", fg = "__ACCENT__" },
+	{ name = "swift", text = "", fg = "__ACCENT__" },
+	{ name = "t", text = "", fg = "__ACCENT__" },
+	{ name = "tbc", text = "󰛓", fg = "__ACCENT__" },
+	{ name = "tcl", text = "󰛓", fg = "__ACCENT__" },
+	{ name = "templ", text = "", fg = "__ACCENT__" },
+	{ name = "terminal", text = "", fg = "__ACCENT__" },
+	{ name = "test.js", text = "", fg = "__ACCENT__" },
+	{ name = "test.jsx", text = "", fg = "__ACCENT__" },
+	{ name = "test.ts", text = "", fg = "__ACCENT__" },
+	{ name = "test.tsx", text = "", fg = "__ACCENT__" },
+	{ name = "tex", text = "", fg = "__ACCENT__" },
+	{ name = "tf", text = "", fg = "__ACCENT__" },
+	{ name = "tfvars", text = "", fg = "__ACCENT__" },
+	{ name = "tgz", text = "", fg = "__ACCENT__" },
+	{ name = "tmpl", text = "", fg = "__ACCENT__" },
+	{ name = "tmux", text = "", fg = "__ACCENT__" },
+	{ name = "toml", text = "", fg = "__ACCENT__" },
+	{ name = "torrent", text = "", fg = "__ACCENT__" },
+	{ name = "tres", text = "", fg = "__ACCENT__" },
+	{ name = "ts", text = "", fg = "__ACCENT__" },
+	{ name = "tscn", text = "", fg = "__ACCENT__" },
+	{ name = "tsconfig", text = "", fg = "__ACCENT__" },
+	{ name = "tsx", text = "", fg = "__ACCENT__" },
+	{ name = "ttf", text = "", fg = "__ACCENT__" },
+	{ name = "twig", text = "", fg = "__ACCENT__" },
+	{ name = "txt", text = "󰈙", fg = "__ACCENT__" },
+	{ name = "txz", text = "", fg = "__ACCENT__" },
+	{ name = "typ", text = "", fg = "__ACCENT__" },
+	{ name = "typoscript", text = "", fg = "__ACCENT__" },
+	{ name = "ui", text = "", fg = "__ACCENT__" },
+	{ name = "v", text = "󰍛", fg = "__ACCENT__" },
+	{ name = "vala", text = "", fg = "__ACCENT__" },
+	{ name = "vert", text = "", fg = "__ACCENT__" },
+	{ name = "vh", text = "󰍛", fg = "__ACCENT__" },
+	{ name = "vhd", text = "󰍛", fg = "__ACCENT__" },
+	{ name = "vhdl", text = "󰍛", fg = "__ACCENT__" },
+	{ name = "vi", text = "", fg = "__ACCENT__" },
+	{ name = "vim", text = "", fg = "__ACCENT__" },
+	{ name = "vsh", text = "", fg = "__ACCENT__" },
+	{ name = "vsix", text = "", fg = "__ACCENT__" },
+	{ name = "vue", text = "", fg = "__ACCENT__" },
+	{ name = "wasm", text = "", fg = "__ACCENT__" },
+	{ name = "wav", text = "", fg = "__ACCENT__" },
+	{ name = "webm", text = "", fg = "__ACCENT__" },
+	{ name = "webmanifest", text = "", fg = "__ACCENT__" },
+	{ name = "webp", text = "", fg = "__ACCENT__" },
+	{ name = "webpack", text = "󰜫", fg = "__ACCENT__" },
+	{ name = "wma", text = "", fg = "__ACCENT__" },
+	{ name = "wmv", text = "", fg = "__ACCENT__" },
+	{ name = "woff", text = "", fg = "__ACCENT__" },
+	{ name = "woff2", text = "", fg = "__ACCENT__" },
+	{ name = "wrl", text = "󰆧", fg = "__ACCENT__" },
+	{ name = "wrz", text = "󰆧", fg = "__ACCENT__" },
+	{ name = "wv", text = "", fg = "__ACCENT__" },
+	{ name = "wvc", text = "", fg = "__ACCENT__" },
+	{ name = "x", text = "", fg = "__ACCENT__" },
+	{ name = "xaml", text = "󰙳", fg = "__ACCENT__" },
+	{ name = "xcf", text = "", fg = "__ACCENT__" },
+	{ name = "xcplayground", text = "", fg = "__ACCENT__" },
+	{ name = "xcstrings", text = "", fg = "__ACCENT__" },
+	{ name = "xls", text = "󰈛", fg = "__ACCENT__" },
+	{ name = "xlsx", text = "󰈛", fg = "__ACCENT__" },
+	{ name = "xm", text = "", fg = "__ACCENT__" },
+	{ name = "xml", text = "󰗀", fg = "__ACCENT__" },
+	{ name = "xpi", text = "", fg = "__ACCENT__" },
+	{ name = "xslt", text = "󰗀", fg = "__ACCENT__" },
+	{ name = "xul", text = "", fg = "__ACCENT__" },
+	{ name = "xz", text = "", fg = "__ACCENT__" },
+	{ name = "yaml", text = "", fg = "__ACCENT__" },
+	{ name = "yml", text = "", fg = "__ACCENT__" },
+	{ name = "zig", text = "", fg = "__ACCENT__" },
+	{ name = "zip", text = "", fg = "__ACCENT__" },
+	{ name = "zsh", text = "", fg = "__ACCENT__" },
+	{ name = "zst", text = "", fg = "__ACCENT__" },
+	{ name = "🔥", text = "", fg = "__ACCENT__" },
+]
+conds = [
+	# Special files
+	{ if = "orphan", text = "", fg = "__ACCENT__" },
+	{ if = "link", text = "", fg = "__ACCENT__" },
+	{ if = "block", text = "", fg = "__ACCENT__" },
+	{ if = "char", text = "", fg = "__ACCENT__" },
+	{ if = "fifo", text = "", fg = "__ACCENT__" },
+	{ if = "sock", text = "", fg = "__ACCENT__" },
+	{ if = "sticky", text = "", fg = "__ACCENT__" },
+	{ if = "dummy", text = "", fg = "__ACCENT__" },
+
+	# Fallback
+	{ if = "dir", text = "", fg = "__ACCENT__" },
+	{ if = "exec", text = "", fg = "__ACCENT__" },
+	{ if = "!dir", text = "", fg = "__ACCENT__" },
+]
+
+# : }}}

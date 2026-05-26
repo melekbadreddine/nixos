@@ -1,0 +1,19 @@
+# Monitor rules
+# Run `wlr-randr` or `wayland-info` to find your monitor names and capabilities.
+#
+# Format: monitorrule=name:<regex>,width:<w>,height:<h>,refresh:<hz>,x:<pos>,y:<pos>,scale:<n>,rr:<rotation>
+#   rr: 0=normal, 1=90° clockwise, 2=180°, 3=270° clockwise
+#
+# Tip: Leave this file empty to let Mango auto-detect and arrange monitors.
+# Uncomment and customize the examples below for your setup.
+
+# ─── Example: Single ultrawide monitor ───
+# monitorrule=name:^DP-1$,width:3440,height:1440,refresh:180,x:0,y:0,scale:1,rr:0
+
+# ─── Example: Dual monitor setup ───
+# monitorrule=name:^DP-1$,width:2560,height:1440,refresh:165,x:0,y:0,scale:1,rr:0
+# monitorrule=name:^HDMI-A-1$,width:1920,height:1080,refresh:60,x:2560,y:0,scale:1,rr:0
+
+# ─── Example: Laptop + external monitor ───
+# monitorrule=name:^eDP-1$,width:1920,height:1080,refresh:60,x:0,y:0,scale:1,rr:0
+# monitorrule=name:^DP-1$,width:2560,height:1440,refresh:165,x:1920,y:0,scale:1,rr:0
