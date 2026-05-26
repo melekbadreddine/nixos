@@ -58,6 +58,31 @@ We use `just` for automation:
 | `vm` | Virtual Machine | Optimized for QEMU/VirtualBox. |
 | `wsl` | WSL2 | Windows Subsystem for Linux integration. |
 
+## ⌨️ Mango WM Keybindings
+
+| Keybind | Action |
+|---------|--------|
+| `SUPER + Return` | Launch Ghostty terminal |
+| `SUPER + CTRL + Return` | Launch floating Ghostty terminal |
+| `SUPER + Space` | Launch Wofi app runner |
+| `SUPER + Q` | Kill focused window |
+| `SUPER + SHIFT + Q` | Open session menu (wlogout) |
+| `SUPER + SHIFT + T` | Switch theme (Interactive) |
+| `SUPER + SHIFT + W` | Select wallpaper (Interactive) |
+| `SUPER + Y` | Open Yazi file manager |
+| `SUPER + B` | Open Helium browser |
+| `SUPER + Arrow Keys` | Move focus |
+| `SUPER + SHIFT + Arrow Keys`| Move window |
+| `SUPER + 1-9` | Switch tag (workspace) |
+| `SUPER + SHIFT + 1-9` | Move window to tag |
+| `ALT + Tab` | Toggle overview |
+| `ALT + F` | Toggle fullscreen |
+| `ALT + Z` | Toggle scratchpad |
+| `SUPER + SHIFT + S` | Take screenshot (Area selection) |
+| `CTRL + Space` | Cycle tiling layouts |
+| `CTRL + SHIFT + Space` | Open layout picker (Interactive) |
+| `SUPER + ALT + R` | Reload Mango WM config |
+
 ## 📜 License
 
 Personal configuration. Use at your own risk.

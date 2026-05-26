@@ -3,6 +3,28 @@
   config,
   ...
 }: let
+  # Theme script block helper
+  mkTheme = name: colors: ''
+    "${name}")
+      BG="${colors.bg}"
+      FG="${colors.fg}"
+      PRIMARY="${colors.primary}"
+      SECONDARY="${colors.secondary}"
+      TERTIARY="${colors.tertiary}"
+      ACCENT="${colors.accent}"
+      ERROR="${colors.error}"
+      SURFACE="${colors.surface}"
+      OUTLINE="${colors.outline}"
+      SHADOW="${colors.shadow}"
+      WARNING="${colors.warning}"
+      SUCCESS="${colors.success}"
+      HOVER="${colors.hover}"
+      BG_ALT="${colors.bg_alt}"
+      GTK_THEME="${colors.gtk_theme}"
+      ICON_THEME="${colors.icon_theme}"
+      ;;
+  '';
+
   # Catppuccin Mocha colors from Stylix (default)
   mocha = {
     bg = "#${config.lib.stylix.colors.base00}";
@@ -98,28 +120,6 @@
     gtk_theme = "Graphite-Dark";
     icon_theme = "Tela-grey-dark";
   };
-
-  # Theme script block helper
-  mkTheme = name: colors: ''
-    "${name}")
-      BG="${colors.bg}"
-      FG="${colors.fg}"
-      PRIMARY="${colors.primary}"
-      SECONDARY="${colors.secondary}"
-      TERTIARY="${colors.tertiary}"
-      ACCENT="${colors.accent}"
-      ERROR="${colors.error}"
-      SURFACE="${colors.surface}"
-      OUTLINE="${colors.outline}"
-      SHADOW="${colors.shadow}"
-      WARNING="${colors.warning}"
-      SUCCESS="${colors.success}"
-      HOVER="${colors.hover}"
-      BG_ALT="${colors.bg_alt}"
-      GTK_THEME="${colors.gtk_theme}"
-      ICON_THEME="${colors.icon_theme}"
-      ;;
-  '';
 in {
   home.packages = [
     (pkgs.writeShellScriptBin "switch-theme" ''
@@ -193,14 +193,6 @@ in {
 
       ${pkgs.libnotify}/bin/notify-send "Theme Switched" "Now using: $selected"
     '')
-
-    (pkgs.writers.writePython3Bin "wall-select" {
-      libraries = with pkgs.python3Packages; [pygobject3];
-    } (builtins.readFile ./wall-select.py))
-
-    (pkgs.writers.writePython3Bin "layout-picker" {
-      libraries = with pkgs.python3Packages; [pygobject3];
-    } (builtins.readFile ./layout-picker.py))
 
     (pkgs.writeShellScriptBin "mango-reload" ''
       mmsg -d reload_config

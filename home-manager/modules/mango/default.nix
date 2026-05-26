@@ -6,6 +6,8 @@
     ./rules.nix
     ./scripts/autostart.nix
     ./scripts/theme-switch.nix
+    ./scripts/wall-select.nix
+    ./scripts/layout-picker.nix
     ./scripts/screenshot.nix
     ./scripts/notifications.nix
     ./scripts/waybar-gen.nix
