@@ -1,8 +1,0 @@
-[ColorScheme]
-#https://doc.qt.io/archives/qt-5.15/qpalette.html
-#https://doc.qt.io/qt-6/qpalette.html
-# functions that correspond to the colors definition location
-# windowText,button,light,midlight,dark,mid,text,brightText,buttonText,base,window,shadow,highlight,highlightedText,link,linkVisited,alternateBase,NO_IDEA,toolTipBase,toolTipText,placeholderText,accent
-active_colors=__FG__, __BG__, #ffffff, #cacaca, #9f9f9f, #b8b8b8, __FG__, #ffffff, __FG__, __BG__, __BG__, __BG__, __ACCENT__, __BG_ALT__, __SECONDARY__, __PRIMARY__, __SURFACE__, __BG__, __SURFACE__, __FG__, __FG__, __PRIMARY__
-disabled_colors=__FG__, __BG__, #ffffff, #cacaca, #9f9f9f, #b8b8b8, __FG__, #ffffff, __FG__, __BG__, __BG__, __BG__, __ACCENT__, __BG_ALT__, __SECONDARY__, __PRIMARY__, __SURFACE__, __BG__, __SURFACE__, __FG__, __FG__, __PRIMARY__
-inactive_colors=__FG__, __BG__, #ffffff, #cacaca, #9f9f9f, #b8b8b8, __FG__, #ffffff, __FG__, __BG__, __BG__, __BG__, __ACCENT__, __BG_ALT__, __SECONDARY__, __PRIMARY__, __SURFACE__, __BG__, __SURFACE__, __FG__, __FG__, __PRIMARY__
