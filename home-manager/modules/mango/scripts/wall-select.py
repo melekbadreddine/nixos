@@ -34,7 +34,9 @@ class WallpaperThumb(Gtk.EventBox):
             )
             self.image.set_from_pixbuf(pixbuf)
         except Exception:
-            self.image.set_from_icon_name("image-missing", Gtk.IconSize.DIALOG)
+            self.image.set_from_icon_name(
+                "image-missing", Gtk.IconSize.DIALOG
+            )
         self.add(self.image)
         self._update_style()
         self.connect("button-press-event", self.on_click)
@@ -104,6 +106,7 @@ class WallpaperPicker(Gtk.Window):
         if not os.path.exists(WALL_DIR):
             return
         exts = (".jpg", ".jpeg", ".png", ".webp")
+        # PEP8: Wrap long list comprehensions
         walls = sorted([
             f for f in os.listdir(WALL_DIR)
             if f.lower().endswith(exts)

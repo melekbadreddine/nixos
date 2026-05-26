@@ -28,15 +28,23 @@ def get_current_layout():
         out = res.stdout.strip()
         if not out:
             return ""
+        # PEP8: Wrap long generator expressions
         focused_mon = next(
-            (line.split()[0] for line in out.splitlines() if "selmon 1" in line),
+            (
+                line.split()[0]
+                for line in out.splitlines()
+                if "selmon 1" in line
+            ),
             ""
         )
         if not focused_mon:
             return ""
         return next(
-            (line.split()[-1] for line in out.splitlines()
-             if line.startswith(f"{focused_mon} layout ")),
+            (
+                line.split()[-1]
+                for line in out.splitlines()
+                if line.startswith(f"{focused_mon} layout ")
+            ),
             ""
         )
     except Exception:
@@ -156,8 +164,8 @@ class LayoutPicker(Gtk.Window):
 
     def apply_selected(self):
         if 0 <= self.selected_idx < len(self.rows):
-            code = self.rows[self.selected_idx].code
-            subprocess.run(["mmsg", "-s", "-l", code])
+            row = self.rows[self.selected_idx]
+            subprocess.run(["mmsg", "-s", "-l", row.code])
         self.close()
 
     def on_key(self, widget, event):
