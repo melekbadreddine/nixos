@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./config.nix
+    ./env.nix
     ./monitor.nix
     ./tags.nix
     ./rules.nix

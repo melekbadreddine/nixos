@@ -69,7 +69,16 @@ in {
     enable = true;
     wayland.enable = true;
     theme = "sddm-astronaut-theme";
+    settings = {
+      Theme = {
+        CursorTheme = "Macintosh";
+        CursorSize = "24";
+      };
+    };
   };
   services.displayManager.sessionPackages = [pkgs.mangowc];
-  environment.systemPackages = [sddm-astronaut];
+  environment.systemPackages = [
+    sddm-astronaut
+    pkgs.apple-cursor
+  ];
 }

@@ -13,10 +13,10 @@
       # Set GTK dark mode preference
       ${pkgs.glib}/bin/gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
-      # Apply current theme
+      # Apply current theme (Verbatim: switch-theme.sh --apply)
       switch-theme --apply &
 
-      # Crystal Dock
+      # Crystal Dock (Independent component)
       ${pkgs.crystal-dock}/bin/crystal-dock &
     '')
   ];

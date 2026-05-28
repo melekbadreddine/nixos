@@ -5,12 +5,12 @@
       position = "top";
       height = 36;
       margin-top = 7;
-      margin-left = 50;
-      margin-right = 50;
+      margin-left = 446;
+      margin-right = 446;
       spacing = 6;
 
       modules-left = [
-        "custom/nixos"
+        "image"
         "dwl/tags"
         "dwl/window"
       ];
@@ -24,7 +24,6 @@
       ];
 
       modules-right = [
-        "custom/layout"
         "tray"
         "custom/notifications"
         "battery"
@@ -33,8 +32,10 @@
         "custom/power"
       ];
 
-      "custom/nixos" = {
-        format = "";
+      "image" = {
+        exec = "mango-nixos-logo";
+        size = 18;
+        interval = "once";
         tooltip = false;
       };
 
@@ -93,14 +94,6 @@
         tooltip = true;
         tooltip-format-wifi = "WiFi: {essid} ({signalStrength}%)\nDown: {bandwidthDownBits}\nUp: {bandwidthUpBits}";
         tooltip-format-ethernet = "Ethernet: {ifname}\nDown: {bandwidthDownBits}\nUp: {bandwidthUpBits}";
-      };
-
-      "custom/layout" = {
-        exec = "layout-switcher";
-        interval = 1;
-        return-type = "json";
-        on-click = "layout-picker";
-        tooltip = true;
       };
 
       tray = {
