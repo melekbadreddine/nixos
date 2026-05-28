@@ -7,8 +7,5 @@
     ./stylix.nix
     ./kdeconnect
     ./misc
-    ./mango
-    ./waybar
-    ./wofi
   ];
 }

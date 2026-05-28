@@ -9,28 +9,22 @@
 set -e
 
 # Define colors
-RED='\033[0;31m'
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
-CYAN='\033[0;36m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-# Define log file
-LOG_DIR="$(dirname "$0")"
-LOG_FILE="${LOG_DIR}/install_$(date +"%Y-%m-%d_%H-%M-%S").log"
+# Base directories
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_DIR="${REPO_DIR}"
 
-mkdir -p "$LOG_DIR"
-exec > >(tee -a "$LOG_FILE") 2>&1
-
-# Function to print a section header
+# Function to print headers
 print_header() {
-  echo -e "${GREEN}╔═══════════════════════════════════════════════════════════════════════╗${NC}"
-  echo -e "${GREEN}║ ${1} ${NC}"
-  echo -e "${GREEN}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
+  echo -e "\n${BLUE}==== $1 ====${NC}"
 }
 
-# Function to print a success banner
+# Function to print success banner
 print_success_banner() {
   echo -e "${GREEN}╔═══════════════════════════════════════════════════════════════════════╗${NC}"
   echo -e "${GREEN}║           NixOS Desktop Environment Installation Successful!          ║${NC}"
@@ -45,187 +39,65 @@ print_success_banner() {
 # Function to print a failure banner
 print_failure_banner() {
   echo -e "${RED}╔═══════════════════════════════════════════════════════════════════════╗${NC}"
-  echo -e "${RED}║                 NixOS Installation Failed!                            ║${NC}"
-  echo -e "${RED}║                                                                       ║${NC}"
-  echo -e "${RED}║   Please review the log file for details:                             ║${NC}"
-  echo -e "${RED}║   ${LOG_FILE}                                                        ║${NC}"
-  echo -e "${RED}║                                                                       ║${NC}"
+  echo -e "${RED}║                NixOS Installation Failed!                             ║${NC}"
   echo -e "${RED}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
 }
 
-print_header "Verifying System Requirements"
+# 1. Hardware Detection
+print_header "Detecting Hardware"
+GPU_TYPE="unknown"
 
-# Check for git
-if ! command -v git &>/dev/null; then
-  echo -e "${RED}Error: Git is not installed.${NC}"
-  echo -e "Please install git: nix-shell -p git pciutils"
-  exit 1
-fi
-
-# Check for lspci (pciutils)
-if ! command -v lspci &>/dev/null; then
-  echo -e "${RED}Error: pciutils is not installed.${NC}"
-  echo -e "Please install pciutils: nix-shell -p git pciutils"
-  exit 1
-fi
-
-if [ -n "$(grep -i nixos </etc/os-release)" ]; then
-  echo -e "${GREEN}✓ Verified this is NixOS.${NC}"
-else
-  echo -e "${RED}Error: This is not NixOS.${NC}"
-  exit 1
-fi
-
-print_header "Hardware Detection"
-
-# Detect VM
-has_vm=false
-detect_vm() {
-  if command -v systemd-detect-virt &>/dev/null; then
-    if systemd-detect-virt --quiet; then
-      return 0
+# Use lspci to find GPU
+if lspci | grep -qi "nvidia"; then
+  if lspci | grep -qi "intel" || lspci | grep -qi "amd"; then
+    if lspci | grep -qi "intel"; then
+      GPU_TYPE="intel-nvidia"
+    else
+      GPU_TYPE="amd-nvidia"
     fi
-  fi
-  for f in /sys/class/dmi/id/product_name /sys/class/dmi/id/sys_vendor; do
-    if [ -r "$f" ] && grep -Eqi 'qemu|kvm|vmware|virtualbox|hyper-v|microsoft corporation|xen|parallels' "$f"; then
-      return 0
-    fi
-  done
-  return 1
-}
-
-if detect_vm; then
-  has_vm=true
-fi
-
-# Detect GPUs
-has_nvidia=false
-has_intel=false
-has_amd=false
-is_wsl=false
-
-if [ -e /proc/sys/fs/binfmt_misc/WSLInterop ]; then
-  is_wsl=true
-fi
-
-if lspci | grep -qi 'vga\|3d\|display'; then
-  while read -r line; do
-    if echo "$line" | grep -Eq '\[10de:|nvidia'; then
-      has_nvidia=true
-    elif echo "$line" | grep -Eq '\[1002:|amd|ati|advanced micro devices'; then
-      has_amd=true
-    elif echo "$line" | grep -Eq '\[8086:|intel'; then
-      has_intel=true
-    elif echo "$line" | grep -Eqi 'virtio|vmware|virtualbox|qxl|hyper-v|parallels|qemu|bochs'; then
-      has_vm=true
-    fi
-  done < <(lspci -nn | grep -i 'vga\|3d\|display')
-fi
-
-# Determine profile
-DETECTED_PROFILE=""
-if $is_wsl; then
-  DETECTED_PROFILE="wsl"
-elif $has_vm; then
-  DETECTED_PROFILE="vm"
-elif $has_amd && $has_nvidia; then
-  DETECTED_PROFILE="amd-nvidia"
-elif $has_nvidia && $has_intel; then
-  DETECTED_PROFILE="intel-nvidia"
-elif $has_nvidia; then
-  DETECTED_PROFILE="nvidia"
-elif $has_amd; then
-  DETECTED_PROFILE="amd"
-elif $has_intel; then
-  DETECTED_PROFILE="intel"
-else
-  DETECTED_PROFILE="amd"
-fi
-
-echo -e "${GREEN}Detected GPU profile: $DETECTED_PROFILE${NC}"
-read -p "Correct? (Y/N): " -n 1 -r
-echo
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${YELLOW}Manual profile selection:${NC}"
-  echo "  • amd - AMD GPU"
-  echo "  • intel - Intel iGPU"
-  echo "  • nvidia - NVIDIA GPU"
-  echo "  • intel-nvidia - Intel iGPU + NVIDIA dGPU"
-  echo "  • amd-nvidia - AMD iGPU + NVIDIA dGPU"
-  echo "  • vm - Virtual machine"
-  echo "  • wsl - Windows Subsystem for Linux"
-  read -rp "Enter profile: [ $DETECTED_PROFILE ] " profile
-  if [ -z "$profile" ]; then
-    profile="$DETECTED_PROFILE"
-  fi
-else
-  profile="$DETECTED_PROFILE"
-fi
-
-echo -e "${GREEN}✓ Using profile: $profile${NC}"
-
-print_header "Generating Hardware Configuration"
-
-# Determine host directory based on profile
-HOST_DIR="default"
-if [ "$profile" = "wsl" ]; then
-  HOST_DIR="wsl"
-elif [ "$profile" = "vm" ]; then
-  HOST_DIR="vm"
-fi
-
-if [ "$profile" = "wsl" ]; then
-  echo -e "${YELLOW}Skipping hardware configuration generation for WSL profile.${NC}"
-  echo -e "${YELLOW}nixos-wsl handles hardware abstraction automatically.${NC}"
-else
-  echo -e "${BLUE}Target host directory: hosts/$HOST_DIR${NC}"
-
-  # Generate hardware configuration
-  sudo nixos-generate-config --show-hardware-config > /tmp/hardware.nix 2>/dev/null || true
-
-  # Backup existing hardware-configuration.nix if it exists
-  if [ -f "hosts/$HOST_DIR/hardware-configuration.nix" ]; then
-    BACKUP_NAME="hardware-configuration.nix.backup.$(date +%s)"
-    cp "hosts/$HOST_DIR/hardware-configuration.nix" "hosts/$HOST_DIR/$BACKUP_NAME"
-    echo -e "${YELLOW}Backed up old hardware config to: hosts/$HOST_DIR/$BACKUP_NAME${NC}"
-  fi
-
-  # Replace with new hardware configuration
-  if [ -f "/tmp/hardware.nix" ]; then
-    cp /tmp/hardware.nix "hosts/$HOST_DIR/hardware-configuration.nix"
-    echo -e "${GREEN}✓ Hardware configuration generated and saved to hosts/$HOST_DIR.${NC}"
   else
-    echo -e "${YELLOW}⚠ Warning: Could not generate hardware config, using existing.${NC}"
+    GPU_TYPE="nvidia"
   fi
+elif lspci | grep -qi "amd"; then
+  GPU_TYPE="amd"
+elif lspci | grep -qi "intel"; then
+  GPU_TYPE="intel"
 fi
 
-print_header "Building NixOS"
-
-echo -e "${GREEN}Ready to build NixOS with profile: $profile${NC}"
-read -p "Continue with NixOS rebuild? (Y/N): " -n 1 -r
-echo
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-  echo -e "${RED}Build cancelled.${NC}"
-  mv flake.nix.bak flake.nix
-  exit 1
+# Detect if running in a VM
+if systemd-detect-virt -q; then
+  GPU_TYPE="vm"
 fi
 
-# Set experimental features
-export NIX_CONFIG="experimental-features = nix-command flakes"
+# Detect if running in WSL
+if [ -e /proc/sys/fs/binfmt_misc/WSLInterop ]; then
+  GPU_TYPE="wsl"
+fi
 
-# Build and boot
-echo -e "${BLUE}Building NixOS system...${NC}"
-if sudo NIX_CONFIG="$NIX_CONFIG" nixos-rebuild boot --flake ".#$profile" --accept-flake-config 2>&1; then
-  rm flake.nix.bak
+echo -e "Detected hardware profile: ${YELLOW}${GPU_TYPE}${NC}"
+
+# 2. Preparation
+print_header "Preparing Configuration"
+cd "${REPO_DIR}"
+
+# Backup existing flake.nix just in case
+cp flake.nix flake.nix.bak
+
+# Update profile in flake.nix if needed (simplified detection)
+profile="${GPU_TYPE}"
+
+# 3. NixOS Build
+print_header "Building NixOS Configuration"
+echo "Building profile: ${profile}..."
+
+if sudo nixos-rebuild switch --flake ".#${profile}"; then
   # Write the successful profile to a state file for the justfile to use
   echo "$profile" > "${LOG_DIR}/.current-profile"
   echo -e "${GREEN}✓ NixOS build successful!${NC}"
 
   print_header "Desktop Setup Complete"
-  echo "SDDM display manager enabled"
-  echo "COSMIC desktop available"
-  echo "Mango WM available"
-  echo "Select your session at login"
+  echo "COSMIC desktop enabled"
+  echo "COSMIC greeter configured"
   echo -e "${GREEN}✓ GPU drivers installed${NC}"
   echo -e "${GREEN}✓ All dependencies installed${NC}"
 

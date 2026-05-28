@@ -11,9 +11,9 @@ lib.mkIf vars.stylixEnable {
     base16Scheme = pkgs.base16-schemes + "/share/themes/catppuccin-mocha.yaml";
     polarity = "dark";
 
-    # Disable automatic styling to prevent it from overriding the SDDM theme.
+    # Enable automatic styling to ensure wallpaper and system-wide themes are applied.
     # Manual overrides are handled in home-manager/modules/stylix.nix.
-    autoEnable = false;
+    autoEnable = true;
 
     targets = {
       console.enable = true;

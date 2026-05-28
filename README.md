@@ -17,12 +17,7 @@ A highly modular, hardware-aware NixOS configuration using Flakes, Home Manager,
 - `hosts/`: Host-specific settings (default, vm, wsl).
 - `modules/core/`: Base system services and settings.
 - `modules/drivers/`: Reusable GPU and VM driver options.
-- `modules/desktops/mango.nix`: Mango WM system configuration.
-- `modules/desktops/sddm.nix`: SDDM display manager configuration.
-- `home-manager/modules/mango/`: Mango WM user configuration.
-- `home-manager/modules/waybar/`: Waybar configuration.
-- `home-manager/modules/wofi/`: Wofi configuration.
-- `home-manager/modules/misc/`: GTK, Qt, and dconf settings.
+- `modules/desktops/`: Desktop environment configurations.
 - `profiles/`: Entry points mapping profiles to hosts and drivers.
 - `home-manager/`: User-level configuration (CLI, Dev, Programs, Shell).
 
@@ -57,31 +52,6 @@ We use `just` for automation:
 | `amd-nvidia` | AMD + NVIDIA | Hybrid setup with AMD iGPU + NVIDIA dGPU. |
 | `vm` | Virtual Machine | Optimized for QEMU/VirtualBox. |
 | `wsl` | WSL2 | Windows Subsystem for Linux integration. |
-
-## ⌨️ Mango WM Keybindings
-
-| Keybind | Action |
-|---------|--------|
-| `SUPER + Return` | Launch Ghostty terminal |
-| `SUPER + CTRL + Return` | Launch floating Ghostty terminal |
-| `SUPER + Space` | Launch Wofi app runner |
-| `SUPER + Q` | Kill focused window |
-| `SUPER + SHIFT + Q` | Open session menu (wlogout) |
-| `SUPER + SHIFT + T` | Switch theme (Interactive) |
-| `SUPER + SHIFT + W` | Select wallpaper (Interactive) |
-| `SUPER + Y` | Open Yazi file manager |
-| `SUPER + B` | Open Helium browser |
-| `SUPER + Arrow Keys` | Move focus |
-| `SUPER + SHIFT + Arrow Keys`| Move window |
-| `SUPER + 1-9` | Switch tag (workspace) |
-| `SUPER + SHIFT + 1-9` | Move window to tag |
-| `ALT + Tab` | Toggle overview |
-| `ALT + F` | Toggle fullscreen |
-| `ALT + Z` | Toggle scratchpad |
-| `SUPER + SHIFT + S` | Take screenshot (Area selection) |
-| `CTRL + Space` | Cycle tiling layouts |
-| `CTRL + SHIFT + Space` | Open layout picker (Interactive) |
-| `SUPER + ALT + R` | Reload Mango WM config |
 
 ## 📜 License
 
