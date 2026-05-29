@@ -26,7 +26,7 @@ in {
     virtualisation.virtualbox.guest.dragAndDrop = true;
 
     # Better VM graphics performance
-    services.xserver.videoDrivers = ["virtio" "vmware" "modesetting"];
+    services.xserver.videoDrivers = ["vmware" "modesetting"];
 
     environment.variables = {
       # Help GTK4/Adwaita apps run better in VMs with 3D acceleration

@@ -3,7 +3,7 @@
 ######################################
 # NixOS Installation Script
 # Detects hardware, generates config, builds NixOS
-# Sets up COSMIC Desktop
+# Sets up GNOME Desktop
 ######################################
 
 set -e
@@ -31,7 +31,7 @@ print_success_banner() {
   echo -e "${GREEN}║                                                                       ║${NC}"
   echo -e "${GREEN}║   Please reboot your system for changes to take full effect.          ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
-  echo -e "${GREEN}║   Log in with the COSMIC greeter and enjoy your desktop!              ║${NC}"
+  echo -e "${GREEN}║   Log in with the GDM greeter and enjoy your desktop!                 ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
   echo -e "${GREEN}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
 }
@@ -96,8 +96,8 @@ if sudo nixos-rebuild switch --flake ".#${profile}"; then
   echo -e "${GREEN}✓ NixOS build successful!${NC}"
 
   print_header "Desktop Setup Complete"
-  echo "COSMIC desktop enabled"
-  echo "COSMIC greeter configured"
+  echo "GNOME desktop enabled"
+  echo "GDM greeter configured"
   echo -e "${GREEN}✓ GPU drivers installed${NC}"
   echo -e "${GREEN}✓ All dependencies installed${NC}"
 

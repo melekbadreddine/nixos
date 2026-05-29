@@ -12,17 +12,34 @@ lib.mkIf vars.stylixEnable {
     polarity = "dark";
 
     # Enable automatic styling to ensure wallpaper and system-wide themes are applied.
-    # Manual overrides are handled in home-manager/modules/stylix.nix.
     autoEnable = true;
 
+    # Explicit layout configuration for UI toolkits
     targets = {
       console.enable = true;
       plymouth.enable = true;
+      gtk.enable = true;
+      qt.enable = true;
+      qt.platform = lib.mkForce "qtct";
     };
 
+    # Tweaked background element transparency
+    opacity = {
+      desktop = 0.2;
+    };
+
+    # Integrated custom Papirus icon theme styling
+    icons = {
+      enable = true;
+      package = pkgs.papirus-icon-theme;
+      dark = "Papirus-Dark";
+      light = "Papirus";
+    };
+
+    # Breeze Dark Cursor Setup
     cursor = {
-      package = pkgs.apple-cursor;
-      name = "Macintosh";
+      package = pkgs.kdePackages.breeze;
+      name = "breeze_cursors";
       size = 24;
     };
 
