@@ -18,9 +18,8 @@ lib.mkIf vars.stylixEnable {
     targets = {
       console.enable = true;
       plymouth.enable = true;
-      gtk.enable = true;
-      qt.enable = true;
-      qt.platform = lib.mkForce "qtct";
+      gtk.enable = false;
+      qt.enable = false;
     };
 
     # Tweaked background element transparency
@@ -38,8 +37,8 @@ lib.mkIf vars.stylixEnable {
 
     # Breeze Dark Cursor Setup
     cursor = {
-      package = pkgs.kdePackages.breeze;
-      name = "breeze_cursors";
+      package = pkgs.phinger-cursors;
+      name = "phinger-cursors-dark";
       size = 24;
     };
 

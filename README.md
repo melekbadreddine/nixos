@@ -1,11 +1,11 @@
 # Modular NixOS & Home Manager Configuration
 
-A highly modular, hardware-aware NixOS configuration using Flakes, Home Manager, and Stylix. Features automatic GPU detection and GNOME Desktop.
+A highly modular, hardware-aware NixOS configuration using Flakes, Home Manager, and Stylix. Features automatic GPU detection and COSMIC Desktop (from System76).
 
 ## 🚀 Key Features
 
 - **Multi-GPU Support**: Profiles for AMD, Intel, NVIDIA, and hybrid (Prime) setups.
-- **GNOME Desktop**: Modern and polished desktop environment.
+- **COSMIC Desktop (from System76)**: Modern Wayland-native desktop environment.
 - **Home Manager**: Complete user environment management.
 - **Theming**: Integrated theming via **Stylix** (Ayu Dark) with custom Catppuccin Mocha palettes for Starship and Zellij.
 - **Security**: Secret management via **SOPS-nix** (age).
@@ -56,4 +56,5 @@ We use `just` for automation:
 ## 📜 License
 
 Personal configuration. Use at your own risk.
+.
 .
