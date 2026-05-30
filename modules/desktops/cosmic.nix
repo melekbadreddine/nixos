@@ -1,13 +1,15 @@
-{pkgs, ...}: {
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
+{
+  pkgs,
+  vars,
+  lib,
+  ...
+}: {
+  services.desktopManager.cosmic.enable = vars.cosmicEnable;
+  services.displayManager.cosmic-greeter.enable = vars.cosmicGreeterEnable;
 
-  # Remove bloat
-  environment.cosmic.excludePackages = with pkgs; [
+  # Remove bloat only if cosmic is enabled
+  environment.cosmic.excludePackages = lib.mkIf vars.cosmicEnable (with pkgs; [
     cosmic-store
     firefox-unwrapped
-  ];
-
-  # Force Stylix/COSMIC wallpaper integration if needed
-  # COSMIC often uses its own background management, but we can hint it here
+  ]);
 }
