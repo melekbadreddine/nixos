@@ -12,6 +12,9 @@
     EDITOR = vars.editor;
   };
 
+  # Add ~/.local/bin to PATH
+  environment.localBinInPath = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
