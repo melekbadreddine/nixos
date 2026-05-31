@@ -1,6 +1,16 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  vars,
+  ...
+}: {
   # System settings
   system.stateVersion = "25.11";
+
+  # Session Variables
+  environment.sessionVariables = {
+    TERMINAL = vars.terminal;
+    EDITOR = vars.editor;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -13,8 +23,22 @@
 
   # System-wide packages
   environment.systemPackages = with pkgs; [
+    home-manager
     # Windows compatibility layer
     wineWow64Packages.stable
     winetricks
+  ];
+
+  # Enable nix-ld for running unpackaged programs
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    zlib
+    fuse3
+    icu
+    nss
+    openssl
+    curl
+    expat
   ];
 }

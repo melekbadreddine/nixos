@@ -32,6 +32,7 @@ print_success_banner() {
   echo -e "${GREEN}║   Please reboot your system for changes to take full effect.          ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
   echo -e "${GREEN}║   Log in with the COSMIC greeter and enjoy your desktop!              ║${NC}"
+  echo -e "${GREEN}║   Sessions available: COSMIC, MangoWC                                 ║${NC}"
   echo -e "${GREEN}║                                                                       ║${NC}"
   echo -e "${GREEN}╚═══════════════════════════════════════════════════════════════════════╝${NC}"
 }

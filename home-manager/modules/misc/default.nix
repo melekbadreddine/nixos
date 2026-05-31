@@ -1,6 +1,8 @@
 {...}: {
   imports = [
-    ./mime.nix
     ./dconf.nix
+    ./gtk.nix
+    ./qt.nix
+    ./xdg.nix
   ];
 }

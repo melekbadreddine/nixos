@@ -1,60 +1,82 @@
+<p align="center"><img src="https://i.imgur.com/X5zKxvp.png" width=300px></p>
+
 # Modular NixOS & Home Manager Configuration
+tagline: Flakes · Home Manager · Stylix · COSMIC · MangoWC
 
-A highly modular, hardware-aware NixOS configuration using Flakes, Home Manager, and Stylix. Features automatic GPU detection and COSMIC Desktop (from System76).
+## Key Features
+- Multi-GPU Support (AMD, Intel, NVIDIA, hybrid Prime)
+- COSMIC Desktop (System76) — default graphical session
+- MangoWC — lightweight Wayland compositor, always enabled alongside COSMIC
+- Home Manager — complete user environment
+- Theming — Stylix catppuccin-mocha system-wide; noctalia bar/launcher/notifications
+- Security — SOPS-nix age secrets
+- Automation — justfile + install.sh with hardware auto-detection
+- WSL support
 
-## 🚀 Key Features
+## Structure
+hosts/                    host-specific settings (default, vm, wsl)
+modules/core/             base system services and settings
+modules/drivers/          GPU and VM driver options
+modules/desktops/         COSMIC and MangoWC desktop modules
+profiles/                 entry points mapping profiles to hosts and drivers
+home-manager/
+  modules/cli/            CLI tools (starship, fastfetch, fzf, bat, eza...)
+  modules/dev/            dev tools (terraform, ansible, cloud CLIs, languages)
+  modules/programs/       GUI apps (ghostty, warp, helium, zen, thunderbird)
+  modules/shell/          fish + bash configuration
+  modules/mango/          MangoWC config and autostart scripts
+  modules/rofi/           rofi launcher with noctalia theme
+  modules/noctalia/       bar, dunst notifications, wallpaper daemon
+  modules/misc/           MIME types, dconf, GTK theming, QT theming
+  modules/kdeconnect/     KDE Connect
 
-- **Multi-GPU Support**: Profiles for AMD, Intel, NVIDIA, and hybrid (Prime) setups.
-- **COSMIC Desktop (from System76)**: Modern Wayland-native desktop environment.
-- **Home Manager**: Complete user environment management.
-- **Theming**: Integrated theming via **Stylix** (Ayu Dark) with custom Catppuccin Mocha palettes for Starship and Zellij.
-- **Security**: Secret management via **SOPS-nix** (age).
-- **Automation**: `justfile` for quick rebuilds and `install.sh` for hardware auto-detection.
-- **WSL Support**: Native NixOS-WSL profile for Windows integration.
-
-## 📂 Structure
-
-- `hosts/`: Host-specific settings (default, vm, wsl).
-- `modules/core/`: Base system services and settings.
-- `modules/drivers/`: Reusable GPU and VM driver options.
-- `modules/desktops/`: Desktop environment configurations.
-- `profiles/`: Entry points mapping profiles to hosts and drivers.
-- `home-manager/`: User-level configuration (CLI, Dev, Programs, Shell).
-
-## 🛠️ Usage
-
+## Usage
 ### Installation
-
-1. Boot into a NixOS live environment or existing install.
-2. Enter a shell with required tools: `nix-shell -p git pciutils`
-3. Clone this repo: `git clone https://github.com/melekbadreddine/nixos.git && cd nixos`
-4. Run the installer: `./install.sh`
-5. Reboot and enjoy!
+1.  **Boot a NixOS installer** (any recent ISO).
+2.  **Clone this repository**:
+    ```bash
+    nix-shell -p git --run "git clone https://github.com/melek/nixos.git ~/nixos"
+    cd ~/nixos
+    ```
+3.  **Run the install script**:
+    ```bash
+    ./install.sh
+    ```
+    The script will auto-detect your hardware and suggest the best profile.
 
 ### Daily Commands
+Manage your system using `just`:
+- `just build` — Test the build without switching
+- `just switch` — Apply changes to the current system
+- `just update` — Update flake locks and switch
+- `just clean` — Garbage collect old generations
+- `just check` — Run flake evaluation checks
 
-We use `just` for automation:
+## GPU Profiles
+| Profile        | Description                                  |
+|----------------|----------------------------------------------|
+| `amd`          | AMD GPU only                                 |
+| `nvidia`       | NVIDIA GPU only                              |
+| `intel`        | Intel GPU only                               |
+| `amd-nvidia`   | Hybrid AMD + NVIDIA (Prime)                  |
+| `intel-nvidia` | Hybrid Intel + NVIDIA (Prime)                |
+| `vm`           | Virtual Machine (QEMU/KVM guest services)    |
+| `wsl`          | Windows Subsystem for Linux                  |
 
-- `just switch`: Rebuild and apply system configuration (auto-detects profile).
-- `just home-switch`: Rebuild and apply Home Manager configuration.
-- `just update`: Update all flake inputs and rebuild.
-- `just clean`: Garbage collect and remove old generations.
-- `just check`: Run evaluation and format checks.
+## MangoWC Keybindings
+| Key                    | Action                   |
+|------------------------|--------------------------|
+| Super+Return           | Ghostty terminal         |
+| Super+b                | Helium browser           |
+| Super+z                | Zen browser              |
+| Super+a                | Antigravity              |
+| Super+w                | Warp terminal            |
+| Super+e                | File manager             |
+| Super+Space            | Rofi app launcher        |
+| Super+q                | Close window             |
+| Super+h/j/k/l          | Focus left/down/up/right |
+| Super+Shift+h/j/k/l    | Move window              |
+| Super+BackSpace        | Logout                   |
 
-## 🔧 GPU Profiles
-
-| Profile | Hardware | Description |
-|---------|----------|-------------|
-| `amd` | AMD GPU | Standard AMD discrete graphics. |
-| `intel` | Intel iGPU | Integrated Intel graphics. |
-| `nvidia` | NVIDIA GPU | Discrete NVIDIA graphics (Proprietary). |
-| `intel-nvidia` | Intel + NVIDIA | Laptop hybrid setup (PRIME offload). |
-| `amd-nvidia` | AMD + NVIDIA | Hybrid setup with AMD iGPU + NVIDIA dGPU. |
-| `vm` | Virtual Machine | Optimized for QEMU/VirtualBox. |
-| `wsl` | WSL2 | Windows Subsystem for Linux integration. |
-
-## 📜 License
-
+## License
 Personal configuration. Use at your own risk.
-.
-.
