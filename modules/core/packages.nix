@@ -2,19 +2,16 @@
   environment.systemPackages = with pkgs; [
     # Core
     home-manager
-
-    # Windows compatibility
-    wineWow64Packages.stable
-    winetricks
-
-    # Tools
     just
     alejandra
     sops
     age
 
-    # Utils
-    nautilus
+    # Windows compatibility
+    wineWow64Packages.stable
+    winetricks
+
+    # Helpers
     navi
     cht-sh
 
@@ -29,6 +26,11 @@
     jq
     bat
     fzf
+
+    # Monitoring
+    btop
+    dua
+    duf
 
     # Cloud & DevOps
     ansible

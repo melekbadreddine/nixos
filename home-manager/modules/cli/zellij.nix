@@ -1,7 +1,8 @@
 {...}: {
   programs.zellij = {
     enable = true;
-    # enableBashIntegration = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
     settings = {
       theme = "catppuccin-mocha";
       default_layout = "compact";

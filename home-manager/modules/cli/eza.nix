@@ -2,6 +2,7 @@
   programs.eza = {
     enable = true;
     enableBashIntegration = true;
+    enableFishIntegration = true;
     icons = "always";
     extraOptions = ["--color=always"];
   };
