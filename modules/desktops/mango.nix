@@ -7,15 +7,13 @@
       wrapProgram $out/bin/mango \
         --add-flags "-s /home/melek/.config/mango/autostart.sh"
     '';
+    passthru.providedSessions = ["mango"];
   };
 in {
   programs.mangowc = {
     enable = true;
     package = mango-wrapped;
   };
-
-  # Explicitly ensure the wrapped package is used for portals too
-  # although the module already adds cfg.package to systemPackages
 
   environment.systemPackages = with pkgs; [
     quickshell
@@ -32,7 +30,4 @@ in {
   ];
 
   services.upower.enable = true;
-
-  # Portal configuration is already handled by programs.mangowc.enable
-  # But we can add extraPortals if needed. The module already adds wlr and gtk.
 }

@@ -17,7 +17,7 @@
       awww img ${vars.stylixImage} &
 
       # Start Bar/Shell
-      quickshell ~/.config/quickshell/overview/shell.qml &
+      quickshell ~/.config/quickshell/shell.qml &
 
       dunst &
       hyprpolkitagent &
