@@ -24,14 +24,6 @@
   # Prevents fish from causing long build times
   documentation.man.cache.enable = false;
 
-  # System-wide packages
-  environment.systemPackages = with pkgs; [
-    home-manager
-    # Windows compatibility layer
-    wineWow64Packages.stable
-    winetricks
-  ];
-
   # Enable nix-ld for running unpackaged programs
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [

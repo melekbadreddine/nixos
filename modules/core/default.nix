@@ -5,6 +5,7 @@
     ./i18n.nix
     ./network.nix
     ./nix.nix
+    ./packages.nix
     ./polkit.nix
     ./services.nix
     ./shell.nix
