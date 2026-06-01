@@ -1,18 +1,6 @@
-{pkgs, ...}: let
-  mango-wrapped = pkgs.symlinkJoin {
-    name = "mango-wrapped";
-    paths = [pkgs.mangowc];
-    nativeBuildInputs = [pkgs.makeWrapper];
-    postBuild = ''
-      wrapProgram $out/bin/mango \
-        --add-flags "-s /home/melek/.config/mango/autostart.sh"
-    '';
-    passthru.providedSessions = ["mango"];
-  };
-in {
+{pkgs, ...}: {
   programs.mangowc = {
     enable = true;
-    package = mango-wrapped;
   };
 
   environment.systemPackages = with pkgs; [

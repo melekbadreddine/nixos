@@ -6,7 +6,7 @@
     ./fzf.nix
     ./git.nix
     ./starship.nix
-    ./zellij.nix
+    ./tmux.nix
     ./zoxide.nix
     ./yazi.nix
   ];

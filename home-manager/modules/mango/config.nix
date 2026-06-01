@@ -2,6 +2,9 @@
   home.file.".config/mango/config.conf".text = ''
     # MangoWC Configuration
 
+    # Autostart
+    exec-once=/home/melek/.config/mango/autostart.sh
+
     # Appearance
     gappih=6
     gappiv=6

@@ -22,16 +22,17 @@ in {
     };
 
     # VirtualBox Guest Additions
-    virtualisation.virtualbox.guest.enable = true;
     virtualisation.virtualbox.guest.dragAndDrop = true;
 
     # Better VM graphics performance
     services.xserver.videoDrivers = ["vmware" "modesetting"];
 
     environment.variables = {
-      # Help GTK4/Adwaita apps run better in VMs with 3D acceleration
-      GSK_RENDERER = "ngl";
-      # Ghostty and other GPU-accelerated terminals sometimes need a hint
+      # Prefer stable software rendering for GPU-sensitive apps under VirtualBox 3D.
+      GSK_RENDERER = "cairo";
+      LIBGL_ALWAYS_SOFTWARE = "1";
+      MESA_LOADER_DRIVER_OVERRIDE = "llvmpipe";
+      WLR_RENDERER_ALLOW_SOFTWARE = "1";
       WLR_NO_HARDWARE_CURSORS = "1";
     };
 

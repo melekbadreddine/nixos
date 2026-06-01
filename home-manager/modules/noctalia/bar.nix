@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
-  home.packages = [pkgs.quickshell];
-
+{config, ...}: {
   home.file.".config/quickshell/shell.qml".text = ''
     import QtQuick
     import Quickshell
@@ -62,9 +56,9 @@
                 anchors.verticalCenter: parent.verticalCenter
               }
 
-              Item { width: 10 } # Spacer
+              Item { width: 10 }
 
-              # Basic Clock
+              // Basic Clock
               Text {
                 id: clock
                 text: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -80,13 +74,12 @@
                 }
               }
 
-              # Flexible spacer to push items to the right
+              // Flexible spacer to push items to the right
               Item {
-                Layout.fillWidth: true
                 width: parent.width - 400
               }
 
-              # System Info (Placeholder for Noctalia style)
+              // System Info
               Row {
                 spacing: 15
                 anchors.verticalCenter: parent.verticalCenter

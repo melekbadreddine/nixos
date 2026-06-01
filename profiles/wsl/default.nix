@@ -26,9 +26,6 @@
   drivers.intel.enable = false;
   vm.guest-services.enable = false;
 
-  # Disable SDDM as WSL handles the session startup
-  services.displayManager.sddm.enable = lib.mkForce false;
-
   # WSL does not use a standard bootloader
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = lib.mkForce false;

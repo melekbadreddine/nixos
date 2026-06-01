@@ -1,5 +1,7 @@
 {
   config,
+  lib,
+  host,
   pkgs,
   ...
 }: {
@@ -10,14 +12,21 @@
   programs.fish = {
     enable = true;
 
-    shellInit = ''
-      set -g fish_greeting ""
+    shellInit =
+      ''
+        set -g fish_greeting ""
 
-      # If we are in Ghostty but TERM isn't set correctly, fix it for Yazi and others
-      if test "$GHOSTTY_RESOURCES_DIR" != "" -a "$TERM" != "xterm-ghostty"
-          set -gx TERM xterm-ghostty
-      end
-    '';
+        # If we are in Ghostty but TERM isn't set correctly, fix it for Yazi and others
+        if test "$GHOSTTY_RESOURCES_DIR" != "" -a "$TERM" != "xterm-ghostty"
+            set -gx TERM xterm-ghostty
+        end
+      ''
+      + lib.optionalString (host == "wsl") ''
+        # Avoid slow terminal capability probing under WSL.
+        if not contains no-query-term $fish_features
+            set -Ua fish_features no-query-term
+        end
+      '';
 
     interactiveShellInit = ''
       fastfetch
