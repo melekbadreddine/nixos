@@ -45,7 +45,6 @@
     nodejs
     bun
     python3
-    python3Packages.requests
     jdk
   ];
 }
