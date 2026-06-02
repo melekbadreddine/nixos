@@ -1,21 +1,14 @@
-{pkgs, ...}: {
-  programs.mangowc = {
-    enable = true;
-  };
-
-  environment.systemPackages = with pkgs; [
-    quickshell
-    rofi
-    dunst
-    awww
-    hyprpolkitagent
-    cliphist
-    wl-clipboard
-    grim
-    slurp
-    libnotify
-    upower
+{
+  pkgs,
+  mango,
+  ...
+}: {
+  environment.systemPackages = [
+    mango.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
-  services.upower.enable = true;
+  # Register Mango as a session for the display manager
+  services.displayManager.sessionPackages = [
+    mango.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ];
 }

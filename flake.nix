@@ -30,6 +30,10 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mango = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -39,6 +43,7 @@
     helium,
     zen-browser,
     stylix,
+    mango,
     ...
   } @ inputs: let
     system = "x86_64-linux"; # Primary system
@@ -76,7 +81,7 @@
     in
       nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs fresh helium zen-browser stylix host profile vars;
+          inherit inputs fresh helium zen-browser stylix mango host profile vars;
         };
         modules = [
           {nixpkgs.hostPlatform = system;}
@@ -91,7 +96,7 @@
 
             home-manager.users.melek = import ./home-manager/home.nix;
 
-            home-manager.extraSpecialArgs = {inherit inputs fresh helium zen-browser host profile vars;};
+            home-manager.extraSpecialArgs = {inherit inputs fresh helium zen-browser mango host profile vars;};
           }
         ];
       };
@@ -111,7 +116,7 @@
         value = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit fresh helium zen-browser inputs;
+            inherit fresh helium zen-browser mango inputs;
             host = h;
             profile =
               if h == "wsl"

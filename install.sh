@@ -99,6 +99,7 @@ if sudo nixos-rebuild switch --flake ".#${profile}"; then
   print_header "Desktop Setup Complete"
   echo "COSMIC desktop enabled"
   echo "COSMIC greeter configured"
+  echo "MangoWC compositor enabled"
   echo -e "${GREEN}✓ GPU drivers installed${NC}"
   echo -e "${GREEN}✓ All dependencies installed${NC}"
 

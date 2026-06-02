@@ -24,10 +24,8 @@ home-manager/
   modules/dev/            dev tools (terraform, ansible, cloud CLIs, languages)
   modules/programs/       GUI apps (ghostty, warp, helium, zen, thunderbird)
   modules/shell/          fish + bash configuration
-  modules/mango/          MangoWC config and autostart scripts
-  modules/rofi/           rofi launcher with noctalia theme
-  modules/noctalia/       bar, dunst notifications, wallpaper daemon
-  modules/misc/           MIME types, dconf, GTK theming, QT theming
+  modules/mango/          MangoWC config, waybar, and tofi integration
+  modules/misc/           MIME types, dconf, GTK/QT theming overrides
   modules/kdeconnect/     KDE Connect
 
 ## Usage
@@ -46,11 +44,12 @@ home-manager/
 
 ### Daily Commands
 Manage your system using `just`:
-- `just build` — Test the build without switching
-- `just switch` — Apply changes to the current system
+- `just switch` — Apply changes to the current system (auto-detects profile)
+- `just home-switch` — Apply Home Manager changes only
 - `just update` — Update flake locks and switch
 - `just clean` — Garbage collect old generations
 - `just check` — Run flake evaluation checks
+- `just format` — Format all Nix files with Alejandra
 
 ## GPU Profiles
 | Profile        | Description                                  |
@@ -71,8 +70,8 @@ Manage your system using `just`:
 | Super+z                | Zen browser              |
 | Super+a                | Antigravity              |
 | Super+w                | Warp terminal            |
-| Super+e                | File manager             |
-| Super+Space            | Rofi app launcher        |
+| Super+e                | PCManFM-Qt file manager  |
+| Super+Space            | Tofi app launcher        |
 | Super+q                | Close window             |
 | Super+h/j/k/l          | Focus left/down/up/right |
 | Super+Shift+h/j/k/l    | Move window              |
