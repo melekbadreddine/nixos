@@ -30,7 +30,8 @@
   };
 in {
   stylix = {
-    enable = vars.stylixEnable;
+    enable = true;
+    enableReleaseChecks = false;
     image = vars.stylixImage;
 
     # Dynamically picks based on your choice at the top
