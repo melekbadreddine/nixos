@@ -1,7 +1,6 @@
 {
   pkgs,
   vars,
-  lib,
   ...
 }: let
   # Color Schemes available: "catppuccin-mocha" or "tokyo-night"
@@ -29,57 +28,56 @@
       light = "Gruvbox-Plus-Light";
     };
   };
-in
-  lib.mkIf vars.stylixEnable {
-    stylix = {
-      enable = true;
-      image = vars.stylixImage;
+in {
+  stylix = {
+    enable = vars.stylixEnable;
+    image = vars.stylixImage;
 
-      # Dynamically picks based on your choice at the top
-      base16Scheme = themeSchemes.${currentTheme};
-      polarity = "dark";
+    # Dynamically picks based on your choice at the top
+    base16Scheme = themeSchemes.${currentTheme};
+    polarity = "dark";
 
-      autoEnable = true;
+    autoEnable = true;
 
-      targets = {
-        console.enable = true;
-        kmscon.enable = false;
-        plymouth.enable = true;
-        gtk.enable = false;
-        qt.enable = false;
+    targets = {
+      console.enable = true;
+      kmscon.enable = false;
+      plymouth.enable = true;
+      gtk.enable = false;
+      qt.enable = false;
+    };
+
+    opacity = {
+      desktop = 0.2;
+    };
+
+    # Dynamically picks your icon pack from the choice at the top
+    icons =
+      {
+        enable = true;
+      }
+      // iconConfigs.${currentIcons};
+
+    # Phinger Dark Cursor Setup
+    cursor = {
+      package = pkgs.phinger-cursors;
+      name = "phinger-cursors-dark";
+      size = 24;
+    };
+
+    fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.departure-mono;
+        name = "DepartureMono Nerd Font Mono";
       };
-
-      opacity = {
-        desktop = 0.2;
+      sansSerif = {
+        package = pkgs.nerd-fonts.departure-mono;
+        name = "DepartureMono Nerd Font";
       };
-
-      # Dynamically picks your icon pack from the choice at the top
-      icons =
-        {
-          enable = true;
-        }
-        // iconConfigs.${currentIcons};
-
-      # Phinger Dark Cursor Setup
-      cursor = {
-        package = pkgs.phinger-cursors;
-        name = "phinger-cursors-dark";
-        size = 24;
-      };
-
-      fonts = {
-        monospace = {
-          package = pkgs.nerd-fonts.departure-mono;
-          name = "DepartureMono Nerd Font Mono";
-        };
-        sansSerif = {
-          package = pkgs.nerd-fonts.departure-mono;
-          name = "DepartureMono Nerd Font";
-        };
-        serif = {
-          package = pkgs.nerd-fonts.departure-mono;
-          name = "DepartureMono Nerd Font";
-        };
+      serif = {
+        package = pkgs.nerd-fonts.departure-mono;
+        name = "DepartureMono Nerd Font";
       };
     };
-  }
+  };
+}

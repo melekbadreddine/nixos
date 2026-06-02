@@ -1,11 +1,9 @@
 {
   vars,
-  lib,
   pkgs,
   ...
-}:
-lib.mkIf vars.stylixEnable {
-  stylix.enable = true;
+}: {
+  stylix.enable = vars.stylixEnable;
   stylix.image = vars.stylixImage;
   stylix.base16Scheme = pkgs.base16-schemes + "/share/themes/catppuccin-mocha.yaml";
 
