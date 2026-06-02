@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  vars,
   helium,
   zen-browser,
   mango,
@@ -9,6 +10,12 @@
   # Helper to convert Stylix color to Mango format (0xRRGGBBAA)
   toMangoColor = color: "0x${color}ff";
   colors = config.lib.stylix.colors;
+
+  # Fallback image if stylix.image is null (can happen in some evaluation contexts)
+  wallpaper =
+    if config.stylix.image != null
+    then config.stylix.image
+    else vars.stylixImage;
 in {
   imports = [mango.hmModules.mango];
 
@@ -130,7 +137,7 @@ in {
     };
 
     autostart_sh = ''
-      ${pkgs.swaybg}/bin/swaybg -i ${config.stylix.image} -m fill &
+      ${pkgs.swaybg}/bin/swaybg -i ${wallpaper} -m fill &
       ${pkgs.waybar}/bin/waybar &
     '';
   };
