@@ -26,6 +26,8 @@
     jq
     bat
     fzf
+    zip
+    unzip
 
     # Monitoring
     btop
@@ -40,6 +42,7 @@
     tflint
 
     # Languages & Runtimes
+    gcc
     go
     cargo
     nodejs
@@ -47,4 +50,16 @@
     python3
     jdk
   ];
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.symbols-only
+  ];
+
+  programs.fish.enable = true;
+  programs.dconf.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 }
