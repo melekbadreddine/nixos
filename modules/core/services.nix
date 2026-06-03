@@ -3,10 +3,10 @@
     # High-performance system console config (Replaces default getty)
     kmscon = {
       enable = true;
-      hwRender = true;
-      extraConfig = ''
-        font-name=JetBrainsMono Nerd Font
-      '';
+      config = {
+        "font-name" = "JetBrainsMono Nerd Font";
+        hwaccel = true;
+      };
     };
 
     # X server keyboard configuration for French layout
