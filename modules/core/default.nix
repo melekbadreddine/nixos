@@ -6,6 +6,7 @@
     ./nix.nix
     ./packages.nix
     ./polkit.nix
+    ./sddm.nix
     ./services.nix
     ./shell.nix
     ./sops.nix

@@ -84,25 +84,25 @@ in {
       bind = [
         "SUPER,Return,spawn,${pkgs.ghostty}/bin/ghostty"
         "SUPER,b,spawn,${helium.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/helium"
-        "SUPER,z,spawn,${zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/zen"
-        "SUPER,a,spawn,${pkgs.antigravity}/bin/antigravity"
-        "SUPER,w,spawn,${pkgs.warp-terminal}/bin/warp-terminal"
+        "SUPER,w,spawn,${zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/zen"
+        "SUPER,q,spawn,${pkgs.antigravity}/bin/antigravity"
+        "SUPER,z,spawn,${pkgs.warp-terminal}/bin/warp-terminal"
         "SUPER,e,spawn,${pkgs.lxqt.pcmanfm-qt}/bin/pcmanfm-qt"
         "SUPER,Space,spawn,${pkgs.tofi}/bin/tofi-drun"
-        "SUPER,q,killclient,"
+        "SUPER,a,killclient,"
         "ctrl+alt,space,quit"
 
         # Focus
-        "SUPER,h,focusdir,left"
-        "SUPER,j,focusdir,down"
-        "SUPER,k,focusdir,up"
-        "SUPER,l,focusdir,right"
+        "SUPER,Left,focusdir,left"
+        "SUPER,Down,focusdir,down"
+        "SUPER,Up,focusdir,up"
+        "SUPER,Right,focusdir,right"
 
         # Move
-        "SUPER+SHIFT,h,exchange_client,left"
-        "SUPER+SHIFT,j,exchange_client,down"
-        "SUPER+SHIFT,k,exchange_client,up"
-        "SUPER+SHIFT,l,exchange_client,right"
+        "SUPER+SHIFT,Left,exchange_client,left"
+        "SUPER+SHIFT,Down,exchange_client,down"
+        "SUPER+SHIFT,Up,exchange_client,up"
+        "SUPER+SHIFT,Right,exchange_client,right"
 
         # Tags
         "SUPER,1,view,1,0"

@@ -3,8 +3,8 @@
   stylixImage = ../../assets/wallpapers/16.png;
 
   # Desktop Environment Preferences
-  cosmicEnable = true;
-  cosmicGreeterEnable = true;
+  cosmicEnable = false;
+  cosmicGreeterEnable = false;
 
   # GPU Bus IDs (for hybrid GPU configurations)
   intelID = "PCI:0:2:0";

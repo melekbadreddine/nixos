@@ -63,19 +63,19 @@ Manage your system using `just`:
 | `wsl`          | Windows Subsystem for Linux                  |
 
 ## MangoWC Keybindings
-| Key                    | Action                   |
-|------------------------|--------------------------|
-| Super+Return           | Ghostty terminal         |
-| Super+b                | Helium browser           |
-| Super+z                | Zen browser              |
-| Super+a                | Antigravity              |
-| Super+w                | Warp terminal            |
-| Super+e                | PCManFM-Qt file manager  |
-| Super+Space            | Tofi app launcher        |
-| Super+q                | Close window             |
-| Super+h/j/k/l          | Focus left/down/up/right |
-| Super+Shift+h/j/k/l    | Move window              |
-| Super+BackSpace        | Logout                   |
+| Key                            | Action                   |
+|--------------------------------|--------------------------|
+| Super+Return                   | Ghostty terminal         |
+| Super+b                        | Helium browser           |
+| Super+w                        | Zen browser              |
+| Super+q                        | Antigravity              |
+| Super+z                        | Warp terminal            |
+| Super+e                        | PCManFM-Qt file manager  |
+| Super+Space                    | Tofi app launcher        |
+| Super+a                        | Close window             |
+| Super+Left/Down/Up/Right       | Focus left/down/up/right |
+| Super+Shift+Left/Down/Up/Right | Move window              |
+| Super+BackSpace                | Logout                   |
 
 ## License
 Personal configuration. Use at your own risk.
