@@ -92,6 +92,7 @@
 
   home.sessionVariables = {
     EDITOR = "fresh";
+    STARSHIP_LOG = "error";
   };
 
   home.file.".config/fish/themes/stylix.theme".text = ''
