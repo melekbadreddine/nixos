@@ -22,6 +22,11 @@ in {
   wayland.windowManager.mango = {
     enable = true;
     settings = {
+      input = {
+        kb_layout = "fr";
+        kb_variant = "azerty";
+      };
+
       # Window effect
       border_radius = 6;
       no_radius_when_single = 0;
@@ -80,16 +85,16 @@ in {
         "id:9,layout_name:tile"
       ];
 
-      # Keybindings (Based on README.md)
+      # Keybindings
       bind = [
         "SUPER,Return,spawn,${pkgs.ghostty}/bin/ghostty"
-        "SUPER,b,spawn,${helium.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/helium"
-        "SUPER,w,spawn,${zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/zen"
-        "SUPER,q,spawn,${pkgs.antigravity}/bin/antigravity"
-        "SUPER,z,spawn,${pkgs.warp-terminal}/bin/warp-terminal"
-        "SUPER,e,spawn,${pkgs.lxqt.pcmanfm-qt}/bin/pcmanfm-qt"
+        "SUPER,h,spawn,${helium.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/helium"
+        "SUPER,z,spawn,${zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/zen"
+        "SUPER,a,spawn,${pkgs.antigravity}/bin/antigravity"
+        "SUPER,w,spawn,${pkgs.warp-terminal}/bin/warp-terminal"
+        "SUPER,f,spawn,${pkgs.lxqt.pcmanfm-qt}/bin/pcmanfm-qt"
         "SUPER,Space,spawn,${pkgs.tofi}/bin/tofi-drun"
-        "SUPER,a,killclient,"
+        "SUPER,q,killclient,"
         "ctrl+alt,space,quit"
 
         # Focus

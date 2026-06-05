@@ -68,16 +68,20 @@ in {
 
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.departure-mono;
-        name = "DepartureMono Nerd Font Mono";
+        package = pkgs.nerd-fonts.monaspace;
+        name = "MonaspaceNe Nerd Font";
       };
       sansSerif = {
-        package = pkgs.nerd-fonts.departure-mono;
-        name = "DepartureMono Nerd Font";
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
       };
       serif = {
-        package = pkgs.nerd-fonts.departure-mono;
-        name = "DepartureMono Nerd Font";
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
       };
     };
   };

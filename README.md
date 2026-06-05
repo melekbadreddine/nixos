@@ -66,13 +66,13 @@ Manage your system using `just`:
 | Key                            | Action                   |
 |--------------------------------|--------------------------|
 | Super+Return                   | Ghostty terminal         |
-| Super+b                        | Helium browser           |
-| Super+w                        | Zen browser              |
-| Super+q                        | Antigravity              |
-| Super+z                        | Warp terminal            |
-| Super+e                        | PCManFM-Qt file manager  |
+| Super+h                        | Helium browser           |
+| Super+z                        | Zen browser              |
+| Super+a                        | Antigravity              |
+| Super+w                        | Warp terminal            |
+| Super+f                        | PCManFM-Qt file manager  |
 | Super+Space                    | Tofi app launcher        |
-| Super+a                        | Close window             |
+| Super+q                        | Close window             |
 | Super+Left/Down/Up/Right       | Focus left/down/up/right |
 | Super+Shift+Left/Down/Up/Right | Move window              |
 | Super+BackSpace                | Logout                   |
