@@ -21,10 +21,15 @@ in {
 
   wayland.windowManager.mango = {
     enable = true;
-    settings = {
-      "input.kb_layout" = "fr";
-      "input.kb_variant" = "azerty";
 
+    extraConfig = ''
+      input {
+          kb_layout = fr
+          kb_variant = azerty
+      }
+    '';
+
+    settings = {
       # Window effect
       border_radius = 6;
       no_radius_when_single = 0;
