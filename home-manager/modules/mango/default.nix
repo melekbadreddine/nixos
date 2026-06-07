@@ -90,6 +90,7 @@ in {
         "SUPER,w,spawn,${pkgs.warp-terminal}/bin/warp-terminal"
         "SUPER,f,spawn,${pkgs.lxqt.pcmanfm-qt}/bin/pcmanfm-qt"
         "SUPER,Space,spawn,${pkgs.tofi}/bin/tofi-drun"
+        "SUPER,v,spawn,${pkgs.virt-manager}/bin/virt-manager"
         "SUPER,q,killclient,"
         "ctrl+alt,space,quit"
 

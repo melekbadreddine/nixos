@@ -14,19 +14,25 @@ tagline: Flakes · Home Manager · Stylix · COSMIC · MangoWC
 - WSL support
 
 ## Structure
-hosts/                    host-specific settings (default, vm, wsl)
-modules/core/             base system services and settings
-modules/drivers/          GPU and VM driver options
-modules/desktops/         COSMIC and MangoWC desktop modules
-profiles/                 entry points mapping profiles to hosts and drivers
-home-manager/
-  modules/cli/            CLI tools (starship, fastfetch, fzf, bat, eza...)
-  modules/dev/            dev tools (terraform, ansible, cloud CLIs, languages)
-  modules/programs/       GUI apps (ghostty, warp, helium, zen, thunderbird)
-  modules/shell/          fish + bash configuration
-  modules/mango/          MangoWC config, waybar, and tofi integration
-  modules/misc/           MIME types, dconf, GTK/QT theming overrides
-  modules/kdeconnect/     KDE Connect
+```text
+/home/melek/nixos/
+├── flake.nix               # Entry point
+├── hosts/                  # Host configurations (default, vm, wsl)
+├── modules/
+│   ├── core/               # Base system services (SDDM, I18N, ENV)
+│   ├── desktops/           # Desktop managers (COSMIC, Mango)
+│   └── drivers/            # GPU drivers (AMD, Intel, NVIDIA)
+├── profiles/               # Hardware profiles
+├── home-manager/
+│   ├── home.nix            # Main HM entry point
+│   └── modules/
+│       ├── cli/            # CLI tools (fastfetch, git, yazi)
+│       ├── mango/          # MangoWC user config
+│       ├── programs/       # GUI apps (zen, ghostty, vesktop)
+│       └── shell/          # fish + bash config
+├── assets/                 # Wallpapers and themes
+└── secrets/                # SOPS-nix encrypted secrets
+```
 
 ## Usage
 ### Installation
@@ -72,6 +78,7 @@ Manage your system using `just`:
 | Super+w                        | Warp terminal            |
 | Super+f                        | PCManFM-Qt file manager  |
 | Super+Space                    | Tofi app launcher        |
+| Super+v                        | Virt-Manager             |
 | Super+q                        | Close window             |
 | Super+Left/Down/Up/Right       | Focus left/down/up/right |
 | Super+Shift+Left/Down/Up/Right | Move window              |
