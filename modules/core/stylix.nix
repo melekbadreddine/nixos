@@ -44,8 +44,8 @@ in {
       console.enable = true;
       kmscon.enable = false;
       plymouth.enable = true;
-      gtk.enable = false;
-      qt.enable = false;
+      gtk.enable = true;
+      qt.enable = true;
     };
 
     opacity = {
