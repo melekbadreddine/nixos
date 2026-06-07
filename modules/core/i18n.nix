@@ -19,10 +19,4 @@
 
   # Configure console keymap
   console.keyMap = "fr";
-
-  # System-wide XKB configuration (X11 and Wayland)
-  services.xserver.xkb = {
-    layout = "fr";
-    variant = "azerty";
-  };
 }

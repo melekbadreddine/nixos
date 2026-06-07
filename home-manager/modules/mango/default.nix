@@ -52,8 +52,6 @@ in {
       default_mfact = "0.55";
       default_nmaster = 1;
       smartgaps = 0;
-      xkb_rules_layout = "fr";
-      xkb_rules_variant = "azerty";
 
       # Appearance (Using Stylix)
       gappih = 5;
