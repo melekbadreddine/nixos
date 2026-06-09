@@ -5,8 +5,8 @@
 
   home.username = "melek";
   home.homeDirectory = lib.mkForce "/home/melek";
-
-  home.stateVersion = "26.05";
-  programs.home-manager.enable = true;
+  home.stateVersion = "25.11";
   home.enableNixpkgsReleaseCheck = false;
+
+  programs.home-manager.enable = true;
 }
