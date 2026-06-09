@@ -16,7 +16,13 @@
   environment.localBinInPath = true;
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    # Permits older desktop application layers to run without compilation crashes
+    permittedInsecurePackages = [
+      "electron-25.9.0"
+    ];
+  };
 
   # Global Behavior & Performance Optimizations
   documentation.nixos.enable = false;
