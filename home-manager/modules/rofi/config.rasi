@@ -16,7 +16,6 @@ window {
   border: 2px solid;
   border-color: var(accent);
   background-color: var(bg0);
-  box-shadow: 0px 10px 40px #00000088;
 }
 
 mainbox {
