@@ -28,7 +28,9 @@ tagline: Flakes · Home Manager · Stylix · COSMIC · MangoWC
 │   └── modules/
 │       ├── cli/            # CLI tools (fastfetch, git, yazi)
 │       ├── mango/          # MangoWC user config
+│       ├── noctalia/       # Noctalia panel/bar config
 │       ├── programs/       # GUI apps (zen, ghostty, vesktop)
+│       ├── rofi/           # Rofi launcher config
 │       └── shell/          # fish + bash config
 ├── assets/                 # Wallpapers and themes
 └── secrets/                # SOPS-nix encrypted secrets
@@ -77,7 +79,7 @@ Manage your system using `just`:
 | Super+a                        | Antigravity              |
 | Super+w                        | Warp terminal            |
 | Super+f                        | PCManFM-Qt file manager  |
-| Super+Space                    | Tofi app launcher        |
+| Super+Space                    | Rofi app launcher        |
 | Super+v                        | Virt-Manager             |
 | Super+q                        | Close window             |
 | Super+Left/Down/Up/Right       | Focus left/down/up/right |

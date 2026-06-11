@@ -2,8 +2,14 @@
   description = "A custom, declarative, multi-profile NixOS dotfiles";
 
   nixConfig = {
-    extra-substituters = ["https://melek-nixos.cachix.org"];
-    extra-trusted-public-keys = ["melek-nixos.cachix.org-1:UdhKZAFc78C4ge9SFfgCtMcyBGVfJemC/dwjBaqonVs="];
+    extra-substituters = [
+      "https://melek-nixos.cachix.org"
+      "https://noctalia.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "melek-nixos.cachix.org-1:UdhKZAFc78C4ge9SFfgCtMcyBGVfJemC/dwjBaqonVs="
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+    ];
   };
 
   inputs = {
@@ -34,6 +40,10 @@
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,6 +58,7 @@
     zen-browser,
     stylix,
     mango,
+    noctalia,
     ...
   } @ inputs: let
     system = "x86_64-linux"; # Primary system
@@ -85,7 +96,7 @@
     in
       nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs fresh helium zen-browser stylix mango host profile vars;
+          inherit inputs fresh helium zen-browser stylix mango noctalia host profile vars;
         };
         modules = [
           {nixpkgs.hostPlatform = system;}
@@ -100,7 +111,7 @@
 
             home-manager.users.melek = import ./home-manager/home.nix;
 
-            home-manager.extraSpecialArgs = {inherit inputs fresh helium zen-browser mango host profile vars;};
+            home-manager.extraSpecialArgs = {inherit inputs fresh helium zen-browser mango noctalia host profile vars;};
           }
         ];
       };
@@ -120,7 +131,7 @@
         value = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit fresh helium zen-browser mango inputs;
+            inherit fresh helium zen-browser mango noctalia inputs;
             host = h;
             profile =
               if h == "wsl"

@@ -7,5 +7,7 @@
     ./kdeconnect
     ./misc
     ./mango
+    ./rofi
+    ./noctalia
   ];
 }

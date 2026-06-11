@@ -5,6 +5,7 @@
   helium,
   zen-browser,
   mango,
+  noctalia,
   ...
 }: let
   # Helper to convert Stylix color to Mango format (0xRRGGBBAA)
@@ -16,6 +17,17 @@
     if config.stylix.image != null
     then config.stylix.image
     else vars.stylixImage;
+
+  noctaliaPkg = noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  noctaliaBin = "${noctaliaPkg}/bin/noctalia";
+  rofiBin = "${pkgs.rofi}/bin/rofi";
+
+  # Compile/Substitute the autostart template script
+  autostartScript = pkgs.replaceVars ./scripts/autostart.sh {
+    swaybg = "${pkgs.swaybg}/bin/swaybg";
+    wallpaper = toString wallpaper;
+    noctalia = noctaliaBin;
+  };
 in {
   imports = [mango.hmModules.mango];
 
@@ -93,7 +105,8 @@ in {
         "SUPER,a,spawn,${pkgs.antigravity}/bin/antigravity"
         "SUPER,w,spawn,${pkgs.warp-terminal}/bin/warp-terminal"
         "SUPER,f,spawn,${pkgs.lxqt.pcmanfm-qt}/bin/pcmanfm-qt"
-        "SUPER,Space,spawn,${pkgs.tofi}/bin/tofi-drun"
+        # Rofi launcher (replaces tofi)
+        "SUPER,Space,spawn,${rofiBin} -show drun"
         "SUPER,v,spawn,${pkgs.virt-manager}/bin/virt-manager"
         "SUPER,q,killclient,"
         "ctrl+alt,space,quit"
@@ -134,6 +147,17 @@ in {
         "SUPER,0,toggleoverview"
         "SUPER,f,togglefullscreen,"
         "SUPER,BackSpace,spawn,${pkgs.systemd}/bin/loginctl terminate-user $USER"
+
+        # Noctalia IPC — shell panels
+        "SUPER,s,spawn,${noctaliaBin} msg panel-toggle control-center"
+        "SUPER,comma,spawn,${noctaliaBin} msg settings-toggle"
+
+        # Media keys via Noctalia IPC
+        "NONE,XF86AudioRaiseVolume,spawn,${noctaliaBin} msg volume-up"
+        "NONE,XF86AudioLowerVolume,spawn,${noctaliaBin} msg volume-down"
+        "NONE,XF86AudioMute,spawn,${noctaliaBin} msg volume-mute"
+        "NONE,XF86MonBrightnessUp,spawn,${noctaliaBin} msg brightness-up"
+        "NONE,XF86MonBrightnessDown,spawn,${noctaliaBin} msg brightness-down"
       ];
 
       mousebind = [
@@ -142,51 +166,8 @@ in {
       ];
     };
 
-    autostart_sh = ''
-      ${pkgs.swaybg}/bin/swaybg -i ${wallpaper} -m fill &
-      ${pkgs.waybar}/bin/waybar &
-    '';
-  };
-
-  # Core tools for Mango
-  programs.tofi = {
-    enable = true;
-    settings = {
-      history = false;
-      prompt-text = " ";
-      hide-cursor = true;
-      drun-launch = true;
-    };
-  };
-
-  programs.waybar = {
-    enable = true;
-    settings.mainBar = {
-      layer = "top";
-      position = "top";
-      modules-left = ["ext/workspaces"];
-      modules-center = ["clock"];
-      modules-right = ["network" "wireplumber"];
-
-      "ext/workspaces".on-click = "activate";
-      clock = {
-        format = "{:%d/%m/%Y, %H:%M}h";
-        tooltip = false;
-      };
-      network = {
-        format-disconnected = "󰪎 offline";
-        format-ethernet = " {ifname}";
-        format-wifi = "{icon} {signalStrength}%";
-        format-icons = ["󰤟" "󰤢" "󰤥" "󰤨"];
-        on-click = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
-      };
-      wireplumber = {
-        format = "{icon} {volume}%";
-        format-icons = ["" "" ""];
-        format-muted = " {volume}%";
-        on-click = "${pkgs.lxqt.pavucontrol-qt}/bin/pavucontrol-qt";
-      };
-    };
+    # Run the substituted autostart script
+    autostart_sh = "${pkgs.bash}/bin/bash ${autostartScript}";
   };
 
   home.packages = with pkgs; [
@@ -196,5 +177,6 @@ in {
     networkmanagerapplet
     lxqt.pcmanfm-qt
     lxqt.pavucontrol-qt
+    noctaliaPkg
   ];
 }

@@ -16,5 +16,6 @@
     starship.enable = false;
     ghostty.enable = false;
     fish.enable = false;
+    rofi.enable = false;
   };
 }
