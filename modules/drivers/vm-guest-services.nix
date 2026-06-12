@@ -9,33 +9,24 @@ in {
   options.vm.guest-services = {
     enable = mkEnableOption "Enable Virtual Machine Guest Services";
   };
-
   config = mkIf cfg.enable {
-    # Hardware acceleration for VMs
-    hardware.graphics = {
-      enable = true;
-      # 3D acceleration in VMs often requires these for Virgil/SVGA
-      enable32Bit = true;
-    };
-
     # VirtualBox Guest Additions
     virtualisation.virtualbox.guest = {
       enable = true;
       dragAndDrop = true;
     };
-
-    # Better VM graphics performance
+    # vboxvideo kernel DRM driver + modesetting Xorg fallback
     services.xserver.videoDrivers = ["modesetting" "virtualbox"];
-
+    # Basic graphics stack
+    hardware.graphics.enable = true;
+    # Blacklist vmwgfx — it misdetects VBoxSVGA and causes drm errors at boot
+    boot.blacklistedKernelModules = ["vmwgfx"];
     environment.variables = {
-      # MangoWC/Wayland under virtual machine: disable hardware cursors
       WLR_NO_HARDWARE_CURSORS = "1";
-      # Let Mesa auto-select; 3D acceleration supports virgl so don't force llvmpipe
-      LIBGL_ALWAYS_SOFTWARE = "0";
+      LIBGL_ALWAYS_SOFTWARE = "1";
+      MESA_LOADER_DRIVER_OVERRIDE = "llvmpipe";
+      # Allow wlroots compositors to run on software rendering
+      WLR_RENDERER_ALLOW_SOFTWARE = "1";
     };
-
-    # spice-webdavd is disabled due to build failure with davsfs2
-    # Enable if your system doesn't encounter this issue
-    services.spice-webdavd.enable = false;
   };
 }
