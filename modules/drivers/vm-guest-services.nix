@@ -15,18 +15,18 @@ in {
       enable = true;
       dragAndDrop = true;
     };
-    # vboxvideo kernel DRM driver + modesetting Xorg fallback
-    services.xserver.videoDrivers = ["modesetting" "virtualbox"];
-    # Basic graphics stack
-    hardware.graphics.enable = true;
-    # Blacklist vmwgfx — it misdetects VBoxSVGA and causes drm errors at boot
-    boot.blacklistedKernelModules = ["vmwgfx"];
+    # VMSVGA uses the vmwgfx kernel DRM driver
+    services.xserver.videoDrivers = ["vmware"];
+    # Enable graphics stack + 3D via virgl/vmwgfx
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
     environment.variables = {
+      # Required for wlroots compositors in VMs
       WLR_NO_HARDWARE_CURSORS = "1";
-      LIBGL_ALWAYS_SOFTWARE = "1";
-      MESA_LOADER_DRIVER_OVERRIDE = "llvmpipe";
-      # Allow wlroots compositors to run on software rendering
-      WLR_RENDERER_ALLOW_SOFTWARE = "1";
+      # Let Mesa use vmwgfx/virgl — do NOT force llvmpipe with 3D acceleration enabled
+      LIBGL_ALWAYS_SOFTWARE = "0";
     };
   };
 }
