@@ -11,9 +11,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.qemuGuest.enable = true;
-    services.spice-vdagentd.enable = true;
-
     # Hardware acceleration for VMs
     hardware.graphics = {
       enable = true;
@@ -22,21 +19,22 @@ in {
     };
 
     # VirtualBox Guest Additions
-    virtualisation.virtualbox.guest.dragAndDrop = true;
-
-    # Better VM graphics performance
-    services.xserver.videoDrivers = ["vmware" "modesetting"];
-
-    environment.variables = {
-      # Prefer stable software rendering for GPU-sensitive apps under VirtualBox 3D.
-      GSK_RENDERER = "cairo";
-      LIBGL_ALWAYS_SOFTWARE = "1";
-      MESA_LOADER_DRIVER_OVERRIDE = "llvmpipe";
-      WLR_RENDERER_ALLOW_SOFTWARE = "1";
-      WLR_NO_HARDWARE_CURSORS = "1";
+    virtualisation.virtualbox.guest = {
+      enable = true;
+      dragAndDrop = true;
     };
 
-    # spice-webdavd is disabled due to build failure with davsfs2 (unsupported neon version)
+    # Better VM graphics performance
+    services.xserver.videoDrivers = ["modesetting" "virtualbox"];
+
+    environment.variables = {
+      # MangoWC/Wayland under virtual machine: disable hardware cursors
+      WLR_NO_HARDWARE_CURSORS = "1";
+      # Let Mesa auto-select; 3D acceleration supports virgl so don't force llvmpipe
+      LIBGL_ALWAYS_SOFTWARE = "0";
+    };
+
+    # spice-webdavd is disabled due to build failure with davsfs2
     # Enable if your system doesn't encounter this issue
     services.spice-webdavd.enable = false;
   };

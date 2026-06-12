@@ -1,10 +1,15 @@
 {
   pkgs,
   vars,
+  lib,
   ...
 }: {
   # System settings
   system.stateVersion = "25.11";
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+  networking.wireless.enable = lib.mkForce false; # Ensure wireless is disabled to avoid conflicts with NetworkManager
 
   # Session Variables
   environment.sessionVariables = {

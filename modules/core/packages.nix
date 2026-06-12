@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   # System Programs, Shells & Daemons
   programs.fish.enable = true;
+  environment.shells = with pkgs; [fish];
+
   programs.dconf.enable = true;
   programs.gnupg.agent = {
     enable = true;
@@ -36,6 +38,7 @@
 
     # AI Assistants
     codex
+    fabric-ai
     gemini-cli
     github-copilot-cli
 
