@@ -1,15 +1,15 @@
 {
   config,
-  noctalia,
+  inputs,
   ...
 }: let
   colors = config.lib.stylix.colors;
 in {
-  imports = [noctalia.homeModules.default];
+  imports = [inputs.noctalia.homeModules.default];
 
   programs.noctalia = {
     enable = true;
-    # Pass settings as a Nix attrset — HM module serialises to TOML
+    systemd.enable = true; # auto-restart on config change
     settings = import ./config.nix {inherit colors;};
   };
 }

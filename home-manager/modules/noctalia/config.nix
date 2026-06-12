@@ -1,5 +1,5 @@
 {colors}: {
-  compositor = "mango";
+  # ── Theme ────────────────────────────────────────────────────────────────
   theme = {
     mode = "dark";
     source = "custom";
@@ -33,100 +33,81 @@
     };
   };
 
-  bar = {
+  # ── Bar ──────────────────────────────────────────────────────────────────
+  bar.order = ["main"];
+
+  "bar.main" = {
     position = "top";
-    height = 40;
-    margin = {
-      top = 8;
-      left = 12;
-      right = 12;
-      bottom = 0;
-    };
-    border-radius = 14;
-    opacity = 0.90;
-    spacing = 6;
-    modules-left = ["launcher" "workspaces"];
-    modules-center = ["clock"];
-    modules-right = ["network" "audio" "battery" "notifications"];
+    enabled = true;
+    thickness = 38;
+    background_opacity = 0.88;
+    margin_edge = 8; # float the bar 8px from screen edge
+    margin_ends = 10; # inset from left/right ends
+    radius = 14;
+    shadow = true;
+    border = "outline";
+    border_width = 1.0;
+    widget_spacing = 6;
+    font_weight = "regular";
+
+    # Enable capsules globally — gives each widget its own pill background
+    capsule = true;
+    capsule_fill = "surface_variant";
+    capsule_radius = 10.0;
+    capsule_opacity = 0.85;
+
+    start = ["launcher" "workspaces"];
+    center = ["clock"];
+    end = ["network" "volume" "battery" "notifications" "control-center"];
   };
 
-  launcher = {
-    enabled = true;
+  # ── Widgets ───────────────────────────────────────────────────────────────
+
+  "widget.launcher" = {
+    type = "launcher";
     icon = "󱗼";
-    tooltip = false;
   };
 
-  workspaces = {
-    on-click = "activate";
-    on-scroll-up = "next";
-    on-scroll-down = "prev";
-    format = "{id}";
-    format-active = "{id}";
-    active-only = false;
-    persistent = [1 2 3 4 5];
+  "widget.workspaces" = {
+    type = "workspaces";
+    display = "id";
+    minimal = false;
+    hide_when_empty = false;
+    labels_only_when_occupied = true;
+    focused_color = "primary";
+    occupied_color = "secondary";
+    empty_color = "surface_variant";
+    pill_scale = 0.9;
   };
 
-  clock = {
-    format = "  %H:%M";
-    format-alt = "  %a %d %b";
-    tooltip = true;
-    tooltip-format = "{:%A, %d %B %Y  •  %H:%M}";
-    on-click = "format-alt";
-    interval = 60;
+  "widget.clock" = {
+    type = "clock";
+    format = " {:%H:%M}";
+    tooltip_format = "{:%A, %d %B %Y}";
   };
 
-  network = {
-    interval = 5;
-    format-wifi = "  {essid}";
-    format-ethernet = "󰈀  {ifname}";
-    format-disconnected = "󰤭  Offline";
-    format-linked = "󰤫  {ifname}";
-    tooltip = true;
-    tooltip-format-wifi = "{essid}  {signalStrength}%\n{ipaddr}";
-    tooltip-format-ethernet = "{ifname}\n{ipaddr}";
-    on-click = "nm-connection-editor";
+  "widget.network" = {
+    type = "network";
   };
 
-  audio = {
-    format = "{icon}  {volume}%";
-    format-muted = "󰖁  Muted";
-    format-icons = {
-      default = ["󰕿" "󰖀" "󰕾"];
-      headphone = "󰋋";
-      speaker = "󰓃";
-    };
-    scroll-step = 2;
-    on-click = "pavucontrol";
-    on-click-right = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-    tooltip = true;
-    tooltip-format = "{desc}";
+  "widget.volume" = {
+    type = "volume";
   };
 
-  battery = {
-    interval = 30;
-    states = {
-      warning = 30;
-      critical = 15;
-    };
-    format = "{icon}  {capacity}%";
-    format-charging = "󰂄  {capacity}%";
-    format-plugged = "󰚥  {capacity}%";
-    format-full = "󰁹  Full";
-    format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
-    tooltip = true;
-    tooltip-format = "{timeTo}";
+  "widget.battery" = {
+    type = "battery";
   };
 
-  notifications = {
-    enabled = true;
-    position = "top-right";
-    on-click = "swaync-client -t";
-    format = "󰂚";
-    format-dnd = "󰂛";
-    tooltip = false;
+  "widget.notifications" = {
+    type = "notifications";
   };
 
-  wallpaper = {
+  "widget.control-center" = {
+    type = "control-center";
+  };
+
+  # ── Wallpaper ─────────────────────────────────────────────────────────────
+  "wallpaper" = {
     enabled = false;
   };
 }

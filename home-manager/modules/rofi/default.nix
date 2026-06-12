@@ -7,7 +7,7 @@
 
   # Helper: produce an 8-digit hex color with full opacity for rofi
   hex = c: "#${c}";
-  hexAlpha = c: a: "#${c}${a}"; # a = 2-char alpha e.g. "cc"
+  hexAlpha = c: a: "argb:${a}${c}"; # rofi argb format: argb:AARRGGBB
 in {
   programs.rofi = {
     enable = true;

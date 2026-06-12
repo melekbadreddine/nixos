@@ -38,17 +38,24 @@ tagline: Flakes · Home Manager · Stylix · COSMIC · MangoWC
 
 ## Usage
 ### Installation
-1.  **Boot a NixOS installer** (any recent ISO).
-2.  **Clone this repository**:
-    ```bash
-    nix-shell -p git --run "git clone https://github.com/melek/nixos.git ~/nixos"
-    cd ~/nixos
-    ```
-3.  **Run the install script**:
-    ```bash
-    ./install.sh
-    ```
-    The script will auto-detect your hardware and suggest the best profile.
+1. **Boot a NixOS installer** (any recent ISO).
+2. **Open a Nix shell with the required tools**:
+```bash
+nix-shell -p git pciutils
+```
+3. **Clone this repository**:
+```bash
+git clone https://github.com/melekbadreddine/nixos.git ~/nixos
+```
+4. **Navigate into the directory**:
+```bash
+cd ~/nixos
+```
+5. **Run the install script**:
+```bash
+./install.sh
+```
+The script will auto-detect your hardware and suggest the best profile.
 
 ### Daily Commands
 Manage your system using `just`:
