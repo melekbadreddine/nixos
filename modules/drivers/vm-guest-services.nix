@@ -41,14 +41,14 @@ in {
       # Fallback to software rendering if virtual GPU 3D initialization fails
       WLR_RENDERER_ALLOW_SOFTWARE = "1";
 
-      # Fix QtQuick/QML apps (like Noctalia) crashing or failing to render in VMs with 3D acceleration
+      # Fix QtQuick/QML apps crashing or failing to render in VMs with 3D acceleration
       QSG_RENDER_LOOP = "basic";
 
       # Limit virtual GPU to stable OpenGL code paths (uncomment if you still experience black screen)
-      # SVGA_VGPU10 = "0";
+      SVGA_VGPU10 = "0";
 
-      # Force software rendering for compositor if virtual GPU is completely broken (uncomment if needed)
-      # WLR_RENDERER = "pixman";
+      # Force software rendering for compositor if virtual GPU is completely broken
+      WLR_RENDERER = "pixman";
     };
   };
 }
