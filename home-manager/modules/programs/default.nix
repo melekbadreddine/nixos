@@ -5,5 +5,6 @@
     ./ghostty.nix
     ./thunderbird.nix
     ./vesktop.nix
+    ./codex.nix
   ];
 }

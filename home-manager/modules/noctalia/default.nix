@@ -9,7 +9,7 @@ in {
 
   programs.noctalia = {
     enable = true;
-    systemd.enable = true; # auto-restart on config change
+    systemd.enable = false; # auto-restart on config change
     settings = import ./config.nix {inherit colors;};
   };
 }

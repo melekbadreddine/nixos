@@ -83,6 +83,7 @@ Manage your system using `just`:
 | Super+Return                   | Ghostty terminal         |
 | Super+h                        | Helium browser           |
 | Super+z                        | Zen browser              |
+| Super+c                        | Codex desktop            |
 | Super+a                        | Antigravity              |
 | Super+w                        | Warp terminal            |
 | Super+f                        | PCManFM-Qt file manager  |

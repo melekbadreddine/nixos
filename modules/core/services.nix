@@ -14,7 +14,8 @@
       enable = true;
       xkb = {
         layout = "fr";
-        variant = "azerty";
+        variant = "oss";
+        model = "pc105";
         options = "";
       };
     };

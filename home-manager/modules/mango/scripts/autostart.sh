@@ -4,4 +4,4 @@
 @swaybg@ -i "@wallpaper@" -m fill &
 
 # Start Noctalia bar & shell
-@noctalia@ &
+sleep 1 && @noctalia@ &

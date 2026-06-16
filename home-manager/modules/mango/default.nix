@@ -6,6 +6,7 @@
   zen-browser,
   mango,
   noctalia,
+  inputs,
   ...
 }: let
   # Helper to convert Stylix color to Mango format (0xRRGGBBAA)
@@ -21,6 +22,22 @@
   noctaliaPkg = noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
   noctaliaBin = "${noctaliaPkg}/bin/noctalia";
   rofiBin = "${pkgs.rofi}/bin/rofi";
+
+  codexPkg = let
+    cfg = config.programs.codexDesktopLinux;
+    flakePackages = inputs.codex-desktop-linux.packages.${pkgs.stdenv.hostPlatform.system};
+    packageName =
+      if cfg.remoteMobileControl.enable && cfg.computerUseUi.enable
+      then "codex-desktop-computer-use-ui-remote-mobile-control"
+      else if cfg.remoteMobileControl.enable
+      then "codex-desktop-remote-mobile-control"
+      else if cfg.computerUseUi.enable
+      then "codex-desktop-computer-use-ui"
+      else "codex-desktop";
+  in
+    if cfg.package != null
+    then cfg.package
+    else flakePackages.${packageName};
 
   # Compile/Substitute the autostart template script
   autostartScript = pkgs.replaceVars ./scripts/autostart.sh {
@@ -65,7 +82,7 @@ in {
       default_nmaster = 1;
       smartgaps = 0;
       xkb_rules_layout = "fr";
-      xkb_rules_variant = "azerty";
+      xkb_rules_variant = "oss";
       xkb_rules_model = "pc105";
       xkb_rules_rules = "evdev";
 
@@ -102,6 +119,7 @@ in {
         "SUPER,Return,spawn,${pkgs.ghostty}/bin/ghostty"
         "SUPER,h,spawn,${helium.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/helium"
         "SUPER,z,spawn,${zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/zen"
+        "SUPER,c,spawn,${codexPkg}/bin/codex-desktop"
         "SUPER,a,spawn,${pkgs.antigravity}/bin/antigravity"
         "SUPER,w,spawn,${pkgs.warp-terminal}/bin/warp-terminal"
         "SUPER,f,spawn,${pkgs.lxqt.pcmanfm-qt}/bin/pcmanfm-qt"

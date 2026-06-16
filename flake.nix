@@ -48,6 +48,19 @@
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+    };
+    codex-cli-nix = {
+      url = "github:sadjow/codex-cli-nix/main";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+    codex-desktop-linux = {
+      url = "github:ilysenko/codex-desktop-linux";
+    };
   };
 
   outputs = {

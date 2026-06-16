@@ -37,7 +37,6 @@
     cht-sh
 
     # AI Assistants
-    codex
     fabric-ai
     gemini-cli
     github-copilot-cli
