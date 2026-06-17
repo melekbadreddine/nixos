@@ -17,20 +17,20 @@ profile := `if [ -f .current-profile ]; then cat .current-profile; \
 # Rebuild the NixOS system
 switch:
     @echo "Rebuilding NixOS system with profile: {{profile}}..."
-    sudo nixos-rebuild switch --flake .#{{profile}} --accept-flake-config
+    sudo nixos-rebuild switch --flake .#{{profile}} --accept-flake-config |& nom
 
 # Rebuild Home Manager configuration standalone
 home-switch:
     @echo "Rebuilding Home Manager..."
     @HOST_TARGET=$([ "{{profile}}" = "wsl" ] && echo "wsl" || ([ "{{profile}}" = "vm" ] && echo "vm" || echo "default")); \
-    home-manager switch --flake .#melek@$HOST_TARGET --accept-flake-config
+    home-manager switch --flake .#melek@$HOST_TARGET --accept-flake-config |& nom
 
 # Update all flake inputs and rebuild system
 update:
     @echo "Updating flake inputs..."
     nix flake update
     @echo "Rebuilding System with profile: {{profile}}..."
-    sudo nixos-rebuild switch --flake .#{{profile}} --accept-flake-config
+    sudo nixos-rebuild switch --flake .#{{profile}} --accept-flake-config |& nom
 
 # Update all flake inputs
 update-flake:
@@ -63,7 +63,13 @@ format:
 
 # Check for unused code
 deadnix:
+    @echo "Checking for unused code..."
     nix run nixpkgs#deadnix -- --fail .
+
+# Check for nix antipatterns
+statix:
+    @echo "Checking for nix antipatterns..."
+    nix run nixpkgs#statix -- check .
 
 # List NixOS generations
 generations:

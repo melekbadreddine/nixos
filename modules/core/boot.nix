@@ -15,8 +15,8 @@
     };
     boot.kernelParams = [
       "quiet"
-      # "splash"
-      # "boot.shell_on_fail"
+      "splash"
+      "boot.shell_on_fail"
       "loglevel=3"
       "udev.log_priority=3"
       "rd.udev.log_level=3"
@@ -25,14 +25,8 @@
     ];
     boot.consoleLogLevel = 0;
     boot.initrd.verbose = false;
-    boot.plymouth.enable = false;
-    boot.blacklistedKernelModules = ["i2c_piix4"];
-    boot.kernel.sysctl = {
-      "vm.swappiness" = 10;
-      "vm.dirty_ratio" = 15;
-      "vm.dirty_background_ratio" = 5;
-      "kernel.nmi_watchdog" = 0;
-    };
+    boot.plymouth.enable = true;
+
     systemd.settings.Manager = {
       DefaultTimeoutStopSec = "10s";
     };

@@ -151,7 +151,7 @@
               then "wsl"
               else if h == "vm"
               then "vm"
-              else "amd"; # Provide a default profile for standalone
+              else "amd-nvidia"; # Provide a default profile for standalone
             vars = vars;
           };
           modules = [

@@ -24,6 +24,10 @@
     sops
     age
 
+    # Nix Development Tools
+    nil
+    nix-output-monitor
+
     # Terminals & Workspace Environments
     antigravity
     warp-terminal
@@ -38,7 +42,7 @@
 
     # AI Assistants
     fabric-ai
-    gemini-cli
+    claude-code
     github-copilot-cli
 
     # Structured Search & CLI Navigation Tools
@@ -59,7 +63,6 @@
 
     # Cloud Engineering & IaC
     ansible
-    azure-cli
     terraform
     terraform-ls
     tflint
@@ -67,11 +70,15 @@
     # Systems Programming, Languages & Runtimes
     gcc
     go
-    cargo
     rustc
+    cargo
     nodejs
     bun
     python3
     jdk
+
+    # Build & Protocol Tools
+    gnumake
+    protobuf
   ];
 }

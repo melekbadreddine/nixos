@@ -1,5 +1,4 @@
 {osConfig ? null, ...}: let
-  # Use osConfig if available (NixOS managed), otherwise check for the path, or use a dummy for evaluation safety
   sopsPath =
     if osConfig != null && osConfig ? sops
     then osConfig.sops.secrets."github/token".path
@@ -7,13 +6,30 @@
 in {
   programs.git = {
     enable = true;
+
     settings = {
       user = {
         name = "melekbadreddine";
         email = "mbadreddine5@gmail.com";
       };
+
       init.defaultBranch = "main";
+
       credential.helper = ''!f() { [ "$1" = "get" ] && printf "username=melekbadreddine\npassword=$(cat ${sopsPath})\n"; }; f "$@"'';
+
+      merge.conflictstyle = "zdiff3";
+
+      diff.colorMoved = "default";
+    };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      navigate = true;
+      line-numbers = true;
+      side-by-side = true;
     };
   };
 

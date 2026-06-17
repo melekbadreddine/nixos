@@ -10,6 +10,14 @@ in {
     enable = mkEnableOption "Enable Virtual Machine Guest Services";
   };
   config = mkIf cfg.enable {
+    boot.blacklistedKernelModules = ["i2c_piix4"];
+    boot.kernel.sysctl = {
+      "vm.swappiness" = 10;
+      "vm.dirty_ratio" = 15;
+      "vm.dirty_background_ratio" = 5;
+      "kernel.nmi_watchdog" = 0;
+    };
+
     # VMware guest services
     virtualisation.vmware.guest = {
       enable = true;
