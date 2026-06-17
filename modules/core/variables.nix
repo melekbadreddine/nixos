@@ -1,6 +1,6 @@
 {
   stylixEnable = true;
-  stylixImage = ../../assets/wallpapers/16.png;
+  stylixImage = ../../assets/wallpapers/link.jpg;
 
   # Desktop Environment Preferences
   cosmicEnable = false;
