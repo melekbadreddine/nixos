@@ -91,7 +91,6 @@
   };
 
   home.sessionVariables = {
-    EDITOR = "fresh";
     STARSHIP_LOG = "error";
   };
 

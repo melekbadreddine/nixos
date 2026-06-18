@@ -1,10 +1,17 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.neovim = {
     enable = true;
-    defaultEditor = true;
+    defaultEditor = lib.mkForce true;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+
+    withPython3 = false;
+    withRuby = false;
 
     extraPackages = with pkgs; [
       lua-language-server
