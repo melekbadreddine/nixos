@@ -1,9 +1,9 @@
-{osConfig ? null, ...}: let
-  sopsPath =
-    if osConfig != null && osConfig ? sops
-    then osConfig.sops.secrets."github/token".path
-    else "/run/secrets/github/token";
-in {
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    gh
+    glab
+  ];
+
   programs.git = {
     enable = true;
 
@@ -15,11 +15,23 @@ in {
 
       init.defaultBranch = "main";
 
-      credential.helper = ''!f() { [ "$1" = "get" ] && printf "username=melekbadreddine\npassword=$(cat ${sopsPath})\n"; }; f "$@"'';
+      credential = {
+        "https://github.com".helper = "!${pkgs.gh}/bin/gh auth git-credential";
+        "https://gist.github.com".helper = "!${pkgs.gh}/bin/gh auth git-credential";
+        "https://gitlab.com".helper = "!${pkgs.glab}/bin/glab auth git-credential";
+        helper = "store";
+      };
 
       merge.conflictstyle = "zdiff3";
 
       diff.colorMoved = "default";
+
+      push.autoSetupRemote = true;
+
+      diff.lockb = {
+        textconv = "bun";
+        binary = true;
+      };
     };
   };
 
@@ -27,11 +39,25 @@ in {
     enable = true;
     enableGitIntegration = true;
     options = {
+      features = "decorations";
       navigate = true;
       line-numbers = true;
       side-by-side = true;
+      interactive.keep-plus-minus-markers = false;
     };
   };
+
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    settings = {
+      "*" = {
+        addKeysToAgent = "yes";
+      };
+    };
+  };
+
+  services.ssh-agent.enable = true;
 
   programs.lazygit.enable = true;
 }
