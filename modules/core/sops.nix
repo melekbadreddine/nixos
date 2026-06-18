@@ -16,16 +16,20 @@
     age.generateKey = false;
 
     secrets = {
-      "github/token" = {
+      "GITHUB_TOKEN" = {
         owner = config.users.users.melek.name;
         mode = "0400";
       };
-      "gitlab/token" = {
+      "GITLAB_TOKEN" = {
         owner = config.users.users.melek.name;
         mode = "0400";
       };
-      "docker/token" = {
+      "DOCKER_TOKEN" = {
         owner = config.users.users.melek.name;
+        mode = "0400";
+      };
+      "NVIDIA_NIM_API_KEY" = {
+        # Keeps it secure for systemic/container invocation tasks
         mode = "0400";
       };
     };
