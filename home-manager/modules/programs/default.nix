@@ -6,6 +6,5 @@
     ./thunderbird.nix
     ./vesktop.nix
     ./codex.nix
-    ./nvim.nix
   ];
 }

@@ -2,7 +2,7 @@
   environment.sessionVariables = {
     # System-wide Wayland keyboard layout specifications
     XKB_DEFAULT_LAYOUT = "fr";
-    XKB_DEFAULT_VARIANT = "azerty";
+    XKB_DEFAULT_VARIANT = "oss";
     XKB_DEFAULT_MODEL = "pc105";
 
     # Consistent XDG Fallbacks

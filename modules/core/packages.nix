@@ -51,6 +51,7 @@
     jq
     bat
     fzf
+    tuxedo
 
     # Compression & Archiving Utilities
     zip
