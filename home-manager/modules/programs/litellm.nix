@@ -5,15 +5,15 @@
       - model_name: claude-sonnet-4-6
         litellm_params:
           model: nvidia_nim/qwen/qwen3.5-122b-a10b
-          api_key: os.environ/NVIDIA_NIM_API_KEY
+          api_key: "NVIDIA_NIM_API_KEY"
       - model_name: claude-opus-4-6
         litellm_params:
           model: nvidia_nim/z-ai/glm5
-          api_key: os.environ/NVIDIA_NIM_API_KEY
+          api_key: "NVIDIA_NIM_API_KEY"
       - model_name: claude-haiku-4-5
         litellm_params:
           model: nvidia_nim/moonshotai/kimi-k2.5
-          api_key: os.environ/NVIDIA_NIM_API_KEY
+          api_key: "NVIDIA_NIM_API_KEY"
 
     litellm_settings:
       drop_params: true
