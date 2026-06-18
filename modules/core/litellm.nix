@@ -1,4 +1,7 @@
 {config, ...}: {
+  # Force oci-containers to use Docker instead of defaulting to Podman
+  virtualisation.oci-containers.backend = "docker";
+
   # Spins up the background translating daemon engine
   virtualisation.oci-containers.containers."litellm-nim" = {
     image = "docker.litellm.ai/berriai/litellm:main-stable";
