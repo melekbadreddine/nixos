@@ -21,5 +21,9 @@
     ];
 
     autoStart = true;
+
+    extraOptions = [
+      "--init"
+    ];
   };
 }
