@@ -34,4 +34,11 @@
     ANTHROPIC_DEFAULT_SONNET_MODEL = "claude-sonnet-4-6";
     ANTHROPIC_DEFAULT_HAIKU_MODEL = "claude-haiku-4-5";
   };
+
+  # Ponytail install hook
+  home.activation.ponytail = ''
+    if [ ! -d "$HOME/.claude/skills/ponytail" ]; then
+      npx -y skills add DietrichGebert/ponytail
+    fi
+  '';
 }
