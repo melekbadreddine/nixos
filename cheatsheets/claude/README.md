@@ -2,8 +2,6 @@
 
 This document details the declarative workaround used to redirect the `claude` CLI tool to run open-weight coding models hosted via NVIDIA Inference Microservices (NIM).
 
-This setup is inspired by and adapted from the implementation guide detailed in [Running Claude Code for Free with NVIDIA NIM](https://uright.ca/posts/running-claude-code-for-free-with-nvidia-nim/).
-
 ## Architecture Workflow
 
 
