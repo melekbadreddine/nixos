@@ -3,8 +3,8 @@
     ./boot.nix
     ./env.nix
     ./i18n.nix
-    ./litellm.nix
     ./nix.nix
+    ./ollama.nix
     ./packages.nix
     ./polkit.nix
     ./sddm.nix
