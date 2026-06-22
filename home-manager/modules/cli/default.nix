@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ./claude.nix
     ./eza.nix
     ./fastfetch.nix
     ./fresh.nix

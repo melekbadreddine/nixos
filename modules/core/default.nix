@@ -4,7 +4,6 @@
     ./env.nix
     ./i18n.nix
     ./nix.nix
-    ./ollama.nix
     ./packages.nix
     ./polkit.nix
     ./sddm.nix
