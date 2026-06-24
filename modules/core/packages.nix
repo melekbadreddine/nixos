@@ -43,6 +43,7 @@
     # AI Assistants
     fabric-ai
     claude-code
+    antigravity-cli
     github-copilot-cli
 
     # Structured Search & CLI Navigation Tools

@@ -114,19 +114,10 @@ in {
         "id:9,layout_name:tile"
       ];
 
-      # Keybindings
+      # Keybindings using keycodes or layout-neutral special keys.
       bind = [
         "SUPER,Return,spawn,${pkgs.ghostty}/bin/ghostty"
-        "SUPER,h,spawn,${helium.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/helium"
-        "SUPER,z,spawn,${zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/zen"
-        "SUPER,c,spawn,${codexPkg}/bin/codex-desktop"
-        "SUPER,a,spawn,${pkgs.antigravity}/bin/antigravity"
-        "SUPER,w,spawn,${pkgs.warp-terminal}/bin/warp-terminal"
-        "SUPER,f,spawn,${pkgs.lxqt.pcmanfm-qt}/bin/pcmanfm-qt"
-        # Rofi launcher (replaces tofi)
         "SUPER,Space,spawn,${rofiBin} -show drun"
-        "SUPER,v,spawn,${pkgs.virt-manager}/bin/virt-manager"
-        "SUPER,q,killclient,"
         "ctrl+alt,space,quit"
 
         # Focus
@@ -163,12 +154,7 @@ in {
         "SUPER+SHIFT,9,tag,9,0"
 
         "SUPER,0,toggleoverview"
-        "SUPER,f,togglefullscreen,"
         "SUPER,BackSpace,spawn,${pkgs.systemd}/bin/loginctl terminate-user $USER"
-
-        # Noctalia IPC — shell panels
-        "SUPER,s,spawn,${noctaliaBin} msg panel-toggle control-center"
-        "SUPER,comma,spawn,${noctaliaBin} msg settings-toggle"
 
         # Media keys via Noctalia IPC
         "NONE,XF86AudioRaiseVolume,spawn,${noctaliaBin} msg volume-up"
@@ -176,6 +162,23 @@ in {
         "NONE,XF86AudioMute,spawn,${noctaliaBin} msg volume-mute"
         "NONE,XF86MonBrightnessUp,spawn,${noctaliaBin} msg brightness-up"
         "NONE,XF86MonBrightnessDown,spawn,${noctaliaBin} msg brightness-down"
+      ];
+
+      # Keybindings using keysyms so Mango follows the active AZERTY layout.
+      binds = [
+        "SUPER,h,spawn,${helium.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/helium"
+        "SUPER,z,spawn,${zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/zen"
+        "SUPER,c,spawn,${codexPkg}/bin/codex-desktop"
+        "SUPER,a,spawn,${pkgs.antigravity}/bin/antigravity"
+        "SUPER,w,spawn,${pkgs.warp-terminal}/bin/warp-terminal"
+        "SUPER+SHIFT,f,spawn,${pkgs.lxqt.pcmanfm-qt}/bin/pcmanfm-qt"
+        "SUPER,v,spawn,${pkgs.virt-manager}/bin/virt-manager"
+        "SUPER,q,killclient,"
+        "SUPER,f,togglefullscreen,"
+
+        # Noctalia IPC — shell panels
+        "SUPER,s,spawn,${noctaliaBin} msg panel-toggle control-center"
+        "SUPER,comma,spawn,${noctaliaBin} msg settings-toggle"
       ];
 
       mousebind = [
