@@ -3,6 +3,7 @@
     ./boot.nix
     ./env.nix
     ./i18n.nix
+    ./litellm.nix
     ./nix.nix
     ./packages.nix
     ./polkit.nix

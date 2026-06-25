@@ -41,6 +41,8 @@
     cht-sh
 
     # AI Assistants
+    opencode
+    qwen-code
     fabric-ai
     claude-code
     antigravity-cli

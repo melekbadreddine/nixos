@@ -63,27 +63,15 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    home-manager,
-    fresh,
-    helium,
-    zen-browser,
-    stylix,
-    mango,
-    noctalia,
-    ...
-  } @ inputs: let
-    system = "x86_64-linux"; # Primary system
-    pkgs = import nixpkgs {
+  outputs = inputs: let
+    system = "x86_64-linux";
+    pkgs = import inputs.nixpkgs {
       inherit system;
       config.allowUnfree = true;
     };
 
-    # Global variables
     vars = import ./modules/core/variables.nix;
 
-    # Supported profiles
     profiles = [
       "amd"
       "intel"
@@ -94,12 +82,7 @@
       "wsl"
     ];
 
-    # Function to create a NixOS configuration for a given profile
     mkNixosConfig = profile: let
-      # Host mapping logic:
-      # wsl -> wsl host
-      # vm -> vm host
-      # others -> default host
       host =
         if profile == "wsl"
         then "wsl"
@@ -107,16 +90,21 @@
         then "vm"
         else "default";
     in
-      nixpkgs.lib.nixosSystem {
+      inputs.nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs fresh helium zen-browser stylix mango noctalia host profile vars;
+          inherit inputs host profile vars;
+          fresh = inputs.fresh;
+          helium = inputs.helium;
+          zen-browser = inputs.zen-browser;
+          mango = inputs.mango;
+          noctalia = inputs.noctalia;
         };
         modules = [
           {nixpkgs.hostPlatform = system;}
-          stylix.nixosModules.stylix
+          inputs.stylix.nixosModules.stylix
           ./profiles/${profile}
 
-          home-manager.nixosModules.home-manager
+          inputs.home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -124,12 +112,18 @@
 
             home-manager.users.melek = import ./home-manager/home.nix;
 
-            home-manager.extraSpecialArgs = {inherit inputs fresh helium zen-browser mango noctalia host profile vars;};
+            home-manager.extraSpecialArgs = {
+              inherit inputs host profile vars;
+              fresh = inputs.fresh;
+              helium = inputs.helium;
+              zen-browser = inputs.zen-browser;
+              mango = inputs.mango;
+              noctalia = inputs.noctalia;
+            };
           }
         ];
       };
   in {
-    # Create a configuration for each profile
     nixosConfigurations = builtins.listToAttrs (
       map (profile: {
         name = profile;
@@ -141,21 +135,26 @@
     homeConfigurations = builtins.listToAttrs (
       map (h: {
         name = "melek@${h}";
-        value = home-manager.lib.homeManagerConfiguration {
+        value = inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit fresh helium zen-browser mango noctalia inputs;
+            inherit inputs;
             host = h;
             profile =
               if h == "wsl"
               then "wsl"
               else if h == "vm"
               then "vm"
-              else "amd-nvidia"; # Provide a default profile for standalone
+              else "amd-nvidia";
             vars = vars;
+            fresh = inputs.fresh;
+            helium = inputs.helium;
+            zen-browser = inputs.zen-browser;
+            mango = inputs.mango;
+            noctalia = inputs.noctalia;
           };
           modules = [
-            stylix.homeModules.stylix
+            inputs.stylix.homeModules.stylix
             ./home-manager/home.nix
           ];
         };

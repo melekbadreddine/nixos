@@ -1,4 +1,4 @@
-@import "colors.rasi"
+@import "/home/melek/.config/rofi/colors.rasi"
 
 * {
   background-color: var(transparent);
@@ -96,7 +96,7 @@ element-icon {
 element-text {
   background-color: var(transparent);
   text-color: inherit;
-  highlight: bold var(accent);
+  highlight: bold @accent;
   vertical-align: 0.5;
 }
 
