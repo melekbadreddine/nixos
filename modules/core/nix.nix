@@ -11,6 +11,9 @@
       "melek-nixos.cachix.org-1:UdhKZAFc78C4ge9SFfgCtMcyBGVfJemC/dwjBaqonVs="
     ];
     trusted-users = ["root" "@wheel"];
+    connect-timeout = 60;
+    stalled-download-timeout = 300;
+    download-attempts = 5;
   };
 
   nix.gc = {

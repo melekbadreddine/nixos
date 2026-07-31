@@ -6,6 +6,7 @@
     ./fresh.nix
     ./fzf.nix
     ./git.nix
+    ./herdr.nix
     ./starship.nix
     ./tmux.nix
     ./zoxide.nix
